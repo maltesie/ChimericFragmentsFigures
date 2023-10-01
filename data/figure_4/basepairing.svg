@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="basepairing.svg"
+   inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsPaper/figures/archetypes_seed_regions/basepairing.png"
+   inkscape:export-xdpi="98.284599"
+   inkscape:export-ydpi="98.284599"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.0998546"
+     inkscape:cx="703.27478"
+     inkscape:cy="312.31401"
+     inkscape:window-width="2490"
+     inkscape:window-height="1376"
+     inkscape:window-x="70"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path133237" />
+    </marker>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect133152"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 148.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="210 : 148.5 : 1"
+       inkscape:persp3d-origin="105 : 99 : 1"
+       id="perspective133027" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-9"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path133237-4" />
+    </marker>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect133152-7"
+       is_visible="true"
+       lpeversion="1" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#feffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.471737;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect200727"
+       width="264.84177"
+       height="152.89188"
+       x="8.5036182"
+       y="37.461693"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsPaper/figures/joined_seed_regions_new_vs_old/basepairing.png"
+       inkscape:export-xdpi="194.2103"
+       inkscape:export-ydpi="194.2103" />
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:9.87777px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+       x="67.988029"
+       y="46.723446"
+       id="text4346"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsPaper/figures/joined_seed_regions_new_vs_old/basepairing.png"
+       inkscape:export-xdpi="194.2103"
+       inkscape:export-ydpi="194.2103"><tspan
+         sodipodi:role="line"
+         id="tspan4344"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:FreeMono;-inkscape-font-specification:'FreeMono Bold';stroke-width:0.264583"
+         x="67.988029"
+         y="46.723446" /><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:FreeMono;-inkscape-font-specification:'FreeMono Bold';stroke-width:0.264583"
+         x="67.988029"
+         y="59.468086"
+         id="tspan4348">    +11 UGCGUCUGUUU +21</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:FreeMono;-inkscape-font-specification:'FreeMono Bold';stroke-width:0.264583"
+         x="67.988029"
+         y="72.212723"
+         id="tspan4350">        ||||||||||·</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:FreeMono;-inkscape-font-specification:'FreeMono Bold';stroke-width:0.264583"
+         x="67.988029"
+         y="84.957359"
+         id="tspan4362">    +39 ACGCAGACAAG +29</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.87777px;line-height:1.25;font-family:FreeMono;-inkscape-font-specification:'FreeMono Bold';stroke-width:0.264583"
+       x="31.324598"
+       y="59.422203"
+       id="text77329"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsPaper/figures/joined_seed_regions_new_vs_old/basepairing.png"
+       inkscape:export-xdpi="194.2103"
+       inkscape:export-ydpi="194.2103"><tspan
+         sodipodi:role="line"
+         id="tspan77327"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:FreeMono;-inkscape-font-specification:'FreeMono Bold Italic';stroke-width:0.264583"
+         x="31.324598"
+         y="59.422203">vc1043</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:9.87777px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+       x="43.088993"
+       y="84.762932"
+       id="text104825"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsPaper/figures/joined_seed_regions_new_vs_old/basepairing.png"
+       inkscape:export-xdpi="194.2103"
+       inkscape:export-ydpi="194.2103"><tspan
+         sodipodi:role="line"
+         id="tspan104823"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:FreeMono;-inkscape-font-specification:'FreeMono Bold';stroke-width:0.264583"
+         x="43.088993"
+         y="84.762932">FarS</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.87777px;line-height:1.25;font-family:FreeMono;-inkscape-font-specification:'FreeMono Bold';stroke-width:0.264583"
+       x="24.454779"
+       y="137.41194"
+       id="text77329-1"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsPaper/figures/joined_seed_regions_new_vs_old/basepairing.png"
+       inkscape:export-xdpi="194.2103"
+       inkscape:export-ydpi="194.2103"><tspan
+         sodipodi:role="line"
+         id="tspan77327-2"
+         style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:FreeMono;-inkscape-font-specification:'FreeMono Bold Italic';stroke-width:0.264583"
+         x="24.454779"
+         y="137.41194">vca0848</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:9.87777px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+       x="42.027287"
+       y="162.75269"
+       id="text104825-93"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsPaper/figures/joined_seed_regions_new_vs_old/basepairing.png"
+       inkscape:export-xdpi="194.2103"
+       inkscape:export-ydpi="194.2103"><tspan
+         sodipodi:role="line"
+         id="tspan104823-1"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:FreeMono;-inkscape-font-specification:'FreeMono Bold';stroke-width:0.264583"
+         x="42.027287"
+         y="162.75269">FarS</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:9.87777px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+       x="145.20248"
+       y="104.60403"
+       id="text104825-2"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsPaper/figures/joined_seed_regions_new_vs_old/basepairing.png"
+       inkscape:export-xdpi="194.2103"
+       inkscape:export-ydpi="194.2103"><tspan
+         sodipodi:role="line"
+         id="tspan104823-8"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:FreeMono;-inkscape-font-specification:'FreeMono Bold';stroke-width:0.264583"
+         x="145.20248"
+         y="104.60403">C</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.318745;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m 148.17921,88.195086 0.002,7.107508"
+       id="path133150"
+       inkscape:path-effect="#path-effect133152"
+       inkscape:original-d="m 148.17921,88.195086 c 9e-4,2.369262 0.002,4.738432 0.002,7.107508"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsPaper/figures/joined_seed_regions_new_vs_old/basepairing.png"
+       inkscape:export-xdpi="194.2103"
+       inkscape:export-ydpi="194.2103" />
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:9.87777px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+       x="155.95761"
+       y="182.32968"
+       id="text104825-2-8"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsPaper/figures/joined_seed_regions_new_vs_old/basepairing.png"
+       inkscape:export-xdpi="194.2103"
+       inkscape:export-ydpi="194.2103"><tspan
+         sodipodi:role="line"
+         id="tspan104823-8-4"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:FreeMono;-inkscape-font-specification:'FreeMono Bold';stroke-width:0.264583"
+         x="155.95761"
+         y="182.32968">C</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.318745;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend-9)"
+       d="m 158.93449,165.92074 0.002,7.10751"
+       id="path133150-5"
+       inkscape:path-effect="#path-effect133152-7"
+       inkscape:original-d="m 158.93449,165.92074 c 9e-4,2.36926 0.002,4.73843 0.002,7.10751"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsPaper/figures/joined_seed_regions_new_vs_old/basepairing.png"
+       inkscape:export-xdpi="194.2103"
+       inkscape:export-ydpi="194.2103" />
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:9.87777px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+       x="66.845993"
+       y="124.42913"
+       id="text143351"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsPaper/figures/joined_seed_regions_new_vs_old/basepairing.png"
+       inkscape:export-xdpi="194.2103"
+       inkscape:export-ydpi="194.2103"><tspan
+         sodipodi:role="line"
+         id="tspan143349"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:FreeMono;-inkscape-font-specification:'FreeMono Bold';stroke-width:0.264583"
+         x="66.845993"
+         y="124.42913" /><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:FreeMono;-inkscape-font-specification:'FreeMono Bold';stroke-width:0.264583"
+         x="66.845993"
+         y="137.17377"
+         id="tspan143353">   +100 CCGCUCUCCACGGCGAC +116</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:FreeMono;-inkscape-font-specification:'FreeMono Bold';stroke-width:0.264583"
+         x="66.845993"
+         y="149.91841"
+         id="tspan143355">        |||||||||| || |||</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:FreeMono;-inkscape-font-specification:'FreeMono Bold';stroke-width:0.264583"
+         x="66.845993"
+         y="162.66304"
+         id="tspan143367">    +61 GGCGAGAGGUACC-CUG +46</tspan></text>
+  </g>
+</svg>
