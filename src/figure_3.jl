@@ -1,26 +1,7 @@
-using RNASeqTools, BioAlignments, BioSequences, CairoMakie, DataFrames, JLD2, MultipleTesting, FileIO, Combinatorics, StatsBase
-
 randstrand() = rand() > 0.5 ? '+' : '-'
-
-struct Interactions
-    nodes::DataFrame
-    edges::DataFrame
-    edgestats::Dict{Tuple{Int,Int}, Tuple{Int, Dict{Tuple{Int,Int},Int}, Dict{Tuple{Int,Int},Int}}}
-    bpstats::Dict{Tuple{Int,Int}, Tuple{Float64, Int64, Int64, Int64, Int64, Float64}}
-    multichimeras::Dict{Vector{Int}, Int}
-    replicate_ids::Vector{Symbol}
-    counts::Dict{Symbol,Vector{Int}}
-end
-
-Interactions(filepath::String) = jldopen(filepath,"r"; typemap=Dict("ChimericAnalysis.Interactions" => Interactions)) do f
-    f["interactions"]
-end
-
 score_bp(paln::PairwiseAlignmentResult, shift_weight::Float64) = BioAlignments.score(paln) - (shift_weight * abs(paln.aln.a.aln.anchors[end].seqpos - paln.aln.a.aln.anchors[end].refpos))
-function random_bp_alignments_plot(nseqs::Int, check_interaction_distances::Tuple{Int,Int}, bp_parameters::NTuple{6,Int}, params::Vector{Tuple{Int, Int}})
-    genome = Genome(joinpath(@__DIR__, "..", "bwa_mem2", "mg1655.fna"))
-    #genome.seq = randdnaseq(length(genome.seq))
-    #genome = Genome(randdnaseq(4000000), Dict("test"=>1:4000000))
+function plot_figure_3(assets_folder::String, interact::Interactions, nseqs::Int, check_interaction_distances::Tuple{Int,Int}, bp_parameters::NTuple{6,Int}, params::Vector{Tuple{Int, Int}})
+    genome = Genome(joinpath(assets_folder, "mg1655.fna"))
     complement_genome = Genome(complement(genome.seq), genome.chroms)
     reverse_genome = Genome(copy(genome.seq), genome.chroms)
     for (_, seq) in reverse_genome
@@ -37,15 +18,10 @@ function random_bp_alignments_plot(nseqs::Int, check_interaction_distances::Tupl
     model = AffineGapScoreModel(SubstitutionMatrix(scores; default_match=-1*bp_parameters[4], default_mismatch=-1*bp_parameters[4]);
         gap_open=-1*bp_parameters[5], gap_extend=-1*bp_parameters[6])
 
-    #model = AffineGapScoreModel(match=1,mismatch=-1,gap_open=-1,gap_extend=-1)
-    #model = CostModel(match=-1,mismatch=1,insertion=1,deletion=1)
-    #model = CostModel(SubstitutionMatrix(scores; default_match=bp_parameters[4], default_mismatch=bp_parameters[4]), bp_parameters[5], bp_parameters[6])
     left1, left2, right1, right2, rands = zeros(Int, nseqs), zeros(Int, nseqs), zeros(Int, nseqs), zeros(Int, nseqs), zeros(Float64, nseqs)
 
     bins= 1:(check_interaction_distances[1] - check_interaction_distances[2])+1
-    #distcut = 5
-    #ccc = 0
-    #ops = Dict()
+
     for (i, (i1::Int, i2::Int)) in enumerate(eachrow(rand(1:length(genome.seq), (nseqs, 2))))
 
         strand1, strand2 = randstrand(), randstrand()
@@ -68,21 +44,12 @@ function random_bp_alignments_plot(nseqs::Int, check_interaction_distances::Tupl
         s2 = randdnaseq(last(bins)-1)
 
         paln = pairalign(LocalAlignment(), s2, s1, model)
-        #println(BioAlignments.print_pairwise_alignment(stdout,paln.aln))
         rands[i] = score_bp(paln, 1.0)
         left1[i] = paln.aln.a.aln.anchors[1].seqpos + 1
         right1[i] = paln.aln.a.aln.anchors[end].seqpos
         left2[i] = paln.aln.a.aln.anchors[1].refpos + 1
         right2[i] = paln.aln.a.aln.anchors[end].refpos
-        #left1[i] = paln.aln.a.aln.anchors[findfirst(x -> ismatchop(x.op), paln.aln.a.aln.anchors)-1].seqpos+1
-        #right1[i] = paln.aln.a.aln.anchors[findlast(x -> ismatchop(x.op), paln.aln.a.aln.anchors)].seqpos
-        #left2[i] = paln.aln.a.aln.anchors[findfirst(x -> ismatchop(x.op), paln.aln.a.aln.anchors)-1].refpos+1
-        #right2[i] = paln.aln.a.aln.anchors[findlast(x -> ismatchop(x.op), paln.aln.a.aln.anchors)].refpos
-
-        #ccc += (abs(right1[i] - right2[i]) <= distcut)
-        #paln.aln.a.aln.anchors[end].op in keys(ops) ? ops[paln.aln.a.aln.anchors[end].op] += 1 : ops[paln.aln.a.aln.anchors[end].op] = 1
     end
-    #println(ccc / nseqs)
 
     fig = Figure(resolution=(1400, 900))
 
@@ -97,41 +64,18 @@ function random_bp_alignments_plot(nseqs::Int, check_interaction_distances::Tupl
     linkyaxes!(ax1, ax2)
     Label(fig[2,1, TopLeft()], "D", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
-    interact = Interactions(joinpath(@__DIR__, "..", "..", "..", "ChimericFragmentsProjects", "rilseq_vibrio_hfq_with_trimming", "results", "jld","hfq_lcd.jld2"))
-
     resize!.((left1, left2, right1, right2), length(interact.bpstats))
     fdrv = adjust(PValues(first.(values(interact.bpstats))), BenjaminiHochberg())
     interacts = zeros(Float64, length(fdrv))
     fcut = 0.25
-    #cccc = 0
-    #norm = 0
-    #rs = Int64[]
-    #ls = Int64[]
+
     for (i, (pval, l1, r1, l2, r2, s)) in enumerate(values(interact.bpstats))
         left1[i] = l1
         left2[i] = l2
         right1[i] = r1
         right2[i] = r2
         interacts[i] = s
-        #if pval > 0.25
-        #    if abs(right1[i] - right2[i]) <= distcut
-        #        cccc += 1
-        #        push!(rs, r2)
-        #        push!(ls, l2)
-        #    end
-        #    norm += 1
-        #end
     end
-    #println(cccc/norm)
-    #println(norm)
-
-
-    #randseq_model_ecdf = ecdf(rands)
-    #interact_ecdf = ecdf(interacts)
-
-    #max_score = max(maximum(interacts), maximum(rands))
-    #randseq_model_pdf = diff(randseq_model_ecdf.(1:(max_score+1)))
-    #interact_pdf = diff(interact_ecdf.(1:(max_score+1)))
 
     ax9 = Axis(fig[2,3], xlabel="postion in alignment", ylabel="frequency", title="total, left")
     h91 = hist!(ax9, left1, label="RNA1, left", bins=bins, normalization=:probability)
@@ -178,13 +122,6 @@ function random_bp_alignments_plot(nseqs::Int, check_interaction_distances::Tupl
     axislegend(ax7)
     Label(ga[1,2, TopLeft()], "B", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
-    #ax9 = Axis(ga[1, 3], title="density of alignment scores", xlabel="score", ylabel="density")
-    #density!(ax9, rands, color=(:red, 0.3), label="random model")
-    #density!(ax9, interacts, color=(:green, 0.3), label="ligation points")
-    #vlines!(ax9, [significant_score], color = :blue, label="FDR = $(fcut)")
-    #axislegend(ax9)
-
-
     interact_path = "/home/abc/Workspace/ChimericFragmentsProjects/rilseq_vibrio_hfq_with_trimming/replicates_correlation/"
     interact_file = "hfq_lcd.jld2"
     colors = ("Brown", "Coral", "BlueViolet", "DarkGreen")
@@ -192,9 +129,10 @@ function random_bp_alignments_plot(nseqs::Int, check_interaction_distances::Tupl
     ax_cor = Axis(ga[1, 3], ylabel="rank correlation", xlabel="complementarity FDR cutoff", title="RIL-seq replicate correlation",
         xticks=(1:length(pcuts)+1, [["$(round(pc, digits=2))" for pc in pcuts]..., "all"]))
 
+    """
     for ((se, ms), color) in zip(params, colors)
-        folder = "results_$(se)_$(ms)_1-00"
-        l = "$(se) | $(ms)"
+        folder = "results_(se)_(ms)_1-00"
+        l = "(se) | (ms)"
         fp = joinpath(interact_path, folder, "jld", interact_file)
         interact = Interactions(fp)
         filter!(:nb_ints => x -> x>3, interact.edges)
@@ -225,10 +163,12 @@ function random_bp_alignments_plot(nseqs::Int, check_interaction_distances::Tupl
         counts[length(pcuts)+1] = nrow(interact.edges)
         scatter!(ax_cor, 1:(length(pcuts)+1), corr_mean, label=l, color=color)
     end
+    
     Legend(ga[1,4], ax_cor, "seed | score")
+    """
     Label(ga[1,3, TopLeft()], "C", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
-    img = rotr90(load(joinpath(@__DIR__, "combined.png")))
+    img = rotr90(load(joinpath(assets_folder, "combined.png")))
     ax8 = Axis(ga[1, 1],
         leftspinevisible = false,
         rightspinevisible = false,
@@ -239,7 +179,5 @@ function random_bp_alignments_plot(nseqs::Int, check_interaction_distances::Tupl
     image!(ax8, img, aspect = DataAspect())
     Label(ga[1,1, TopLeft()], "A", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
-    save(joinpath(@__DIR__, "figure_bp_predictions.svg"), fig)
+    save("figure_3.svg", fig)
 end
-
-random_bp_alignments_plot(100000, (30,0), (4,5,0,7,8,3), [(12, 14), (15, 14), (12, 17),  (15, 18)])

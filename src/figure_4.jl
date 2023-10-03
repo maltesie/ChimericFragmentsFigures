@@ -1,19 +1,3 @@
-using CairoMakie, FileIO, MultipleTesting, JLD2, DataFrames, CSV, StatsBase, MultipleTesting, ColorSchemes, GeometryBasics, LaTeXStrings
-
-struct Interactions
-    nodes::DataFrame
-    edges::DataFrame
-    edgestats::Dict{Tuple{Int,Int}, Tuple{Int, Dict{Tuple{Int,Int},Int}, Dict{Tuple{Int,Int},Int}}}
-    bpstats::Dict{Tuple{Int,Int}, Tuple{Float64, Int64, Int64, Int64, Int64, Float64}}
-    multichimeras::Dict{Vector{Int}, Int}
-    replicate_ids::Vector{Symbol}
-    counts::Dict{Symbol,Vector{Int}}
-end
-
-Interactions(filepath::String) = jldopen(filepath,"r"; typemap=Dict("ChimericAnalysis.Interactions" => Interactions)) do f
-    f["interactions"]
-end
-
 function count_ligation_sites_as1(node_id::Int, interact::Interactions, bp_len::Int, max_fdr::Float64)
     df = interact.edges
     counts = Dict{Int, Dict{String,Int}}()
@@ -86,7 +70,7 @@ function aggregation_plot!(ax::Axis, interact::Interactions, n::String, max_fdr:
     end
 end
 
-function plot_seed_regions()
+function plot_figure_4(assets_folder::String, interact::Interactions)
 
     fig = Figure(resolution=(1200, 750))
 
@@ -100,28 +84,19 @@ function plot_seed_regions()
     Label(gb[1,3, TopLeft()], "B", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
     Label(gb[1,6, TopLeft()], "C", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
-    interact = Interactions("/home/abc/Workspace/ChimericFragmentsProjects/rilseq_vibrio_hfq_with_trimming/replicates_correlation/results_12_17_1-00/jld/hfq_hcd.jld2")
-
-    #ax1 = Axis(ga[1, 1], title="OppZ", ylabel="count", xlabel="position")
-    #aggregation_plot!(ax1, interact, "OppZ", 0.25)
-
-    #ax2 = Axis(ga[1, 2], title="VC2770", ylabel="count", xlabel="position")
-    #aggregation_plot!(ax2, interact, "VC2770", 0.25)
-
     ax3 = Axis(ga[1, 1], title="FarS basepairing", ylabel="count", xlabel="position")
     aggregation_plot!(ax3, interact, "FarS", 0.25)
     band!(ax3, [0., 0.], [0., 0.], [0., 0.], color=RGBAf(0.529, 0.721, 0.431, 1.0), label="seed 1")
     band!(ax3, [0., 0.], [0., 0.], [0., 0.], color=RGBAf(0.85, 0.89, 0.6, 1.0), label="seed 2")
     axislegend(ax3, position=:rt)
-    #Legend(ga[1,4], ax3)
 
-    img4 = rotr90(load(joinpath(@__DIR__, "basepairing.png")))
+    img4 = rotr90(load(joinpath(assets_folder, "basepairing.png")))
     ax4 = Axis(ga[1, 2], leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
     hidedecorations!(ax4)
     image!(ax4, img4, aspect = DataAspect())
 
-    colors = reverse(ColorSchemes.tofino10.colors)[[4,3,2,1]]#[[2,3,4,5]]#[[4,3,2,1]]
-    df_plate = DataFrame(CSV.File(joinpath(@__DIR__, "platereader2.csv")))
+    colors = reverse(ColorSchemes.tofino10.colors)[[4,3,2,1]]
+    df_plate = DataFrame(CSV.File(joinpath(assets_folder, "platereader2.csv")))
 
     ax5 = Axis(ga[1,3], title = "FarS reporter assay", ylabel="relative fluorescence [AU]", xticks = (1:2, [L"\textit{vc1043}", L"\textit{vca0848}"]))
 
@@ -154,10 +129,9 @@ function plot_seed_regions()
     labels = df_plate.name
     elements = [PolyElement(polycolor = colors[i]) for i in 1:length(labels)]
     Legend(ga[1,4], elements, labels)
-    #axislegend(ax5, elements, labels, position=:rt)
 
-    df_old = DataFrame(CSV.File(joinpath(@__DIR__, "hfq_lcd_old.csv")))
-    df_new = DataFrame(CSV.File(joinpath(@__DIR__, "hfq_lcd_new.csv")))
+    df_old = DataFrame(CSV.File(joinpath(assets_folder, "hfq_lcd_old.csv")))
+    df_new = DataFrame(CSV.File(joinpath(assets_folder, "hfq_lcd_new.csv")))
 
     tested_pairs = [
         ("VCA0946", "Spot42"),
@@ -179,8 +153,8 @@ function plot_seed_regions()
     old_index = collect(findall(row->(row["name1"], row["name2"]) in old_pairs, eachrow(df_new)))
     new_index = vcat(tested_index, [i for i in 1:nrow(df_new) if !((i in old_index) | (i in tested_index))])
 
-    df_total_old = DataFrame(CSV.File(joinpath(@__DIR__, "table_s1_lcd.csv")))
-    df_total_new = DataFrame(CSV.File(joinpath(@__DIR__, "interactions_hfq_lcd_new.csv")))
+    df_total_old = DataFrame(CSV.File(joinpath(assets_folder, "table_s1_lcd.csv")))
+    df_total_new = DataFrame(CSV.File(joinpath(assets_folder, "interactions_hfq_lcd_new.csv")))
 
     types = (["sRNA"], ["IGR"], ["CDS", "5UTR", "3UTR", "CDS_UTRS"])
 
@@ -202,8 +176,6 @@ function plot_seed_regions()
                     counter[i+3] += Int(row.type2 in t)
                 end
             end
-            #counter[i+9] += Int(row.type1 in t)
-            #counter[i+9] += Int(row.type2 in t)
             if row.bp_fdr <= 0.25
                 counter[i+9] += Int(row.type1 in t)
                 counter[i+9] += Int(row.type2 in t)
@@ -230,11 +202,11 @@ function plot_seed_regions()
 
     p_big = decompose(Point2f, Circle(Point2f(0), 0.8))
     p_small = decompose(Point2f, Circle(Point2f(0), 0.4))
-    scatter!(axb2, log10.(df_new[tested_index, :nb_ints]), -1 .* log10.(df_new[tested_index, :bp_fdr]), label="picked for validation", marker=Polygon(p_big, [p_small]), markersize=7, color=RGBAf(0.8, 0.1, 0.0, 1.0)) # color=RGBAf(0.2, 0.5, 0.4, 0.9)
-    #Legend(fig[1,3], ax2)
+    scatter!(axb2, log10.(df_new[tested_index, :nb_ints]), -1 .* log10.(df_new[tested_index, :bp_fdr]), label="picked for validation",
+        marker=Polygon(p_big, [p_small]), markersize=7, color=RGBAf(0.8, 0.1, 0.0, 1.0))
     axislegend(axb2, position=:lt)
 
-    df_plate = DataFrame(CSV.File(joinpath(@__DIR__, "platereader.csv")))
+    df_plate = DataFrame(CSV.File(joinpath(assets_folder, "platereader.csv")))
     xlabels_latex = [L"\textit{%$cl}" for cl in df_plate.name]
     axb4 = Axis(gb[1,6:8], title="Spot 42 reporter assay", ylabel="relative fluorescence [AU]", xticks = (1:nrow(df_plate), xlabels_latex), xticklabelrotation = pi/4)
     groups = vcat(fill(1,nrow(df_plate)), fill(2,nrow(df_plate)))
@@ -258,9 +230,7 @@ function plot_seed_regions()
     errorbars!(collect(1:nrow(df_plate)) .+ 0.2, mean_spot, sd_spot, whiskerwidth=5)
     labels = ["control", "Spot 42"]
     elements = [PolyElement(polycolor = colors[i]) for i in 1:length(labels)]
-    #Legend(fig[2,3], elements, labels)
     axislegend(axb4, elements, labels, position=:lt)
 
-    save(joinpath(@__DIR__, "seed_regions_and_new_vs_old.svg"), fig)
+    save( "figure_4.svg", fig)
 end
-plot_seed_regions()
