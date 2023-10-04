@@ -13,7 +13,7 @@ function odds_ratio_hists!(ax_fisher, ax_bp, interact::Interactions, plotting_fd
 end
 
 function plot_figure_s3(assets_folder::String, interact::Interactions)
-    resfactor = 1.0
+    resfactor = 1.
     fig = Figure(resolution=(1200*resfactor, 800*resfactor))
 
     gb = fig[1,1] = GridLayout()
@@ -21,30 +21,18 @@ function plot_figure_s3(assets_folder::String, interact::Interactions)
     ax_graph = Axis(gb[1, 1], title="OppZ basepairing", ylabel="count", xlabel="position")#, leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
     aggregation_plot!(ax_graph, interact, "OppZ", 0.3)
     axislegend(ax_graph)
-    #hidexdecorations!(ax_graph, grid = false)
-    #hidespines!(ax_graph, :l, :t, :r)
 
     ax_graph2 = Axis(gb[1, 2], title="VC2770 basepairing", ylabel="count", xlabel="position")#, leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
     aggregation_plot!(ax_graph2, interact, "VC2770", 0.3)
     axislegend(ax_graph2)
-    #hidexdecorations!(ax_graph2, grid = false)
-    #hidespines!(ax_graph2, :l, :t, :r)
 
     ga = fig[2,1] = GridLayout()
 
     ax_odds_fisher = Axis(ga[1, 1], title="Odds ratio histogram for Fisher test")
-    #    leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
-    #img_odds_fisher = rotr90(load(joinpath(assets_folder, "oddsratio_fisher.png")))
-    #hidedecorations!(ax_odds_fisher)
-    #image!(ax_odds_fisher, img_odds_fisher, aspect = DataAspect())
-
     ax_odds_bp = Axis(ga[1, 2], title="Odds ratio histogram for basepairing test")
-    #    leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
-    #img_odds_fisher = rotr90(load(joinpath(assets_folder, "oddsratio_bp.png")))
-    #hidedecorations!(ax_odds_bp)
-    #image!(ax_odds_bp, img_odds_fisher, aspect = DataAspect())
 
     odds_ratio_hists!(ax_odds_fisher, ax_odds_bp, interact, 0.1)
+
     axislegend(ax_odds_fisher)
     axislegend(ax_odds_bp)
 
@@ -54,5 +42,5 @@ function plot_figure_s3(assets_folder::String, interact::Interactions)
     Label(ga[1,2, TopLeft()], "D", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
     save("figure_s3.svg", fig)
-
+    save("figure_s3.png", fig, px_per_unit = 2)
 end

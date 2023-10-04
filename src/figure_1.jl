@@ -1,5 +1,5 @@
 function plot_figure_1(assets_dir::String)
-    resfactor = 1.0
+    resfactor = 1.
     fig = Figure(resolution=(1200*resfactor, 800*resfactor))
 
     ga = fig[1:2,1] = GridLayout()
@@ -44,4 +44,5 @@ function plot_figure_1(assets_dir::String)
     Label(gb[1,3, TopLeft()], "F", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
     save("figure_1.svg", fig)
+    save("figure_1.png", fig, px_per_unit = 2)
 end

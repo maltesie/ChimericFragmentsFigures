@@ -5,7 +5,7 @@ function coverage_plot!(ax::Axis, coverage::Coverage, interval::Interval)
 end
 
 function plot_figure_5(assets_folder::String, interact::Interactions)
-    resfactor = 1.0
+    resfactor = 1.
     fig = Figure(resolution=(1400*resfactor, 900*resfactor))
 
     gb = fig[1:3,1] = GridLayout()
@@ -106,4 +106,5 @@ function plot_figure_5(assets_folder::String, interact::Interactions)
     Label(fig[3,2, TopLeft()], "E", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
     save("figure_5.svg", fig)
+    save("figure_5.png", fig, px_per_unit = 2)
 end

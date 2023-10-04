@@ -51,7 +51,8 @@ function plot_figure_3(assets_folder::String, interact::Interactions, nseqs::Int
         right2[i] = paln.aln.a.aln.anchors[end].refpos
     end
 
-    fig = Figure(resolution=(1400, 900))
+    resfactor = 1.
+    fig = Figure(resolution=(1400*resfactor, 900*resfactor))
 
     ax1 = Axis(fig[2,1], title="random, left", xlabel="postion in alignment", ylabel="frequency")
     h11 = hist!(ax1, left1, label="RNA1, left", bins=bins, normalization=:probability)
@@ -122,20 +123,16 @@ function plot_figure_3(assets_folder::String, interact::Interactions, nseqs::Int
     axislegend(ax7)
     Label(ga[1,2, TopLeft()], "B", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
-    interact_path = "/home/abc/Workspace/ChimericFragmentsProjects/rilseq_vibrio_hfq_with_trimming/replicates_correlation/"
-    interact_file = "hfq_lcd.jld2"
     colors = ("Brown", "Coral", "BlueViolet", "DarkGreen")
     pcuts = [0.01, 0.05, 0.1, 0.25, 0.5, 1.0]
     ax_cor = Axis(ga[1, 3], ylabel="rank correlation", xlabel="complementarity FDR cutoff", title="RIL-seq replicate correlation",
         xticks=(1:length(pcuts)+1, [["$(round(pc, digits=2))" for pc in pcuts]..., "all"]))
+    replicate_ids = ["hfq_lcd_1", "hfq_lcd_2"]
 
-    """
     for ((se, ms), color) in zip(params, colors)
-        folder = "results_(se)_(ms)_1-00"
-        l = "(se) | (ms)"
-        fp = joinpath(interact_path, folder, "jld", interact_file)
-        interact = Interactions(fp)
-        filter!(:nb_ints => x -> x>3, interact.edges)
+        l = "$(se) | $(ms)"
+        fp = joinpath(assets_folder, "..", "figure_2", "csv_correlation", "hfq_lcd_$(se)_$(ms).csv")
+        df = DataFrame(CSV.File(fp))
         corr_mean = zeros(length(pcuts)+1)
         corr_sd = zeros(length(pcuts)+1)
         counts = zeros(length(pcuts)+1)
@@ -143,29 +140,29 @@ function plot_figure_3(assets_folder::String, interact::Interactions, nseqs::Int
         corr_top_mean = zeros(length(pcuts))
 
         for (i, pcut) in enumerate(pcuts)
-            pindex = interact.edges.bp_fdr .<= pcut
-            corr = [corspearman(interact.edges[pindex, p1], interact.edges[pindex, p2]) for (p1, p2) in combinations(interact.replicate_ids, 2)]
+            pindex = df.bp_fdr .<= pcut
+            corr = [corspearman(df[pindex, p1], df[pindex, p2]) for (p1, p2) in combinations(replicate_ids, 2)]
             subpindex = sort(sample(1:findlast(pindex), sum(pindex), replace=false))
-            count_ints = Int(floor(nrow(interact.edges)*pcut))
+            count_ints = Int(floor(nrow(df)*pcut))
             subcounts[i] = count_ints
             subpindex = 1:count_ints
 
-            corr_top = [corspearman(interact.edges[subpindex, p1], interact.edges[subpindex, p2]) for (p1, p2) in combinations(interact.replicate_ids, 2)]
+            corr_top = [corspearman(df[subpindex, p1], df[subpindex, p2]) for (p1, p2) in combinations(replicate_ids, 2)]
             corr_mean[i] = mean(corr)
             corr_sd[i] = std(corr)
             counts[i] = sum(pindex)
             corr_top_mean[i] = mean(corr_top)
         end
 
-        corr = [corspearman(interact.edges[!, p1], interact.edges[!, p2]) for (p1, p2) in combinations(interact.replicate_ids, 2)]
+        corr = [corspearman(df[!, p1], df[!, p2]) for (p1, p2) in combinations(replicate_ids, 2)]
         corr_mean[length(pcuts)+1] = mean(corr)
         corr_sd[length(pcuts)+1] = std(corr)
-        counts[length(pcuts)+1] = nrow(interact.edges)
+        counts[length(pcuts)+1] = nrow(df)
         scatter!(ax_cor, 1:(length(pcuts)+1), corr_mean, label=l, color=color)
     end
-    
+
     Legend(ga[1,4], ax_cor, "seed | score")
-    """
+
     Label(ga[1,3, TopLeft()], "C", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
     img = rotr90(load(joinpath(assets_folder, "combined.png")))
@@ -180,4 +177,5 @@ function plot_figure_3(assets_folder::String, interact::Interactions, nseqs::Int
     Label(ga[1,1, TopLeft()], "A", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
     save("figure_3.svg", fig)
+    save("figure_3.png", fig, px_per_unit = 2)
 end

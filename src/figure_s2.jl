@@ -1,7 +1,5 @@
-using CairoMakie, FileIO
-
 function plot_figure_s2(assets_folder::String)
-    resfactor = 1.0
+    resfactor = 1.
     fig = Figure(resolution=(900*resfactor, 1200*resfactor))
 
     ax_graph = Axis(fig[1, 1], leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
@@ -12,4 +10,5 @@ function plot_figure_s2(assets_folder::String)
     Label(fig[1,1, TopLeft()], "A", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
     save( "figure_s2.svg", fig)
+    save( "figure_s2.png", fig, px_per_unit = 3)
 end

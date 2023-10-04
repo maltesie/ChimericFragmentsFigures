@@ -72,7 +72,8 @@ end
 
 function plot_figure_4(assets_folder::String, interact::Interactions)
 
-    fig = Figure(resolution=(1200, 750))
+    resfactor = 1.
+    fig = Figure(resolution=(1200*resfactor, 750*resfactor))
 
     ga = fig[2, 1] = GridLayout()
     Label(ga[1,1, TopLeft()], "D", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
@@ -233,4 +234,5 @@ function plot_figure_4(assets_folder::String, interact::Interactions)
     axislegend(axb4, elements, labels, position=:lt)
 
     save( "figure_4.svg", fig)
+    save( "figure_4.png", fig, px_per_unit = 2)
 end

@@ -1,5 +1,5 @@
 function plot_figure_s5(assets_folder::String)
-    resfactor = 1.0
+    resfactor = 1.
     fig = Figure(resolution=(1400*resfactor, 900*resfactor))
 
     ax_graph = Axis(fig[1:4, 3], leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
@@ -29,4 +29,5 @@ function plot_figure_s5(assets_folder::String)
     Label(fig[5,1, TopLeft()], "D", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
     save("figure_s5.svg", fig)
+    save("figure_s5.png", fig, px_per_unit = 2)
 end

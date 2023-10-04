@@ -265,8 +265,8 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
         write(genome_path, g)
     end
     g = Genome(genome_path)
-
-    fig = Figure(resolution=(1300, 750))
+    resfactor = 1.
+    fig = Figure(resolution=(1300*resfactor, 750*resfactor))
     ga = fig[1, 1] = GridLayout()
     Label(ga[1,1, TopLeft()], "A", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     Label(ga[1,3, TopLeft()], "B", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
@@ -280,7 +280,7 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
     mkpath(joinpath(assets_path, "csv"))
     us = unique_set(g)
 
-    fig_si = Figure(resolution=(1100, 1000))
+    fig_si = Figure(resolution=(1100*resfactor, 1000*resfactor))
     gc = fig_si[3, 1:4] = GridLayout()
     Label(fig_si[1,1, TopLeft()], "A", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     Label(fig_si[1,2, TopLeft()], "B", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
@@ -338,7 +338,6 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
     scatter!(ax, [first(p) for p in sorted_points], [last(p) for p in sorted_points], label=label, mode="markers", alpha=0.6)
     Legend(ga[1,2], ax, "length | errors")
 
-    interact_file = joinpath(@__DIR__, "data", "hfq_lcd.jld2")
     colors = ("Brown", "Coral", "BlueViolet", "DarkGreen")
     pcuts = [0.01, 0.05, 0.1, 0.25, 0.5, 1.0]
     ax_cor = Axis(gc[1,3], ylabel="Pearson correlation", xlabel="complementarity FDR cutoff", title="LCD replicate correlation", xticks=(1:length(pcuts)+1, [["$(round(pc, digits=2))" for pc in pcuts]..., "all"]))
@@ -346,46 +345,48 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
     ax_top = Axis(gb[1,3], ylabel="rank correlation", xlabel="top fraction of dataset", title="LCD replicate correlation", xticks=(1:length(pcuts), ["$(round(pc, digits=2))" for pc in pcuts]))
     ax_ints_count = Axis(gc[1,1], ylabel="median of read counts", xlabel="top fraction of dataset", title="LCD reads per interaction", xticks=(1:length(pcuts), ["$(round(pc, digits=2))" for pc in pcuts]), yscale=log10)
     max_count = 0
-    """
+    replicate_ids = ["hfq_lcd_1", "hfq_lcd_2"]
+
     for (((se, ms), label), color) in zip(params, colors)
-        l = "(se) | (ms)"
-        df_resampled_path = joinpath(assets_path, "csv_resampled", "interactions_resampled_(se)_(ms).csv")
-        df_resampled = DataFrame(CSV.File(df_resampled_path))
-        filter!(:nb_ints => x -> x>3, df_resampled)
+        l = "$(se) | $(ms)"
+        fp = joinpath(assets_path, "csv_correlation", "hfq_lcd_$(se)_$(ms).csv")
+        df = DataFrame(CSV.File(fp))
         corr_mean = zeros(length(pcuts)+1)
         corr_sd = zeros(length(pcuts)+1)
         counts = zeros(length(pcuts)+1)
         subcounts = zeros(length(pcuts))
         corr_top_mean = zeros(length(pcuts))
-        sorted_ints = sort(df_resampled.nb_ints; rev=true)
+
+        sorted_ints = sort(df.nb_ints; rev=true)
         for (i, pcut) in enumerate(pcuts)
-            pindex = df_resampled.bp_fdr .<= pcut
-            corr = [cor(df_resampled[pindex, p1], df_resampled[pindex, p2]) for (p1, p2) in combinations(interact.replicate_ids, 2)]
+            pindex = df.bp_fdr .<= pcut
+            corr = [cor(df[pindex, p1], df[pindex, p2]) for (p1, p2) in combinations(replicate_ids, 2)]
             subpindex = sort(sample(1:findlast(pindex), sum(pindex), replace=false))
-            count_ints = Int(floor(nrow(df_resampled)*pcut))
+            count_ints = Int(floor(nrow(df)*pcut))
             subpindex = 1:count_ints
             subcounts[i] = median(sorted_ints[subpindex])
 
-            corr_top = [cor(df_resampled[subpindex, p1], df_resampled[subpindex, p2]) for (p1, p2) in combinations(interact.replicate_ids, 2)]
+            corr_top = [corspearman(df[subpindex, p1], df[subpindex, p2]) for (p1, p2) in combinations(replicate_ids, 2)]
             corr_mean[i] = mean(corr)
             corr_sd[i] = std(corr)
-            counts[i] = median(df_resampled.nb_ints[pindex])
+            counts[i] = median(df.nb_ints[pindex])
             corr_top_mean[i] = mean(corr_top)
         end
 
-        corr = [cor(df_resampled[!, p1], df_resampled[!, p2]) for (p1, p2) in combinations(interact.replicate_ids, 2)]
+        corr = [cor(df[!, p1], df[!, p2]) for (p1, p2) in combinations(replicate_ids, 2)]
         corr_mean[length(pcuts)+1] = mean(corr)
         corr_sd[length(pcuts)+1] = std(corr)
-        counts[length(pcuts)+1] = median(df_resampled.nb_ints)
+        counts[length(pcuts)+1] = median(df.nb_ints)
         max_count = max(max_count, maximum(counts))
         scatter!(ax_cor, 1:(length(pcuts)+1), corr_mean, label=l, color=color)
         scatter!(ax_count, 1:(length(pcuts)+1), counts, label=l, color=color)
         scatter!(ax_top, 1:length(pcuts), corr_top_mean, label=l, color=color)
         scatter!(ax_ints_count, 1:length(pcuts), subcounts, color=color)
     end
+
     Legend(gc[1,4], ax_cor, "seed | score")
     Legend(gb[1,4], ax_cor, "seed | score")
-    """
+
     ax2 = Axis(ga[1,3], yticks=(1:length(scores), string.(scores)), xticks = (1:length(seedlens), string.(seedlens)),
         ylabel="minimum alignment score", xlabel="seed length", title="TPR")
     heatmap!(ax2, tpr, colorrange=clims)
@@ -422,6 +423,8 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
     end
 
     save("figure_2.svg", fig)
+    save("figure_2.png", fig, px_per_unit = 2)
 
     save( "figure_s1.svg", fig_si)
+    save( "figure_s1.png", fig_si, px_per_unit = 2)
 end

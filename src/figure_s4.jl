@@ -1,5 +1,5 @@
 function plot_figure_s4(assets_folder::String, interact::Interactions)
-    resfactor = 1.0
+    resfactor = 1.
     fig = Figure(resolution=(1200*resfactor, 1200*resfactor))
 
     ax_graph = Axis(fig[1,1], leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
@@ -48,7 +48,6 @@ function plot_figure_s4(assets_folder::String, interact::Interactions)
     Label(fig[2,1, TopLeft()], "B", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
     Label(fig[1,2, TopLeft()], "C", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
-
     save("figure_s4.svg", fig)
-
+    save("figure_s4.png", fig, px_per_unit = 2)
 end
