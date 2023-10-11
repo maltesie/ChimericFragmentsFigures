@@ -21,6 +21,7 @@ function plot_figure_5(assets_folder::String, interact::Interactions)
     image!(ax_ligation_points, img_ligation_points, aspect = DataAspect())
 
     ga = fig[1:2,2] = GridLayout()
+
     ax1_1 = Axis(ga[1, 1], ylabel="count", title="basepairing predictions")
 
     limits_low, limits_high = 2150, 2270
@@ -51,8 +52,14 @@ function plot_figure_5(assets_folder::String, interact::Interactions)
 
     linkxaxes!(ax1_1, ax1_2, ax1_3)
 
+    gc = fig[1:3,3] = GridLayout()
+    ax_genomic_context = Axis(gc[7, 1], leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
+    img_genomic_context = rotr90(load(joinpath(assets_folder, "genomic_context.png")))
+    hidedecorations!(ax_genomic_context)
+    image!(ax_genomic_context, img_genomic_context, aspect = DataAspect())
+
     img4 = rotr90(load(joinpath(assets_folder, "nb.png")))
-    ax4 = Axis(fig[1:3, 3], leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
+    ax4 = Axis(gc[1:6, 1], leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
     hidedecorations!(ax4)
     image!(ax4, img4, aspect = DataAspect())
 
@@ -93,17 +100,20 @@ function plot_figure_5(assets_folder::String, interact::Interactions)
     scatter!(ax7, collect(1:nrow(df_plate)) .+ 0.35, vec(spot[:, 1]), color="black", markersize=5)
     scatter!(ax7, collect(1:nrow(df_plate)) .+ 0.2, vec(spot[:, 2]), color="black", markersize=5)
     scatter!(ax7, collect(1:nrow(df_plate)) .+ 0.05, vec(spot[:, 3]), color="black", markersize=5)
-    errorbars!(ax7, collect(1:nrow(df_plate)) .+ 0.2, mean_spot, sd_spot, whiskerwidth=5)
-    labels = ["control", "VC0715:VC0719"]
+    errorbars!(ax7, collect(2:nrow(df_plate)) .+ 0.2, mean_spot[2:end], sd_spot[2:end], whiskerwidth=5)
+    labels = ["control", "NetR1"]
     elements = [PolyElement(polycolor = colors[i]) for i in 1:length(labels)]
 
     axislegend(ax7, elements, labels, position=:rt)
 
     Label(gb[1,1, TopLeft()], "A", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
-    Label(ga[1,1, TopLeft()], "B", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
-    Label(fig[1,3, TopLeft()], "C", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
     Label(gb[2,1, TopLeft()], "D", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
+
+    Label(ga[1,1, TopLeft()], "B", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
     Label(fig[3,2, TopLeft()], "E", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
+
+    Label(gc[1,1, TopLeft()], "C", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
+    Label(gc[7,1, TopLeft()], "F", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
     save("figure_5.svg", fig)
     save("figure_5.png", fig, px_per_unit = 2)

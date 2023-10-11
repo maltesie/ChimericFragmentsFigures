@@ -3,7 +3,7 @@ Pkg.activate( "PlotEnv")
 Pkg.instantiate()
 
 using RNASeqTools, BioSequences, BioAlignments, CairoMakie, BioGenerics, DelimitedFiles, GenomicFeatures
-using CSV, JLD2, DataFrames, StatsBase, Combinatorics, MultipleTesting, ColorSchemes, LaTeXStrings
+using CSV, JLD2, DataFrames, StatsBase, Combinatorics, MultipleTesting, ColorSchemes
 import GeometryBasics: Polygon
 
 struct Interactions
@@ -24,6 +24,7 @@ data_folder = joinpath(@__DIR__, "data")
 source_folder = joinpath(@__DIR__, "src")
 interact_hcd = Interactions(joinpath(@__DIR__, "data", "jlds", "hfq_hcd_12_17.jld2"))
 interact_lcd = Interactions(joinpath(@__DIR__, "data", "jlds", "hfq_lcd_12_17.jld2"))
+
 
 include(joinpath(source_folder, "figure_1.jl"))
 plot_figure_1(joinpath(data_folder, "figure_1"))

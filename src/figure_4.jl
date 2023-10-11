@@ -77,29 +77,30 @@ function plot_figure_4(assets_folder::String, interact::Interactions)
 
     ga = fig[2, 1] = GridLayout()
     Label(ga[1,1, TopLeft()], "D", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
-    Label(ga[1,2, TopLeft()], "E", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
-    Label(ga[1,3, TopLeft()], "F", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(ga[1,3, TopLeft()], "E", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(ga[1,6, TopLeft()], "F", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
     gb = fig[1, 1] = GridLayout()
     Label(gb[1,1, TopLeft()], "A", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
     Label(gb[1,3, TopLeft()], "B", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
-    Label(gb[1,6, TopLeft()], "C", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(gb[1,5, TopLeft()], "C", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
-    ax3 = Axis(ga[1, 1], title="FarS basepairing", ylabel="count", xlabel="position")
+    ax3 = Axis(ga[1, 1:2], title="FarS basepairing", ylabel="count", xlabel="position")
     aggregation_plot!(ax3, interact, "FarS", 0.25)
     band!(ax3, [0., 0.], [0., 0.], [0., 0.], color=RGBAf(0.529, 0.721, 0.431, 1.0), label="seed 1")
     band!(ax3, [0., 0.], [0., 0.], [0., 0.], color=RGBAf(0.85, 0.89, 0.6, 1.0), label="seed 2")
     axislegend(ax3, position=:rt)
 
     img4 = rotr90(load(joinpath(assets_folder, "basepairing.png")))
-    ax4 = Axis(ga[1, 2], leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
+    ax4 = Axis(ga[1, 3:5], title="basepairing predictions",
+        leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
     hidedecorations!(ax4)
     image!(ax4, img4, aspect = DataAspect())
 
     colors = reverse(ColorSchemes.tofino10.colors)[[4,3,2,1]]
     df_plate = DataFrame(CSV.File(joinpath(assets_folder, "platereader2.csv")))
 
-    ax5 = Axis(ga[1,3], title = "FarS reporter assay", ylabel="relative fluorescence [AU]", xticks = (1:2, [L"\textit{vc1043}", L"\textit{vca0848}"]))
+    ax5 = Axis(ga[1,6:7], title = "FarS reporter assay", ylabel="relative fluorescence [AU]", xticks = (1:2, [rich("vc1043"; font=:italic), rich("vca0848"; font=:italic)]))
 
     exp = [1,1,1,1,2,2,2,2]
     groups = [1,2,3,4,1,2,3,4]
@@ -129,7 +130,7 @@ function plot_figure_4(assets_folder::String, interact::Interactions)
     errorbars!(ax5, spotpos, mean_spot, sd_spot, whiskerwidth=5)
     labels = df_plate.name
     elements = [PolyElement(polycolor = colors[i]) for i in 1:length(labels)]
-    Legend(ga[1,4], elements, labels)
+    Legend(ga[1,8], elements, labels)
 
     df_old = DataFrame(CSV.File(joinpath(assets_folder, "hfq_lcd_old.csv")))
     df_new = DataFrame(CSV.File(joinpath(assets_folder, "hfq_lcd_new.csv")))
@@ -193,23 +194,27 @@ function plot_figure_4(assets_folder::String, interact::Interactions)
     elements = [PolyElement(polycolor = colors[i]) for i in 1:length(labels)]
     axislegend(ax1, elements, labels, position=:lt)
 
-    axb2 = Axis(gb[1,3:5], ylabel="-log10(complementarity FDR)", xlabel="log10(reads count)", title="Spot 42 interactions")
+    axb2 = Axis(gb[1,3:4], ylabel="-log10(complementarity FDR)", xlabel="log10(reads count)", title="Spot 42 interactions")
 
     scatter!(axb2, log10.(df_new[new_index, :nb_ints]), -1 .* log10.(df_new[new_index, :bp_fdr]),
-        label="Fisher FDR > 0.05", color=RGBAf(1.0, 0.5, 0., 0.7), markersize=9)
+        label="Fisher > 0.05", color=RGBAf(1.0, 0.5, 0., 0.7), markersize=9)
 
     scatter!(axb2, log10.(df_new[old_index, :nb_ints]), -1 .* log10.(df_new[old_index, :bp_fdr]),
-        label="Fisher FDR <= 0.05", color=RGBAf(0.4, 0.25, 0.8, 0.7), markersize=9)
+        label="Fisher <= 0.05", color=RGBAf(0.4, 0.25, 0.8, 0.7), markersize=9)
 
     p_big = decompose(Point2f, Circle(Point2f(0), 0.8))
     p_small = decompose(Point2f, Circle(Point2f(0), 0.4))
-    scatter!(axb2, log10.(df_new[tested_index, :nb_ints]), -1 .* log10.(df_new[tested_index, :bp_fdr]), label="picked for validation",
+    scatter!(axb2, log10.(df_new[tested_index, :nb_ints]), -1 .* log10.(df_new[tested_index, :bp_fdr]), label="tested",
         marker=Polygon(p_big, [p_small]), markersize=7, color=RGBAf(0.8, 0.1, 0.0, 1.0))
     axislegend(axb2, position=:lt)
+    scatter!(axb2, log10.(df_new[tested_index, :nb_ints]), -1 .* log10.(df_new[tested_index, :bp_fdr]),  color=RGBAf(1.0, 0.5, 0., 0.7), markersize=9)
+    scatter!(axb2, log10.(df_new[tested_index, :nb_ints]), -1 .* log10.(df_new[tested_index, :bp_fdr]), label="tested",
+        marker=Polygon(p_big, [p_small]), markersize=7, color=RGBAf(0.8, 0.1, 0.0, 1.0))
 
     df_plate = DataFrame(CSV.File(joinpath(assets_folder, "platereader.csv")))
-    xlabels_latex = [L"\textit{%$cl}" for cl in df_plate.name]
-    axb4 = Axis(gb[1,6:8], title="Spot 42 reporter assay", ylabel="relative fluorescence [AU]", xticks = (1:nrow(df_plate), xlabels_latex), xticklabelrotation = pi/4)
+    xlabels_latex = [rich(String(cl); font=:italic) for cl in df_plate.name]
+
+    axb4 = Axis(gb[1,5:8], title="Spot 42 reporter assay", ylabel="relative fluorescence [AU]", xticks = (1:nrow(df_plate), xlabels_latex), xticklabelrotation = pi/4)
     groups = vcat(fill(1,nrow(df_plate)), fill(2,nrow(df_plate)))
     ctrl = Matrix(df_plate[:, [:ctrl1, :ctrl2, :ctrl3]])
     mean_ctrl = vec(mean(ctrl; dims=2))
@@ -235,4 +240,5 @@ function plot_figure_4(assets_folder::String, interact::Interactions)
 
     save( "figure_4.svg", fig)
     save( "figure_4.png", fig, px_per_unit = 2)
+
 end
