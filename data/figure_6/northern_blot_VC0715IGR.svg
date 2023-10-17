@@ -30,11 +30,11 @@
      showgrid="false"
      inkscape:zoom="0.49233297"
      inkscape:cx="-610.35929"
-     inkscape:cy="639.8109"
-     inkscape:window-width="2560"
-     inkscape:window-height="1403"
-     inkscape:window-x="2560"
-     inkscape:window-y="0"
+     inkscape:cy="640.82647"
+     inkscape:window-width="2490"
+     inkscape:window-height="1376"
+     inkscape:window-x="70"
+     inkscape:window-y="27"
      inkscape:window-maximized="1"
      inkscape:current-layer="g8" />
   <g
@@ -450,6 +450,6 @@
          x="680.18213"
          y="711.97974"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle"
-         id="tspan1705">NetR1</tspan></text>
+         id="tspan1705">NetX</tspan></text>
   </g>
 </svg>

@@ -37,10 +37,13 @@ include(joinpath(source_folder, "figure_3.jl"))
 plot_figure_3(joinpath(data_folder, "figure_3"), interact_lcd, 100000, (30,0), (4,5,0,7,8,3), [(12, 14), (15, 14), (12, 17),  (15, 18)])
 
 include(joinpath(source_folder, "figure_4.jl"))
-plot_figure_4(joinpath(data_folder, "figure_4"), interact_lcd)
+plot_figure_4(joinpath(data_folder, "figure_4"))
 
 include(joinpath(source_folder, "figure_5.jl"))
 plot_figure_5(joinpath(data_folder, "figure_5"), interact_lcd)
+
+include(joinpath(source_folder, "figure_6.jl"))
+plot_figure_6(joinpath(data_folder, "figure_6"), interact_lcd)
 
 include(joinpath(source_folder, "figure_s2.jl"))
 plot_figure_s2(joinpath(data_folder, "figure_s2"))

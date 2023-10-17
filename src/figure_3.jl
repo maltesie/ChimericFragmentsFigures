@@ -52,15 +52,15 @@ function plot_figure_3(assets_folder::String, interact::Interactions, nseqs::Int
     end
 
     resfactor = 1.
-    fig = Figure(resolution=(1400*resfactor, 900*resfactor))
+    fig = Figure(resolution=(1200*resfactor, 850*resfactor))
 
     ax1 = Axis(fig[2,1], title="random, left", xlabel="postion in alignment", ylabel="frequency")
-    h11 = hist!(ax1, left1, label="RNA1, left", bins=bins, normalization=:probability)
-    h12 = hist!(ax1, left2, label="RNA2, left", bins=bins, normalization=:probability)
+    h12 = hist!(ax1, left2, label="RNA2, left", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
+    h11 = hist!(ax1, left1, label="RNA1, left", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
     ax2 = Axis(fig[2,2], title="random, right", xlabel="postion in alignment", ylabel="frequency")
-    h21 = hist!(ax2, right1, label="RNA1, right", bins=bins, color=RGBAf(0.9, 0.2, 0.2, 0.6), normalization=:probability)
-    h22 = hist!(ax2, right2, label="RNA2, right", bins=bins, color=RGBAf(0.5, 0.3, 0.9, 0.6), normalization=:probability)
+    h22 = hist!(ax2, right2, label="RNA2, right", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
+    h21 = hist!(ax2, right1, label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
     linkyaxes!(ax1, ax2)
     Label(fig[2,1, TopLeft()], "D", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
@@ -79,44 +79,44 @@ function plot_figure_3(assets_folder::String, interact::Interactions, nseqs::Int
     end
 
     ax9 = Axis(fig[2,3], xlabel="postion in alignment", ylabel="frequency", title="total, left")
-    h91 = hist!(ax9, left1, label="RNA1, left", bins=bins, normalization=:probability)
-    h92 = hist!(ax9, left2, label="RNA2, left", bins=bins, normalization=:probability)
+    h92 = hist!(ax9, left2, label="RNA2, left", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
+    h91 = hist!(ax9, left1, label="RNA1, left", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
     ax10 = Axis(fig[2,4], xlabel="postion in alignment", ylabel="frequency", title="total, right")
-    h101 = hist!(ax10, right1, label="RNA1, right", bins=bins, color=RGBAf(0.9, 0.2, 0.2, 0.6), normalization=:probability)
-    h102 = hist!(ax10, right2, label="RNA2, right", bins=bins, color=RGBAf(0.5, 0.3, 0.9, 0.6), normalization=:probability)
+    h102 = hist!(ax10, right2, label="RNA2, right", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
+    h101 = hist!(ax10, right1, label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
     linkyaxes!(ax9, ax10)
     Label(fig[2,3, TopLeft()], "E", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
     ax3 = Axis(fig[3,3], xlabel="postion in alignment", ylabel="frequency", title="significant, left")
-    h31 = hist!(ax3, left1[fdrv .<= fcut], label="RNA1, left", bins=bins, normalization=:probability)
-    h32 = hist!(ax3, left2[fdrv .<= fcut], label="RNA2, left", bins=bins, normalization=:probability)
+    h32 = hist!(ax3, left2[fdrv .<= fcut], label="RNA2, left", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
+    h31 = hist!(ax3, left1[fdrv .<= fcut], label="RNA1, left", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
     ax4 = Axis(fig[3,4], xlabel="postion in alignment", ylabel="frequency", title="significant, right")
-    h41 = hist!(ax4, right1[fdrv .<= fcut], label="RNA1, right", bins=bins, color=RGBAf(0.9, 0.2, 0.2, 0.6), normalization=:probability)
-    h42 = hist!(ax4, right2[fdrv .<= fcut], label="RNA2, right", bins=bins, color=RGBAf(0.5, 0.3, 0.9, 0.6), normalization=:probability)
+    h42 = hist!(ax4, right2[fdrv .<= fcut], label="RNA2, right", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
+    h41 = hist!(ax4, right1[fdrv .<= fcut], label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
     linkyaxes!(ax3, ax4)
     Label(fig[3,3, TopLeft()], "G", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
     ax5 = Axis(fig[3,1], xlabel="postion in alignment", ylabel="frequency", title="unsignificant, left")
-    h51 = hist!(ax5, left1[fdrv .> fcut], label="RNA1, left", bins=bins, normalization=:probability)
-    h52 = hist!(ax5, left2[fdrv .> fcut], label="RNA2, left", bins=bins, normalization=:probability)
+    h52 = hist!(ax5, left2[fdrv .> fcut], label="RNA2, left", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
+    h51 = hist!(ax5, left1[fdrv .> fcut], label="RNA1, left", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
     ax6 = Axis(fig[3,2], xlabel="postion in alignment", ylabel="frequency", title="unsignificant, right")
-    h61 = hist!(ax6, right1[fdrv .> fcut], label="RNA1, right", bins=bins, color=RGBAf(0.9, 0.2, 0.2, 0.6), normalization=:probability)
-    h62 = hist!(ax6, right2[fdrv .> fcut], label="RNA2, right", bins=bins, color=RGBAf(0.5, 0.3, 0.9, 0.6), normalization=:probability)
+    h62 = hist!(ax6, right2[fdrv .> fcut], label="RNA2, right", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
+    h61 = hist!(ax6, right1[fdrv .> fcut], label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
     linkyaxes!(ax5, ax6)
     Label(fig[3,1, TopLeft()], "F", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
-    Legend(fig[2:3,5], [h31, h32, h41, h42], ["RNA1, left", "RNA2, left", "RNA1, right", "RNA2, right"])
+    Legend(fig[2:3,5], [h31, h32], ["RNA1", "RNA2"])
 
     ga = fig[1, 1:5]= GridLayout()
 
     significant_score = minimum(interacts[fdrv .<= fcut])
-    ax7 = Axis(ga[1, 2], title="density of complementarity scores", xlabel="score", ylabel="density")
+    ax7 = Axis(ga[1, 2], title="complementarity scores", xlabel="score", ylabel="density")
     density!(ax7, rands, color=(:red, 0.3), label="random model")
     density!(ax7, interacts, color=(:green, 0.3), label="ligation points")
     vlines!(ax7, [significant_score], color = :blue, label="FDR = $(fcut)")

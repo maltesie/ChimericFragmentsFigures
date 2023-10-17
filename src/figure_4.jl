@@ -1,136 +1,12 @@
-function count_ligation_sites_as1(node_id::Int, interact::Interactions, bp_len::Int, max_fdr::Float64)
-    df = interact.edges
-    counts = Dict{Int, Dict{String,Int}}()
-    isnegative = interact.nodes.strand[node_id] == '-'
-    for partner in df[df.src .== node_id, :dst]
-        ligation_points = interact.edgestats[(node_id, partner)][3]
-        length(ligation_points) > 0 || continue
-        n = interact.nodes.name[partner]
-        fdr = adjust(PValues([interact.bpstats[p][1] for p in keys(ligation_points)]), BenjaminiHochberg())
-        for ((p, c), f) in zip(ligation_points, fdr)
-            f < max_fdr || continue
-            for pl in interact.bpstats[p][2]:interact.bpstats[p][3]
-                p1 = p[1] + (isnegative ? 1 : -1) * (bp_len - pl)
-                if p1 in keys(counts)
-                    n in keys(counts[p1]) ? counts[p1][n] += c : counts[p1][n] = c
-                else
-                    counts[p1] = Dict(n=>c)
-                end
-            end
-        end
-    end
-    return counts
-end
-function count_ligation_sites_as2(node_id::Int, interact::Interactions, bp_len::Int, max_fdr::Float64)
-    df = interact.edges
-    counts = Dict{Int, Dict{String,Int}}()
-    isnegative = interact.nodes.strand[node_id] == '-'
-    for partner in df[df.dst .== node_id, :src]
-        ligation_points = interact.edgestats[(partner, node_id)][3]
-        length(ligation_points) > 0 || continue
-        n = interact.nodes.name[partner]
-        fdr = adjust(PValues([interact.bpstats[p][1] for p in keys(ligation_points)]), BenjaminiHochberg())
-        for ((p, c), f) in zip(ligation_points, fdr)
-            f < max_fdr || continue
-            for pl in interact.bpstats[p][4]:interact.bpstats[p][5]
-                p2 = p[2] + (isnegative ? -1 : 1) * (bp_len - pl) - 1
-                if p2 in keys(counts)
-                    n in keys(counts[p2]) ? counts[p2][n] += c : counts[p2][n] = c
-                else
-                    counts[p2] = Dict(n=>c)
-                end
-            end
-        end
-    end
-    return counts
-end
-function aggregation_plot!(ax::Axis, interact::Interactions, n::String, max_fdr::Float64)
-    idx = findfirst(interact.nodes.name .== n)
-    cds = interact.nodes.cds[idx] == 0 ? (interact.nodes.strand[idx] == '-' ? interact.nodes.right[idx] : interact.nodes.left[idx]) : interact.nodes.cds[idx]
-    st = interact.nodes.strand[idx]
-    count1 = count_ligation_sites_as1(idx, interact, 30, max_fdr)
-    count2 = count_ligation_sites_as2(idx, interact, 30, max_fdr)
-    (length(count1) == 0) && (length(count2) == 0) && return nothing
-    for (color, label, count) in zip((RGBAf(0.388, 0.431, 0.98, 0.6), RGBAf(0.937, 0.333, 0.231, 0.6)), ("RNA1", "RNA2"), (count1, count2))
-        ligationpoints = count
-        kv = collect(sort(ligationpoints, by=x->x[1]))
-        positions, counts = first.(kv), sum.(values.(last.(kv)))
-        allpositions = length(positions) > 0 ? collect(minimum(positions):maximum(positions)) : Int[]
-        pindex = in.(allpositions, Ref(positions))
-        indextrans = [pindex[i] ? sum(view(pindex, 1:i)) : 0 for i in eachindex(allpositions)]
-        allcounts = [pindex[i] ? counts[indextrans[i]] : 0 for i in eachindex(allpositions)]
-        if st == '+'
-            allpositions .-= cds
-        else
-            allpositions = reverse(-1.0 .* (allpositions .- cds))
-            reverse!(allcounts)
-        end
-        allpositions .+= 1
-        band!(ax, allpositions, zeros(length(allcounts)), allcounts, label=label, color=color)
-    end
-end
-
-function plot_figure_4(assets_folder::String, interact::Interactions)
+function plot_figure_4(assets_folder::String)
 
     resfactor = 1.
-    fig = Figure(resolution=(1200*resfactor, 750*resfactor))
+    fig = Figure(resolution=(1200*resfactor, 700*resfactor))
 
-    ga = fig[2, 1] = GridLayout()
-    Label(ga[1,1, TopLeft()], "D", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
-    Label(ga[1,3, TopLeft()], "E", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
-    Label(ga[1,6, TopLeft()], "F", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(fig[1,1, TopLeft()], "A", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(fig[2,1, TopLeft()], "B", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
-    gb = fig[1, 1] = GridLayout()
-    Label(gb[1,1, TopLeft()], "A", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
-    Label(gb[1,3, TopLeft()], "B", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
-    Label(gb[1,5, TopLeft()], "C", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
-
-    ax3 = Axis(ga[1, 1:2], title="FarS basepairing", ylabel="count", xlabel="position")
-    aggregation_plot!(ax3, interact, "FarS", 0.25)
-    band!(ax3, [0., 0.], [0., 0.], [0., 0.], color=RGBAf(0.529, 0.721, 0.431, 1.0), label="seed 1")
-    band!(ax3, [0., 0.], [0., 0.], [0., 0.], color=RGBAf(0.85, 0.89, 0.6, 1.0), label="seed 2")
-    axislegend(ax3, position=:rt)
-
-    img4 = rotr90(load(joinpath(assets_folder, "basepairing.png")))
-    ax4 = Axis(ga[1, 3:5], title="basepairing predictions",
-        leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
-    hidedecorations!(ax4)
-    image!(ax4, img4, aspect = DataAspect())
-
-    colors = reverse(ColorSchemes.tofino10.colors)[[4,3,2,1]]
-    df_plate = DataFrame(CSV.File(joinpath(assets_folder, "platereader2.csv")))
-
-    ax5 = Axis(ga[1,6:7], title = "FarS reporter assay", ylabel="relative fluorescence [AU]", xticks = (1:2, [rich("vc1043"; font=:italic), rich("vca0848"; font=:italic)]))
-
-    exp = [1,1,1,1,2,2,2,2]
-    groups = [1,2,3,4,1,2,3,4]
-
-    ctrl = Matrix(df_plate[:, [:VCA0848_1, :VCA0848_2, :VCA0848_3]])
-    ctrl ./= mean(ctrl[1, :])
-
-    spot = Matrix(df_plate[:, [:VC1043_1, :VC1043_2, :VC1043_3]])
-    spot ./= mean(spot[1, :])
-
-    mean_ctrl = vec(mean(ctrl; dims=2))
-    sd_ctrl = vec(std(ctrl; dims=2))
-
-    mean_spot = vec(mean(spot; dims=2))
-    sd_spot = vec(std(spot; dims=2))
-
-    barplot!(ax5, exp, vcat(mean_spot, mean_ctrl), dodge=groups, color=colors[groups])
-    ctrlpos = [1.7, 1.9, 2.1, 2.3]
-    scatter!(ax5, ctrlpos .- 0.05, vec(ctrl[:, 1]), color="black", markersize=5)
-    scatter!(ax5, ctrlpos, vec(ctrl[:, 2]), color="black", markersize=5)
-    scatter!(ax5, ctrlpos .+ 0.05, vec(ctrl[:, 3]), color="black", markersize=5)
-    errorbars!(ax5, ctrlpos, mean_ctrl, sd_ctrl, whiskerwidth=5)
-    spotpos = [0.7, 0.9, 1.1, 1.3]
-    scatter!(ax5, spotpos .- 0.05, vec(spot[:, 1]), color="black", markersize=5)
-    scatter!(ax5, spotpos, vec(spot[:, 2]), color="black", markersize=5)
-    scatter!(ax5, spotpos .+ 0.05, vec(spot[:, 3]), color="black", markersize=5)
-    errorbars!(ax5, spotpos, mean_spot, sd_spot, whiskerwidth=5)
-    labels = df_plate.name
-    elements = [PolyElement(polycolor = colors[i]) for i in 1:length(labels)]
-    Legend(ga[1,8], elements, labels)
+    Label(fig[1,2, TopLeft()], "C", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
     df_old = DataFrame(CSV.File(joinpath(assets_folder, "hfq_lcd_old.csv")))
     df_new = DataFrame(CSV.File(joinpath(assets_folder, "hfq_lcd_new.csv")))
@@ -185,7 +61,7 @@ function plot_figure_4(assets_folder::String, interact::Interactions)
         end
     end
     counter ./= 2
-    ax1 = Axis(gb[1,1:2], ylabel="count", title="annotation types", xticks = (1:4, ["previous", "improved", "no FDR, reads>=20", "FDR<0.25, reads>=3"]), xticklabelrotation = pi/8)
+    ax1 = Axis(fig[1,1], ylabel="count", title="annotation types", xticks = (1:4, ["previous", "improved\nmapping", "no FDR,\nreads >= 20", "FDR < 0.25,\nreads >= 3"]))#, xticklabelrotation = pi/8)
     colors = Makie.wong_colors()
     groups = [1,2,3,1,2,3,1,2,3,1,2,3]
 
@@ -194,27 +70,28 @@ function plot_figure_4(assets_folder::String, interact::Interactions)
     elements = [PolyElement(polycolor = colors[i]) for i in 1:length(labels)]
     axislegend(ax1, elements, labels, position=:lt)
 
-    axb2 = Axis(gb[1,3:4], ylabel="-log10(complementarity FDR)", xlabel="log10(reads count)", title="Spot 42 interactions")
+    axb2 = Axis(fig[2,1], ylabel="-log10(complementarity FDR)", xlabel="log10(reads count)", title="Spot 42 interactions")
 
     scatter!(axb2, log10.(df_new[new_index, :nb_ints]), -1 .* log10.(df_new[new_index, :bp_fdr]),
-        label="Fisher > 0.05", color=RGBAf(1.0, 0.5, 0., 0.7), markersize=9)
+        label="Fisher FDR > 0.05", markersize=9, color=RGBAf(colors[1].r, colors[1].g, colors[1].b, 0.8))
+
 
     scatter!(axb2, log10.(df_new[old_index, :nb_ints]), -1 .* log10.(df_new[old_index, :bp_fdr]),
-        label="Fisher <= 0.05", color=RGBAf(0.4, 0.25, 0.8, 0.7), markersize=9)
+        label="Fisher FDR <= 0.05", markersize=9, color=RGBAf(colors[2].r, colors[2].g, colors[2].b, 0.8)) #color=RGBAf(0.4, 0.25, 0.8, 0.7))
 
     p_big = decompose(Point2f, Circle(Point2f(0), 0.8))
     p_small = decompose(Point2f, Circle(Point2f(0), 0.4))
     scatter!(axb2, log10.(df_new[tested_index, :nb_ints]), -1 .* log10.(df_new[tested_index, :bp_fdr]), label="tested",
         marker=Polygon(p_big, [p_small]), markersize=7, color=RGBAf(0.8, 0.1, 0.0, 1.0))
     axislegend(axb2, position=:lt)
-    scatter!(axb2, log10.(df_new[tested_index, :nb_ints]), -1 .* log10.(df_new[tested_index, :bp_fdr]),  color=RGBAf(1.0, 0.5, 0., 0.7), markersize=9)
+    scatter!(axb2, log10.(df_new[tested_index, :nb_ints]), -1 .* log10.(df_new[tested_index, :bp_fdr]),  color=colors[1], markersize=9)
     scatter!(axb2, log10.(df_new[tested_index, :nb_ints]), -1 .* log10.(df_new[tested_index, :bp_fdr]), label="tested",
         marker=Polygon(p_big, [p_small]), markersize=7, color=RGBAf(0.8, 0.1, 0.0, 1.0))
 
     df_plate = DataFrame(CSV.File(joinpath(assets_folder, "platereader.csv")))
     xlabels_latex = [rich(String(cl); font=:italic) for cl in df_plate.name]
 
-    axb4 = Axis(gb[1,5:8], title="Spot 42 reporter assay", ylabel="relative fluorescence [AU]", xticks = (1:nrow(df_plate), xlabels_latex), xticklabelrotation = pi/4)
+    axb4 = Axis(fig[1:2,2], title="Spot 42 reporter assay", xlabel="relative fluorescence [AU]", yticks = (1:nrow(df_plate), xlabels_latex))#, xticklabelrotation = pi/4)
     groups = vcat(fill(1,nrow(df_plate)), fill(2,nrow(df_plate)))
     ctrl = Matrix(df_plate[:, [:ctrl1, :ctrl2, :ctrl3]])
     mean_ctrl = vec(mean(ctrl; dims=2))
@@ -225,18 +102,18 @@ function plot_figure_4(assets_folder::String, interact::Interactions)
     mean_spot = vec(mean(spot; dims=2))
     sd_spot = vec(std(spot; dims=2))
     mean_ctrl = ones(nrow(df_plate))
-    barplot!(axb4, vcat(1:nrow(df_plate), 1:nrow(df_plate)), vcat(mean_ctrl, mean_spot), dodge=groups, color=colors[groups])
-    scatter!(axb4, collect(1:nrow(df_plate)) .- 0.35, vec(ctrl[:, 1]), color="black", markersize=5)
-    scatter!(axb4, collect(1:nrow(df_plate)) .- 0.2, vec(ctrl[:, 2]), color="black", markersize=5)
-    scatter!(axb4, collect(1:nrow(df_plate)) .- 0.05, vec(ctrl[:, 3]), color="black", markersize=5)
-    errorbars!(collect(1:nrow(df_plate)) .- 0.2, mean_ctrl, sd_ctrl, whiskerwidth=5)
-    scatter!(axb4, collect(1:nrow(df_plate)) .+ 0.35, vec(spot[:, 1]), color="black", markersize=5)
-    scatter!(axb4, collect(1:nrow(df_plate)) .+ 0.2, vec(spot[:, 2]), color="black", markersize=5)
-    scatter!(axb4, collect(1:nrow(df_plate)) .+ 0.05, vec(spot[:, 3]), color="black", markersize=5)
-    errorbars!(collect(1:nrow(df_plate)) .+ 0.2, mean_spot, sd_spot, whiskerwidth=5)
-    labels = ["control", "Spot 42"]
-    elements = [PolyElement(polycolor = colors[i]) for i in 1:length(labels)]
-    axislegend(axb4, elements, labels, position=:lt)
+    barplot!(axb4, 1:nrow(df_plate), mean_spot, direction=:x)#, dodge=groups, color=colors[groups])
+    #scatter!(axb4, collect(1:nrow(df_plate)) .- 0.35, vec(ctrl[:, 1]), color="black", markersize=5)
+    #scatter!(axb4, collect(1:nrow(df_plate)) .- 0.2, vec(ctrl[:, 2]), color="black", markersize=5)
+    #scatter!(axb4, collect(1:nrow(df_plate)) .- 0.05, vec(ctrl[:, 3]), color="black", markersize=5)
+    #errorbars!(collect(1:nrow(df_plate)) .- 0.2, mean_ctrl, sd_ctrl, whiskerwidth=5)
+    scatter!(axb4, vec(spot[:, 1]), collect(1:nrow(df_plate)) .- 0.2, color="black", markersize=5)
+    scatter!(axb4, vec(spot[:, 2]), collect(1:nrow(df_plate)), color="black", markersize=5)
+    scatter!(axb4, vec(spot[:, 3]), collect(1:nrow(df_plate)) .+ 0.2, color="black", markersize=5)
+    errorbars!(mean_spot, collect(1:nrow(df_plate)), sd_spot, whiskerwidth=5, direction=:x)
+    #labels = ["control", "Spot 42"]
+    #elements = [PolyElement(polycolor = colors[i]) for i in 1:length(labels)]
+    #axislegend(axb4, elements, labels, position=:rt)
 
     save( "figure_4.svg", fig)
     save( "figure_4.png", fig, px_per_unit = 2)

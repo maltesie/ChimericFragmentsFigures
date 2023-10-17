@@ -23,8 +23,8 @@ function plot_figure_s4(assets_folder::String, interact::Interactions)
     ref = interact.nodes.ref[idx]
     st = interact.nodes.strand[idx]
     interval = Interval(ref, interact.nodes.left[idx], interact.nodes.right[idx], st)
-    coverage_tex = Coverage(joinpath(assets_folder, "..", "figure_5", "trimmed_tex_01_1_forward.bw"), joinpath(assets_folder, "..", "figure_5", "trimmed_tex_01_1_reverse.bw"))
-    coverage_term = Coverage(joinpath(assets_folder, "..", "figure_5", "trimmed_12898-mock-rep1_S33_R1_001_forward.bw"), joinpath(assets_folder, "..", "figure_5", "trimmed_12898-mock-rep1_S33_R1_001_reverse.bw"))
+    coverage_tex = Coverage(joinpath(assets_folder, "..", "figure_6", "trimmed_tex_01_1_forward.bw"), joinpath(assets_folder, "..", "figure_6", "trimmed_tex_01_1_reverse.bw"))
+    coverage_term = Coverage(joinpath(assets_folder, "..", "figure_6", "trimmed_12898-mock-rep1_S33_R1_001_forward.bw"), joinpath(assets_folder, "..", "figure_6", "trimmed_12898-mock-rep1_S33_R1_001_reverse.bw"))
 
     ax1_2 = Axis(ga[2,1], ylabel="count", title="dRNA-seq")
     coverage_plot!(ax1_2, coverage_tex, interval)

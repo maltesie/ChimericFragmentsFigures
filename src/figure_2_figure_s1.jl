@@ -266,7 +266,7 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
     end
     g = Genome(genome_path)
     resfactor = 1.
-    fig = Figure(resolution=(1300*resfactor, 750*resfactor))
+    fig = Figure(resolution=(1200*resfactor, 750*resfactor))
     ga = fig[1, 1] = GridLayout()
     Label(ga[1,1, TopLeft()], "A", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     Label(ga[1,3, TopLeft()], "B", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
@@ -280,7 +280,7 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
     mkpath(joinpath(assets_path, "csv"))
     us = unique_set(g)
 
-    fig_si = Figure(resolution=(1100*resfactor, 1000*resfactor))
+    fig_si = Figure(resolution=(1200*resfactor, 1000*resfactor))
     gc = fig_si[3, 1:4] = GridLayout()
     Label(fig_si[1,1, TopLeft()], "A", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     Label(fig_si[1,2, TopLeft()], "B", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
