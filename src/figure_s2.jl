@@ -7,7 +7,7 @@ function plot_figure_s2(assets_folder::String)
     hidedecorations!(ax_graph)
     image!(ax_graph, img_graph, aspect = DataAspect())
 
-    Label(fig[1,1, TopLeft()], "A", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
+    Label(fig[1,1, TopLeft()], "a", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
     save( "figure_s2.svg", fig)
     save( "figure_s2.png", fig, px_per_unit = 3)

@@ -7,14 +7,14 @@ function plot_figure_s6(assets_folder::String)
     hidedecorations!(ax_graph)
     image!(ax_graph, img_graph, aspect = DataAspect())
 
-    Label(fig[1,1, TopLeft()], "A", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
+    Label(fig[1,1, TopLeft()], "a", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
     ax_table = Axis(fig[2, 1], leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
     img_tabl = rotr90(load(joinpath(assets_folder, "screenshot_table_cropped.png")))
     hidedecorations!(ax_table)
     image!(ax_table, img_tabl, aspect = DataAspect())
 
-    Label(fig[2,1, TopLeft()], "B", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
+    Label(fig[2,1, TopLeft()], "b", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
     save("figure_s6_1.svg", fig)
     save("figure_s6_1.png", fig)
@@ -29,7 +29,7 @@ function plot_figure_s6(assets_folder::String)
     hidedecorations!(ax_summary)
     image!(ax_summary, img_summary, aspect = DataAspect())
 
-    Label(fig5[1,1, TopLeft()], "G", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
+    Label(fig5[1,1, TopLeft()], "g", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
     save("figure_s6_3.svg", fig5)
     save("figure_s6_3.png", fig5, px_per_unit = 2)

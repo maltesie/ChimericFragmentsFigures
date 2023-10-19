@@ -266,15 +266,16 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
     end
     g = Genome(genome_path)
     resfactor = 1.
-    fig = Figure(resolution=(1200*resfactor, 750*resfactor))
+    fig = Figure(resolution=(1200*resfactor, 700*resfactor))
+    fontsize_heatmap_text = 12
     ga = fig[1, 1] = GridLayout()
-    Label(ga[1,1, TopLeft()], "A", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    Label(ga[1,3, TopLeft()], "B", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    Label(ga[1,4, TopLeft()], "C", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    Label(ga[1,1, TopLeft()], "a", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    Label(ga[1,3, TopLeft()], "b", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    Label(ga[1,4, TopLeft()], "c", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     gb = fig[2, 1] = GridLayout()
-    Label(gb[1,1, TopLeft()], "D", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    Label(gb[1,2, TopLeft()], "E", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    Label(gb[1,3, TopLeft()], "F", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    Label(gb[1,1, TopLeft()], "d", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    Label(gb[1,2, TopLeft()], "e", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    Label(gb[1,3, TopLeft()], "f", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
 
     ax = Axis(ga[1,1], xlabel="FPR", ylabel="TPR", title="synthetic benchmarks")
     mkpath(joinpath(assets_path, "csv"))
@@ -282,15 +283,15 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
 
     fig_si = Figure(resolution=(1200*resfactor, 1000*resfactor))
     gc = fig_si[3, 1:4] = GridLayout()
-    Label(fig_si[1,1, TopLeft()], "A", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    Label(fig_si[1,2, TopLeft()], "B", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    Label(fig_si[1,3, TopLeft()], "C", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    Label(fig_si[2,1, TopLeft()], "D", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    Label(fig_si[2,2, TopLeft()], "E", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    Label(fig_si[2,3, TopLeft()], "F", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    Label(gc[1,1, TopLeft()], "G", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    Label(gc[1,2, TopLeft()], "H", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    Label(gc[1,3, TopLeft()], "I", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    Label(fig_si[1,1, TopLeft()], "a", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    Label(fig_si[1,2, TopLeft()], "b", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    Label(fig_si[1,3, TopLeft()], "c", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    Label(fig_si[2,1, TopLeft()], "d", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    Label(fig_si[2,2, TopLeft()], "e", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    Label(fig_si[2,3, TopLeft()], "f", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    Label(gc[1,1, TopLeft()], "g", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    Label(gc[1,2, TopLeft()], "h", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    Label(gc[1,3, TopLeft()], "i", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     n_plots = 1
     for (j,nerr) in enumerate(0:nerrmax), (i,l) in enumerate(lens)
         s, truep = make_chimeric_testseqs(g, us; nseqs=nseqs, len1=l, len2=l, nerr=nerr)
@@ -309,13 +310,15 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
                 ylabel="minimum alignment score", xlabel="seed length", title="TPR, length=$l")
             heatmap!(ax_si_tpr, tpr, colorrange=clims)
             for i in 1:length(seedlens), j in 1:length(scores)
-                text!(ax_si_tpr, string(round(tpr[i,j], digits=2)), position = (i,j), align = (:center, :center), color = tpr[i,j] < 0.5 ? :white : :black)
+                text!(ax_si_tpr, string(round(tpr[i,j], digits=2)), position = (i,j), align = (:center, :center),
+                    color = tpr[i,j] < 0.5 ? :white : :black, fontsize=fontsize_heatmap_text)
             end
             ax_si_fpr = Axis(fig_si[2, n_plots], yticks=(1:length(scores), string.(scores)), xticks = (1:length(seedlens), string.(seedlens)),
                 ylabel="minimum alignment score", xlabel="seed length", title="FPR, length=$l")
             heatmap!(ax_si_fpr, fpr, colorrange=clims)
             for i in 1:length(seedlens), j in 1:length(scores)
-                text!(ax_si_fpr, string(round(fpr[i,j], digits=3)), position = (i,j), align = (:center, :center), color = fpr[i,j] < 0.5 ? :white : :black)
+                text!(ax_si_fpr, string(round(fpr[i,j], digits=3)), position = (i,j), align = (:center, :center),
+                    color = fpr[i,j] < 0.5 ? :white : :black, fontsize=fontsize_heatmap_text)
             end
 
             n_plots += 1
@@ -391,14 +394,16 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
         ylabel="minimum alignment score", xlabel="seed length", title="TPR")
     heatmap!(ax2, tpr, colorrange=clims)
     for i in 1:length(seedlens), j in 1:length(scores)
-        text!(ax2, string(round(tpr[i,j], digits=2)), position = (i,j), align = (:center, :center), color = tpr[i,j] < 0.5 ? :white : :black)
+        text!(ax2, string(round(tpr[i,j], digits=2)), position = (i,j), align = (:center, :center),
+            color = tpr[i,j] < 0.5 ? :white : :black, fontsize=fontsize_heatmap_text)
     end
 
     ax3 = Axis(ga[1,4], yticks=(1:length(scores), string.(scores)), xticks = (1:length(seedlens), string.(seedlens)),
         ylabel="minimum alignment score", xlabel="seed length", title="FPR")
     heatmap!(ax3, fpr, colorrange=clims)
     for i in 1:length(seedlens), j in 1:length(scores)
-        text!(ax3, string(round(fpr[i,j], digits=3)), position = (i,j), align = (:center, :center), color = fpr[i,j] < 0.5 ? :white : :black)
+        text!(ax3, string(round(fpr[i,j], digits=3)), position = (i,j), align = (:center, :center),
+            color = fpr[i,j] < 0.5 ? :white : :black, fontsize=fontsize_heatmap_text)
     end
 
     Colorbar(ga[1,5], limits=clims)
@@ -425,6 +430,6 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
     save("figure_2.svg", fig)
     save("figure_2.png", fig, px_per_unit = 2)
 
-    save( "figure_s1.svg", fig_si)
-    save( "figure_s1.png", fig_si, px_per_unit = 2)
+    save("figure_s1.svg", fig_si)
+    save("figure_s1.png", fig_si, px_per_unit = 2)
 end

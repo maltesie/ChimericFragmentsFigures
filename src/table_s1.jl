@@ -76,3 +76,27 @@ function make_table_s1(assets_folder::String, interact_lcd::Interactions, intera
     checked_df.fdr_1[checked_df.fdr_1 .== 2] .= NaN
     CSV.write("table_s1.csv", checked_df)
 end
+function make_table_s1_coli(assets_folder::String, interact_il::Interactions, interact_sp::Interactions, interact_lp::Interactions)
+    df_literature = DataFrame(CSV.File(joinpath(assets_folder, "all_literature_coli.csv"), stringtype=String))
+    df_il = asdataframe(interact_il)
+    df_sp = asdataframe(interact_sp)
+    df_lp = asdataframe(interact_lp)
+    df_out = DataFrame(sRNA=df_literature.sRNA, target=df_literature.target)
+    df_out.nb_il = zeros(Int, nrow(df_out))
+    df_out.nb_sp = zeros(Int, nrow(df_out))
+    df_out.nb_lp = zeros(Int, nrow(df_out))
+    df_out.fdr_il = zeros(Float64, nrow(df_out))
+    df_out.fdr_sp = zeros(Float64, nrow(df_out))
+    df_out.fdr_lp = zeros(Float64, nrow(df_out))
+    checked_df = checkinteractions([df_il, df_sp, df_lp], collect(zip(df_out.sRNA, df_out.target)))
+    checked_df.libs[checked_df.libs .== -1] .= 0
+    checked_df.libs_1[checked_df.libs_1 .== -1] .= 0
+    checked_df.libs_2[checked_df.libs_2 .== -1] .= 0
+    checked_df.count[checked_df.count .== -2] .= 0
+    checked_df.count_1[checked_df.count_1 .== -2] .= 0
+    checked_df.count_2[checked_df.count_2 .== -2] .= 0
+    checked_df.fdr[checked_df.fdr .== 2] .= NaN
+    checked_df.fdr_1[checked_df.fdr_1 .== 2] .= NaN
+    checked_df.fdr_2[checked_df.fdr_2 .== 2] .= NaN
+    CSV.write("table_s1_coli.csv", checked_df)
+end

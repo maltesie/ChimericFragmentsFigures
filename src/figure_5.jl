@@ -102,8 +102,6 @@ function seed_correlation_plot!(ax::Axis, interact::Interactions, n::String, ran
             end
         end
         scatter!(ax, log.(collect(values(region1)) .+ 1), log.(collect(values(region2)) .+ 1), label=label, color=color)
-        #density!(ax, log.(collect(values(region1)) .+ 1), color = color, bandwidth = 1.0)
-        #density!(ax, log.(collect(values(region2)) .+ 1), color = color, bandwidth = 1.0, direction=:y)
 
         if label == "RNA2"
             if hn1 in keys(region1)
@@ -121,11 +119,11 @@ function plot_figure_5(assets_folder::String, interact::Interactions)
     resfactor = 1.
     fig = Figure(resolution=(1200*resfactor, 800*resfactor))
 
-    Label(fig[1,1, TopLeft()], "A", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
-    Label(fig[1,2, TopLeft()], "B", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(fig[1,1, TopLeft()], "a", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(fig[1,2, TopLeft()], "b", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
-    Label(fig[2,1, TopLeft()], "C", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
-    Label(fig[2,2, TopLeft()], "D", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(fig[2,1, TopLeft()], "c", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(fig[2,2, TopLeft()], "d", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
     colors = reverse(ColorSchemes.tofino10.colors)[[4,3,2,1]]
     #colors = ColorSchemes.berlin25.colors[[7,5,3,1]]
@@ -153,7 +151,8 @@ function plot_figure_5(assets_folder::String, interact::Interactions)
 
     df_plate = DataFrame(CSV.File(joinpath(assets_folder, "platereader2.csv")))
 
-    ax5 = Axis(fig[2,2], title = "FarS reporter assay", ylabel="relative fluorescence [AU]", xticks = (1:2, [rich("vc1043"; font=:italic), rich("vca0848"; font=:italic)]))
+    ax5 = Axis(fig[2,2], title = "FarS reporter assay", ylabel="relative fluorescence [AU]",
+        xticks = (1:2, [rich("vc1043"; font=:italic), rich("vca0848"; font=:italic)]))
 
     exp = [1,1,1,1,2,2,2,2]
     groups = [1,2,3,4,1,2,3,4]
@@ -185,8 +184,34 @@ function plot_figure_5(assets_folder::String, interact::Interactions)
     elements = [PolyElement(polycolor = colors[i]) for i in 1:length(labels)]
     #axislegend(ax5, elements, labels, position=:rt)
     Legend(fig[2,3], elements, labels)
+    hidexdecorations!(ax5, label = false, ticklabels = false, ticks = false, grid = true, minorgrid = false, minorticks = false)
 
-    save( "figure_5.svg", fig)
-    save( "figure_5.png", fig, px_per_unit = 2)
+    save("figure_5.svg", fig)
+    save("figure_5.png", fig, px_per_unit = 2)
 
+end
+
+function all_srna_aggregation_plots(interact_lcd::Interactions, interact_hcd::Interactions)
+
+    resfactor = 1.
+    fig = Figure(resolution=(800*resfactor, 1200*resfactor))
+    srnas = sort(unique(vcat(interact_lcd.nodes.name[interact_lcd.nodes.type .== "sRNA"], interact_hcd.nodes.name[interact_hcd.nodes.type .== "sRNA"])))
+    for (i,srna) in enumerate(srnas)
+        idx = (i % 5 == 0) ? 5 : (i % 5)
+        if srna in interact_lcd.nodes.name
+            ax1 = Axis(fig[idx, 1], title="$srna LCD")
+            aggregation_plot!(ax1, interact_lcd, srna, 0.25)
+        end
+        if srna in interact_hcd.nodes.name
+            ax2 = Axis(fig[idx, 2], title="$srna HCD")
+            aggregation_plot!(ax2, interact_hcd, srna, 0.25)
+        end
+        if i % 5 == 0
+            save("figure_srnas_$(Int(floor(i/5))).pdf", fig, px_per_unit = 2)
+            fig = Figure(resolution=(800*resfactor, 1200*resfactor))
+            srnas = sort(unique(vcat(interact_lcd.nodes.name[interact_lcd.nodes.type .== "sRNA"], interact_hcd.nodes.name[interact_hcd.nodes.type .== "sRNA"])))
+        end
+    end
+    #save("figure_srnas_99.svg", fig)
+    save("figure_srnas_99.pdf", fig, px_per_unit = 2)
 end

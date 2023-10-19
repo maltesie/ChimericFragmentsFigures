@@ -63,7 +63,7 @@ function plot_figure_3(assets_folder::String, interact::Interactions, nseqs::Int
     h21 = hist!(ax2, right1, label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
     linkyaxes!(ax1, ax2)
-    Label(fig[2,1, TopLeft()], "D", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+
 
     resize!.((left1, left2, right1, right2), length(interact.bpstats))
     fdrv = adjust(PValues(first.(values(interact.bpstats))), BenjaminiHochberg())
@@ -87,7 +87,7 @@ function plot_figure_3(assets_folder::String, interact::Interactions, nseqs::Int
     h101 = hist!(ax10, right1, label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
     linkyaxes!(ax9, ax10)
-    Label(fig[2,3, TopLeft()], "E", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+
 
     ax3 = Axis(fig[3,3], xlabel="postion in alignment", ylabel="frequency", title="significant, left")
     h32 = hist!(ax3, left2[fdrv .<= fcut], label="RNA2, left", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
@@ -98,7 +98,7 @@ function plot_figure_3(assets_folder::String, interact::Interactions, nseqs::Int
     h41 = hist!(ax4, right1[fdrv .<= fcut], label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
     linkyaxes!(ax3, ax4)
-    Label(fig[3,3, TopLeft()], "G", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+
 
     ax5 = Axis(fig[3,1], xlabel="postion in alignment", ylabel="frequency", title="unsignificant, left")
     h52 = hist!(ax5, left2[fdrv .> fcut], label="RNA2, left", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
@@ -109,7 +109,7 @@ function plot_figure_3(assets_folder::String, interact::Interactions, nseqs::Int
     h61 = hist!(ax6, right1[fdrv .> fcut], label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
     linkyaxes!(ax5, ax6)
-    Label(fig[3,1, TopLeft()], "F", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+
 
     Legend(fig[2:3,5], [h31, h32], ["RNA1", "RNA2"])
 
@@ -121,7 +121,7 @@ function plot_figure_3(assets_folder::String, interact::Interactions, nseqs::Int
     density!(ax7, interacts, color=(:green, 0.3), label="ligation points")
     vlines!(ax7, [significant_score], color = :blue, label="FDR = $(fcut)")
     axislegend(ax7)
-    Label(ga[1,2, TopLeft()], "B", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+
 
     colors = ("Brown", "Coral", "BlueViolet", "DarkGreen")
     pcuts = [0.01, 0.05, 0.1, 0.25, 0.5, 1.0]
@@ -163,7 +163,7 @@ function plot_figure_3(assets_folder::String, interact::Interactions, nseqs::Int
 
     Legend(ga[1,4], ax_cor, "seed | score")
 
-    Label(ga[1,3, TopLeft()], "C", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+
 
     img = rotr90(load(joinpath(assets_folder, "combined.png")))
     ax8 = Axis(ga[1, 1],
@@ -174,7 +174,14 @@ function plot_figure_3(assets_folder::String, interact::Interactions, nseqs::Int
     )
     hidedecorations!(ax8)
     image!(ax8, img, aspect = DataAspect())
-    Label(ga[1,1, TopLeft()], "A", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(ga[1,1, TopLeft()], "a", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(ga[1,2, TopLeft()], "b", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(ga[1,3, TopLeft()], "c", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+
+    Label(fig[2,1, TopLeft()], "d", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(fig[2,3, TopLeft()], "e", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(fig[3,1, TopLeft()], "f", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(fig[3,3, TopLeft()], "g", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
     save("figure_3.svg", fig)
     save("figure_3.png", fig, px_per_unit = 2)

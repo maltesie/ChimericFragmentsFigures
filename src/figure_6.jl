@@ -1,12 +1,15 @@
-function coverage_plot!(ax::Axis, coverage::Coverage, interval::Interval)
+function coverage_plot!(ax::Axis, coverage::Coverage, interval::Interval, color)
     vals = values(coverage, interval)
     strand(interval) == '-' && reverse!(vals)
-    band!(ax, collect(0:(rightposition(interval)-leftposition(interval))), zeros(rightposition(interval)-leftposition(interval)+1), vals)
+    band!(ax, collect(0:(rightposition(interval)-leftposition(interval))), zeros(rightposition(interval)-leftposition(interval)+1), vals, color=color)
 end
 
 function plot_figure_6(assets_folder::String, interact::Interactions)
     resfactor = 1.
     fig = Figure(resolution=(1200*resfactor, 800*resfactor))
+
+    colors = Makie.wong_colors()
+    colors = [colors[1], RGBAf(95/255, 158/255, 160/255, 191/255)]
 
     gb = fig[1:3,1] = GridLayout()
 
@@ -47,13 +50,13 @@ function plot_figure_6(assets_folder::String, interact::Interactions)
     coverage_term = Coverage(joinpath(assets_folder, "trimmed_12898-mock-rep1_S33_R1_001_forward.bw"), joinpath(assets_folder, "trimmed_12898-mock-rep1_S33_R1_001_reverse.bw"))
 
     ax1_2_1 = Axis(ga[3,1], ylabel="count", xticks=([1, 950], ["1", "950"]))#, title="dRNA-seq")
-    coverage_plot!(ax1_2_1, coverage_tex, interval)
+    coverage_plot!(ax1_2_1, coverage_tex, interval, colors[1])
     hidexdecorations!(ax1_2_1, grid = false)
     hidespines!(ax1_2_1, :l, :t, :r)
     xlims!(ax1_2_1, limits_low, limits_high)
 
     ax1_3_1 = Axis(ga[4,1], ylabel="count", xticks=([1, 950], ["1", "950"]))#, xlabel="coordinate in annotation", title="TERM-seq")
-    coverage_plot!(ax1_3_1, coverage_term, interval)
+    coverage_plot!(ax1_3_1, coverage_term, interval, colors[1])
     hidespines!(ax1_3_1, :l, :t, :r)
     xlims!(ax1_3_1, limits_low, limits_high)
 
@@ -79,14 +82,14 @@ function plot_figure_6(assets_folder::String, interact::Interactions)
     #coverage_term = Coverage(joinpath(assets_folder, "trimmed_12898-mock-rep1_S33_R1_001_forward.bw"), joinpath(assets_folder, "trimmed_12898-mock-rep1_S33_R1_001_reverse.bw"))
 
     ax1_2_2 = Axis(ga[3,2:3], title="dRNA-seq", xticks=([2150, 2250], ["3100", "3200"]))
-    coverage_plot!(ax1_2_2, coverage_tex, interval)
+    coverage_plot!(ax1_2_2, coverage_tex, interval, colors[1])
     hidexdecorations!(ax1_2_2, grid = false)
     hideydecorations!(ax1_2_2, grid = false)
     hidespines!(ax1_2_2, :l, :t, :r)
     xlims!(ax1_2_2, limits_low, limits_high)
 
     ax1_3_2 = Axis(ga[4,2:3], xlabel=rich("coordinate relative to ", rich("vc0715"; font=:italic)), title="TERM-seq", xticks=([2150, 2250], ["3100", "3200"]))
-    coverage_plot!(ax1_3_2, coverage_term, interval)
+    coverage_plot!(ax1_3_2, coverage_term, interval, colors[1])
     hideydecorations!(ax1_3_2, grid = false)
     hidespines!(ax1_3_2, :l, :t, :r)
     xlims!(ax1_3_2, limits_low, limits_high)
@@ -118,14 +121,14 @@ function plot_figure_6(assets_folder::String, interact::Interactions)
     #coverage_term = Coverage(joinpath(assets_folder, "trimmed_12898-mock-rep1_S33_R1_001_forward.bw"), joinpath(assets_folder, "trimmed_12898-mock-rep1_S33_R1_001_reverse.bw"))
 
     ax1_2_3 = Axis(ga[3,4], xticks=([100, 900], ["3600", "4400"]))#, ylabel="count", title="dRNA-seq")
-    coverage_plot!(ax1_2_3, coverage_tex, interval)
+    coverage_plot!(ax1_2_3, coverage_tex, interval, colors[1])
     hidexdecorations!(ax1_2_3, grid = false)
     hideydecorations!(ax1_2_3, grid = false)
     hidespines!(ax1_2_3, :l, :t, :r)
     xlims!(ax1_2_3, limits_low, limits_high)
 
     ax1_3_3 = Axis(ga[4,4], xticks=([100, 900], ["3600", "4400"]))#, ylabel="count", xlabel="position in IGR", title="TERM-seq")
-    coverage_plot!(ax1_3_3, coverage_term, interval)
+    coverage_plot!(ax1_3_3, coverage_term, interval, colors[1])
     hideydecorations!(ax1_3_3, grid = false)
     hidespines!(ax1_3_3, :l, :t, :r)
     xlims!(ax1_3_3, limits_low, limits_high)
@@ -145,10 +148,10 @@ function plot_figure_6(assets_folder::String, interact::Interactions)
     hidedecorations!(ax4)
     image!(ax4, img4, aspect = DataAspect())
 
-    colors = Makie.wong_colors()
+
     df_plate = DataFrame(CSV.File(joinpath(assets_folder, "platereader.csv")))
 
-    ax7 = Axis(fig[3,2], title = "AphA-FLAG Western blot quantification", ylabel="AphA-FLAG levels [AU]", xlabel="OD at 600nm",
+    ax7 = Axis(fig[3,2], ylabel="AphA-FLAG levels [AU]", xlabel="OD at 600nm",
         xticks = (1:nrow(df_plate), ["$n" for n in df_plate.name]))
     groups = vcat(fill(1,nrow(df_plate)), fill(2,nrow(df_plate)))
 
@@ -185,16 +188,17 @@ function plot_figure_6(assets_folder::String, interact::Interactions)
     errorbars!(ax7, collect(2:nrow(df_plate)) .+ 0.2, mean_spot[2:end], sd_spot[2:end], whiskerwidth=5)
     labels = ["control", "NetX"]
     elements = [PolyElement(polycolor = colors[i]) for i in 1:length(labels)]
+    hidexdecorations!(ax7, label = false, ticklabels = false, ticks = false, grid = true, minorgrid = false, minorticks = false)
 
     axislegend(ax7, elements, labels, position=:rt)
 
-    Label(gb[1,1, TopLeft()], "A", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
-    Label(gb[2,1, TopLeft()], "D", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
+    Label(gb[1,1, TopLeft()], "a", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
+    Label(gb[2,1, TopLeft()], "d", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
-    Label(ga[1,1, TopLeft()], "B", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
-    Label(fig[3,2, TopLeft()], "E", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
+    Label(ga[1,1, TopLeft()], "b", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
+    Label(fig[3,2, TopLeft()], "e", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
-    Label(gc[1,1, TopLeft()], "C", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
+    Label(gc[1,1, TopLeft()], "c", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
     #Label(gc[7,1, TopLeft()], "F", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
     save("figure_6.svg", fig)

@@ -27,11 +27,11 @@
      showgrid="false"
      inkscape:zoom="2.0055991"
      inkscape:cx="125.39894"
-     inkscape:cy="107.19989"
-     inkscape:window-width="2560"
-     inkscape:window-height="1403"
-     inkscape:window-x="2560"
-     inkscape:window-y="0"
+     inkscape:cy="107.44919"
+     inkscape:window-width="2490"
+     inkscape:window-height="1376"
+     inkscape:window-x="70"
+     inkscape:window-y="27"
      inkscape:window-maximized="1"
      inkscape:current-layer="g8" />
   <g
@@ -39,12 +39,12 @@
      inkscape:label="Image"
      id="g8">
     <rect
-       style="fill:#ffffff;fill-opacity:0.998847;fill-rule:evenodd;stroke:none;stroke-width:0;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       style="fill:#ffffff;fill-opacity:0.998847;fill-rule:evenodd;stroke:#000000;stroke-width:1.04881;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect849"
-       width="245.43622"
-       height="173.63344"
-       x="38.802479"
-       y="78.982635"
+       width="264.00211"
+       height="177.56398"
+       x="28.451248"
+       y="77.69632"
        inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/data/figure_3/combined.png"
        inkscape:export-xdpi="241.31964"
        inkscape:export-ydpi="241.31964" />

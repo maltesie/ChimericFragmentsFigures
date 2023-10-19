@@ -3,10 +3,10 @@ function plot_figure_4(assets_folder::String)
     resfactor = 1.
     fig = Figure(resolution=(1200*resfactor, 700*resfactor))
 
-    Label(fig[1,1, TopLeft()], "A", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
-    Label(fig[2,1, TopLeft()], "B", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(fig[1,1, TopLeft()], "a", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(fig[2,1, TopLeft()], "b", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
-    Label(fig[1,2, TopLeft()], "C", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(fig[1,2, TopLeft()], "c", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
     df_old = DataFrame(CSV.File(joinpath(assets_folder, "hfq_lcd_old.csv")))
     df_new = DataFrame(CSV.File(joinpath(assets_folder, "hfq_lcd_new.csv")))
@@ -61,7 +61,7 @@ function plot_figure_4(assets_folder::String)
         end
     end
     counter ./= 2
-    ax1 = Axis(fig[1,1], ylabel="count", title="annotation types", xticks = (1:4, ["previous", "improved\nmapping", "no FDR,\nreads >= 20", "FDR < 0.25,\nreads >= 3"]))#, xticklabelrotation = pi/8)
+    ax1 = Axis(fig[1,1], ylabel="count", title="annotation types", xticks = (1:4, ["previous", "improved\nmapping", "no FDR,\nreads >= 20", "FDR < 0.25,\nreads >= 3"]))
     colors = Makie.wong_colors()
     groups = [1,2,3,1,2,3,1,2,3,1,2,3]
 
@@ -69,6 +69,7 @@ function plot_figure_4(assets_folder::String)
     labels = ["sRNA", "IGR", "mRNA"]
     elements = [PolyElement(polycolor = colors[i]) for i in 1:length(labels)]
     axislegend(ax1, elements, labels, position=:lt)
+    hidexdecorations!(ax1, label = false, ticklabels = false, ticks = false, grid = true, minorgrid = false, minorticks = false)
 
     axb2 = Axis(fig[2,1], ylabel="-log10(complementarity FDR)", xlabel="log10(reads count)", title="Spot 42 interactions")
 
@@ -91,7 +92,8 @@ function plot_figure_4(assets_folder::String)
     df_plate = DataFrame(CSV.File(joinpath(assets_folder, "platereader.csv")))
     xlabels_latex = [rich(String(cl); font=:italic) for cl in df_plate.name]
 
-    axb4 = Axis(fig[1:2,2], title="Spot 42 reporter assay", xlabel="relative fluorescence [AU]", yticks = (1:nrow(df_plate), xlabels_latex))#, xticklabelrotation = pi/4)
+    axb4 = Axis(fig[1:2,2], title="Spot 42 reporter assay", xlabel="relative fluorescence [AU]", yticks = (1:nrow(df_plate), xlabels_latex))
+
     groups = vcat(fill(1,nrow(df_plate)), fill(2,nrow(df_plate)))
     ctrl = Matrix(df_plate[:, [:ctrl1, :ctrl2, :ctrl3]])
     mean_ctrl = vec(mean(ctrl; dims=2))
@@ -102,7 +104,7 @@ function plot_figure_4(assets_folder::String)
     mean_spot = vec(mean(spot; dims=2))
     sd_spot = vec(std(spot; dims=2))
     mean_ctrl = ones(nrow(df_plate))
-    barplot!(axb4, 1:nrow(df_plate), mean_spot, direction=:x)#, dodge=groups, color=colors[groups])
+    barplot!(axb4, 1:nrow(df_plate), mean_spot, direction=:x, color=colors[1])#, dodge=groups, color=colors[groups])
     #scatter!(axb4, collect(1:nrow(df_plate)) .- 0.35, vec(ctrl[:, 1]), color="black", markersize=5)
     #scatter!(axb4, collect(1:nrow(df_plate)) .- 0.2, vec(ctrl[:, 2]), color="black", markersize=5)
     #scatter!(axb4, collect(1:nrow(df_plate)) .- 0.05, vec(ctrl[:, 3]), color="black", markersize=5)
@@ -114,6 +116,7 @@ function plot_figure_4(assets_folder::String)
     #labels = ["control", "Spot 42"]
     #elements = [PolyElement(polycolor = colors[i]) for i in 1:length(labels)]
     #axislegend(axb4, elements, labels, position=:rt)
+    hideydecorations!(axb4, label = false, ticklabels = false, ticks = false, grid = true, minorgrid = false, minorticks = false)
 
     save( "figure_4.svg", fig)
     save( "figure_4.png", fig, px_per_unit = 2)

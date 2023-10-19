@@ -2,6 +2,8 @@ function plot_figure_s4(assets_folder::String, interact::Interactions)
     resfactor = 1.
     fig = Figure(resolution=(1200*resfactor, 1200*resfactor))
 
+    colors = Makie.wong_colors()
+
     ax_graph = Axis(fig[1,1], leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
     img_graph = rotr90(load(joinpath(assets_folder, "hfq_lcd_igr_vcr069_vc1803.png")))
     hidedecorations!(ax_graph)
@@ -27,13 +29,13 @@ function plot_figure_s4(assets_folder::String, interact::Interactions)
     coverage_term = Coverage(joinpath(assets_folder, "..", "figure_6", "trimmed_12898-mock-rep1_S33_R1_001_forward.bw"), joinpath(assets_folder, "..", "figure_6", "trimmed_12898-mock-rep1_S33_R1_001_reverse.bw"))
 
     ax1_2 = Axis(ga[2,1], ylabel="count", title="dRNA-seq")
-    coverage_plot!(ax1_2, coverage_tex, interval)
+    coverage_plot!(ax1_2, coverage_tex, interval, colors[1])
     hidexdecorations!(ax1_2, grid = false)
     hidespines!(ax1_2, :l, :t, :r)
     xlims!(ax1_2, limits_low, limits_high)
 
     ax1_3 = Axis(ga[3,1], ylabel="count", xlabel="position in IGR", title="TERM-seq")
-    coverage_plot!(ax1_3, coverage_term, interval)
+    coverage_plot!(ax1_3, coverage_term, interval, colors[1])
     hidespines!(ax1_3, :l, :t, :r)
     xlims!(ax1_3, limits_low, limits_high)
 
@@ -44,9 +46,9 @@ function plot_figure_s4(assets_folder::String, interact::Interactions)
     hidedecorations!(ax4)
     image!(ax4, img4, aspect = DataAspect())
 
-    Label(fig[1,1, TopLeft()], "A", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
-    Label(fig[2,1, TopLeft()], "B", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
-    Label(fig[1,2, TopLeft()], "C", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
+    Label(fig[1,1, TopLeft()], "a", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
+    Label(fig[2,1, TopLeft()], "b", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
+    Label(fig[1,2, TopLeft()], "c", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
     save("figure_s4.svg", fig)
     save("figure_s4.png", fig, px_per_unit = 2)
