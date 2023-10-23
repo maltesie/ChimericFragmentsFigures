@@ -390,6 +390,11 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
     Legend(gc[1,4], ax_cor, "seed | score")
     Legend(gb[1,4], ax_cor, "seed | score")
 
+    highlight_index = [(1,1), (3,1), (1, 3), (3, 4)]
+    square_with_hole(x, y) = Makie.Polygon(
+        Point2f[(x-0.5, y+0.5), (x+0.5, y+0.5), (x+0.5, y-0.5), (x-0.5, y-0.5)],
+        [Point2f[(x-0.45, y+0.45), (x+0.45, y+0.45), (x+0.45, y-0.45), (x-0.45, y-0.45)]])
+
     ax2 = Axis(ga[1,3], yticks=(1:length(scores), string.(scores)), xticks = (1:length(seedlens), string.(seedlens)),
         ylabel="minimum alignment score", xlabel="seed length", title="TPR")
     heatmap!(ax2, tpr, colorrange=clims)
@@ -397,6 +402,7 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
         text!(ax2, string(round(tpr[i,j], digits=2)), position = (i,j), align = (:center, :center),
             color = tpr[i,j] < 0.5 ? :white : :black, fontsize=fontsize_heatmap_text)
     end
+    poly!(ax2, [square_with_hole(x,y) for (x,y) in highlight_index], color=collect(colors))
 
     ax3 = Axis(ga[1,4], yticks=(1:length(scores), string.(scores)), xticks = (1:length(seedlens), string.(seedlens)),
         ylabel="minimum alignment score", xlabel="seed length", title="FPR")
@@ -405,6 +411,7 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
         text!(ax3, string(round(fpr[i,j], digits=3)), position = (i,j), align = (:center, :center),
             color = fpr[i,j] < 0.5 ? :white : :black, fontsize=fontsize_heatmap_text)
     end
+    poly!(ax3, [square_with_hole(x,y) for (x,y) in highlight_index], color=collect(colors))
 
     Colorbar(ga[1,5], limits=clims)
 

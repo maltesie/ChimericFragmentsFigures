@@ -4,6 +4,13 @@ function coverage_plot!(ax::Axis, coverage::Coverage, interval::Interval, color)
     band!(ax, collect(0:(rightposition(interval)-leftposition(interval))), zeros(rightposition(interval)-leftposition(interval)+1), vals, color=color)
 end
 
+function ligation_points_plot!(ax::Axis, interact::Interactions, n1::String, n2::String,  max_fdr::Float64)
+    idx = findfirst(interact.nodes.name .== n)
+    cds = interact.nodes.cds[idx] == 0 ? (interact.nodes.strand[idx] == '-' ? interact.nodes.right[idx] : interact.nodes.left[idx]) : interact.nodes.cds[idx]
+    st = interact.nodes.strand[idx]
+
+end
+
 function plot_figure_6(assets_folder::String, interact::Interactions)
     resfactor = 1.
     fig = Figure(resolution=(1200*resfactor, 800*resfactor))

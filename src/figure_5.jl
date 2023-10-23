@@ -144,8 +144,7 @@ function plot_figure_5(assets_folder::String, interact::Interactions)
     Legend(fig[1,3], ax_seed_corr)
 
     img4 = rotr90(load(joinpath(assets_folder, "basepairing.png")))
-    ax4 = Axis(fig[2, 1], title="basepairing predictions",
-        leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
+    ax4 = Axis(fig[2, 1], title="basepairing predictions")#, aspect = DataAspect())
     hidedecorations!(ax4)
     image!(ax4, img4, aspect = DataAspect())
 
@@ -185,6 +184,34 @@ function plot_figure_5(assets_folder::String, interact::Interactions)
     #axislegend(ax5, elements, labels, position=:rt)
     Legend(fig[2,3], elements, labels)
     hidexdecorations!(ax5, label = false, ticklabels = false, ticks = false, grid = true, minorgrid = false, minorticks = false)
+
+    ps = pvalue.(EqualVarianceTTest.([ctrl[1, :] for i in 2:size(ctrl)[1]], [ctrl[i, :] for i in 2:size(ctrl)[1]]))
+    for (i, p) in enumerate(ps)
+        i+=1
+        if p > 0.05
+            text!(ax5, "n.s.", position = (ctrlpos[i], mean_ctrl[i]+sd_ctrl[i] + 0.1), align = (:center, :center), fontsize=13)
+        elseif p > 0.01
+            text!(ax5, "⭑", position = (ctrlpos[i], mean_ctrl[i]+sd_ctrl[i] + 0.1), align = (:center, :center), fontsize=13)
+        elseif p > 0.001
+            text!(ax5, "⭑⭑", position = (ctrlpos[i], mean_ctrl[i]+sd_ctrl[i] + 0.1), align = (:center, :center), fontsize=13)
+        else
+            text!(ax5, "⭑⭑⭑", position = (ctrlpos[i], mean_ctrl[i]+sd_ctrl[i] + 0.1), align = (:center, :center), fontsize=13)
+        end
+    end
+
+    ps = pvalue.(EqualVarianceTTest.([spot[1, :] for i in 2:size(spot)[1]], [spot[i, :] for i in 2:size(spot)[1]]))
+    for (i, p) in enumerate(ps)
+        i+=1
+        if p > 0.05
+            text!(ax5, "n.s.", position = (spotpos[i], mean_spot[i]+sd_spot[i] + 0.1), align = (:center, :center), fontsize=13)
+        elseif p > 0.01
+            text!(ax5, "⭑", position = (spotpos[i], mean_spot[i]+sd_spot[i] + 0.1), align = (:center, :center), fontsize=13)
+        elseif p > 0.001
+            text!(ax5, "⭑⭑", position = (spotpos[i], mean_spot[i]+sd_spot[i] + 0.1), align = (:center, :center), fontsize=13)
+        else
+            text!(ax5, "⭑⭑⭑", position = (spotpos[i], mean_spot[i]+sd_spot[i] + 0.1), align = (:center, :center), fontsize=13)
+        end
+    end
 
     save("figure_5.svg", fig)
     save("figure_5.png", fig, px_per_unit = 2)

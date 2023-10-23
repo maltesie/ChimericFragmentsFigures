@@ -163,15 +163,8 @@ function plot_figure_3(assets_folder::String, interact::Interactions, nseqs::Int
 
     Legend(ga[1,4], ax_cor, "seed | score")
 
-
-
     img = rotr90(load(joinpath(assets_folder, "combined.png")))
-    ax8 = Axis(ga[1, 1],
-        leftspinevisible = false,
-        rightspinevisible = false,
-        bottomspinevisible = false,
-        topspinevisible = false, aspect = DataAspect()
-    )
+    ax8 = Axis(ga[1, 1])
     hidedecorations!(ax8)
     image!(ax8, img, aspect = DataAspect())
     Label(ga[1,1, TopLeft()], "a", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)

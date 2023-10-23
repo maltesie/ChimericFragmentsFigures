@@ -103,6 +103,7 @@ function plot_figure_4(assets_folder::String)
     spot ./= mean_ctrl
     mean_spot = vec(mean(spot; dims=2))
     sd_spot = vec(std(spot; dims=2))
+    sd_spot = mean_spot .* sqrt.((sd_ctrl./mean_ctrl).^2 + (sd_spot./mean_spot).^2)
     mean_ctrl = ones(nrow(df_plate))
     barplot!(axb4, 1:nrow(df_plate), mean_spot, direction=:x, color=colors[1])#, dodge=groups, color=colors[groups])
     #scatter!(axb4, collect(1:nrow(df_plate)) .- 0.35, vec(ctrl[:, 1]), color="black", markersize=5)
@@ -116,6 +117,20 @@ function plot_figure_4(assets_folder::String)
     #labels = ["control", "Spot 42"]
     #elements = [PolyElement(polycolor = colors[i]) for i in 1:length(labels)]
     #axislegend(axb4, elements, labels, position=:rt)
+
+    ps = pvalue.(EqualVarianceTTest.([ctrl[i, :] for i in 1:size(ctrl)[1]], [spot[i, :] for i in 1:size(ctrl)[1]]))
+    for (i, p) in enumerate(ps)
+        if p > 0.05
+            text!(axb4, "n.s.", position = (mean_spot[i]+sd_spot[i] + 0.25,i), align = (:left, :center), fontsize=20)
+        elseif p > 0.01
+            text!(axb4, "⭑", position = (mean_spot[i]+sd_spot[i] + 0.25,i), align = (:left, :center), fontsize=20)
+        elseif p > 0.001
+            text!(axb4, "⭑⭑", position = (mean_spot[i]+sd_spot[i] + 0.25,i), align = (:left, :center), fontsize=20)
+        else
+            text!(axb4, "⭑⭑⭑", position = (mean_spot[i]+sd_spot[i] + 0.25,i), align = (:left, :center), fontsize=20)
+        end
+    end
+    xlims!(axb4, (0,4.1))
     hideydecorations!(axb4, label = false, ticklabels = false, ticks = false, grid = true, minorgrid = false, minorticks = false)
 
     save( "figure_4.svg", fig)

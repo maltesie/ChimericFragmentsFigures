@@ -134,15 +134,27 @@ function plot_figure_s3(assets_folder::String, interact::Interactions, interact2
         end
     end
 
+    println(sum(is_sponge .| is_sponge2))
+    println(sum(.!is_sponge .| .!is_sponge2))
+
     filterindex = vec((maximum(counter_reads; dims=2) .>= min_ligpoints) .& (counter_partners .>= min_partners))
+    filterindex2 = vec((maximum(counter_reads2; dims=2) .>= min_ligpoints) .& (counter_partners2 .>= min_partners))
+
+    println(sum((is_sponge .& filterindex) .| (is_sponge2 .& filterindex2)))
+    println(sum((.!is_sponge .& filterindex) .| (.!is_sponge2 .& filterindex2)))
+
     is_sponge = is_sponge[filterindex]
     counter_regions = counter_regions[filterindex, :]
     counter_partners = counter_partners[filterindex]
 
-    filterindex2 = vec((maximum(counter_reads2; dims=2) .>= min_ligpoints) .& (counter_partners2 .>= min_partners))
     is_sponge2 = is_sponge2[filterindex2]
     counter_regions2 = counter_regions2[filterindex2, :]
     counter_partners2 = counter_partners2[filterindex2]
+
+    println(sum(is_sponge))
+    println(sum(is_sponge2))
+    println(sum(.!is_sponge))
+    println(sum(.!is_sponge2))
 
     colors = Makie.wong_colors()
     mean_partners = [mean(counter_partners[is_sponge]), mean(counter_partners2[is_sponge2]), mean(counter_partners[.!is_sponge]), mean(counter_partners2[.!is_sponge2])]
@@ -166,6 +178,7 @@ function plot_figure_s3(assets_folder::String, interact::Interactions, interact2
     axislegend(ax_partner, elements, labels, position=:lt)
 
     count_sponge = [sum(is_sponge), sum(is_sponge2), sum(.!is_sponge), sum(.!is_sponge2)]
+
     exp = [1,1,2,2]
     groups = [1,2,1,2]
 
