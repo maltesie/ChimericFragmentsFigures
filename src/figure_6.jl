@@ -163,36 +163,55 @@ function plot_figure_6(assets_folder::String, interact::Interactions)
     groups = vcat(fill(1,nrow(df_plate)), fill(2,nrow(df_plate)))
 
     ctrl = Matrix(df_plate[:, [:ctrl1, :ctrl2, :ctrl3]])
-    std_one = std(ctrl[1,:]) / mean(ctrl[1,:])
-    spot = Matrix(df_plate[:, [:exp1, :exp2, :exp3]])
-    sd_spot_one = std(spot[1,:] ./ mean(ctrl[1,:]))
+    mean_ctrl = vec(mean(ctrl; dims=2))
+    ctrl ./= mean_ctrl[1]
 
-    factor = mean(spot[1,:]) ./ mean(ctrl[1,:])
-    sd_factor = factor * sqrt(sd_spot_one^2 + std_one^2)
-    ctrl = (ctrl' ./ ctrl[1,:])'
+    #std_one = std(ctrl[1,:]) / mean(ctrl[1,:])
+    spot = Matrix(df_plate[:, [:exp1, :exp2, :exp3]])
+    #sd_spot_one = std(spot[1,:] ./ mean(ctrl[1,:]))
+    spot ./= mean_ctrl[1]
+
+    #factor = mean(spot[1,:]) ./ mean(ctrl[1,:])
+    #sd_factor = factor * sqrt(sd_spot_one^2 + std_one^2)
+    #ctrl = (ctrl' ./ ctrl[1,:])'
     mean_ctrl = vec(mean(ctrl; dims=2))
 
     sd_ctrl = vec(std(ctrl; dims=2))
-    sd_ctrl[1] = std_one
+    #sd_ctrl[1] = std_one
 
-    spot = (spot' ./ spot[1,:])'
-    mean_spot_before = vec(mean(spot; dims=2))
-    sd_spot_before = vec(std(spot; dims=2))
+    #spot = (spot' ./ spot[1,:])'
+    #mean_spot_before = vec(mean(spot; dims=2))
+    #sd_spot_before = vec(std(spot; dims=2))
 
-    spot .*= factor
+    #spot .*= factor
     mean_spot = vec(mean(spot; dims=2))
-    sd_spot = mean_spot .* sqrt.((sd_spot_before ./ mean_spot_before).^2 .+ (sd_factor/factor)^2)
-    sd_spot[1] = sd_spot_one
+    #sd_spot = mean_spot .* sqrt.((sd_spot_before ./ mean_spot_before).^2 .+ (sd_factor/factor)^2)
+    #sd_spot[1] = sd_spot_one
+    sd_spot = vec(std(spot; dims=2))
 
     barplot!(ax7, vcat(1:nrow(df_plate), 1:nrow(df_plate)), vcat(mean_ctrl, mean_spot), dodge=groups, color=colors[groups])
     scatter!(ax7, collect(1:nrow(df_plate)) .- 0.35, vec(ctrl[:, 1]), color="black", markersize=5)
     scatter!(ax7, collect(1:nrow(df_plate)) .- 0.2, vec(ctrl[:, 2]), color="black", markersize=5)
     scatter!(ax7, collect(1:nrow(df_plate)) .- 0.05, vec(ctrl[:, 3]), color="black", markersize=5)
-    errorbars!(ax7, collect(2:nrow(df_plate)) .- 0.2, mean_ctrl[2:end], sd_ctrl[2:end], whiskerwidth=5)
+    errorbars!(ax7, collect(1:nrow(df_plate)) .- 0.2, mean_ctrl, sd_ctrl, whiskerwidth=5)
     scatter!(ax7, collect(1:nrow(df_plate)) .+ 0.35, vec(spot[:, 1]), color="black", markersize=5)
     scatter!(ax7, collect(1:nrow(df_plate)) .+ 0.2, vec(spot[:, 2]), color="black", markersize=5)
     scatter!(ax7, collect(1:nrow(df_plate)) .+ 0.05, vec(spot[:, 3]), color="black", markersize=5)
-    errorbars!(ax7, collect(2:nrow(df_plate)) .+ 0.2, mean_spot[2:end], sd_spot[2:end], whiskerwidth=5)
+    errorbars!(ax7, collect(1:nrow(df_plate)) .+ 0.2, mean_spot, sd_spot, whiskerwidth=5)
+
+    ps = pvalue.(EqualVarianceTTest.([ctrl[i, :] for i in 1:size(ctrl)[1]], [spot[i, :] for i in 1:size(ctrl)[1]]))
+    for (i, p) in enumerate(ps)
+        if p > 0.05
+            text!(ax7, "n.s.", position = (i, mean_ctrl[i]+sd_ctrl[i] + 0.15), align = (:center, :center), fontsize=20)
+        elseif p > 0.01
+            text!(ax7, "⭑", position = (i, mean_ctrl[i]+sd_ctrl[i] + 0.15), align = (:center, :center), fontsize=20)
+        elseif p > 0.001
+            text!(ax7, "⭑⭑", position = (i, mean_ctrl[i]+sd_ctrl[i] + 0.15), align = (:center, :center), fontsize=20)
+        else
+            text!(ax7, "⭑⭑⭑", position = (i, mean_ctrl[i]+sd_ctrl[i] + 0.15), align = (:center, :center), fontsize=20)
+        end
+    end
+
     labels = ["control", "NetX"]
     elements = [PolyElement(polycolor = colors[i]) for i in 1:length(labels)]
     hidexdecorations!(ax7, label = false, ticklabels = false, ticks = false, grid = true, minorgrid = false, minorticks = false)

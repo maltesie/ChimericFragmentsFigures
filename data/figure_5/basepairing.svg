@@ -28,11 +28,11 @@
      showgrid="false"
      inkscape:zoom="0.38885734"
      inkscape:cx="669.91149"
-     inkscape:cy="72.005842"
-     inkscape:window-width="2560"
-     inkscape:window-height="1403"
-     inkscape:window-x="2560"
-     inkscape:window-y="0"
+     inkscape:cy="73.29166"
+     inkscape:window-width="2490"
+     inkscape:window-height="1376"
+     inkscape:window-x="70"
+     inkscape:window-y="27"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
   <defs
@@ -126,7 +126,7 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#ffffff;fill-rule:evenodd;stroke:#000001;stroke-width:0.660048;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#ffffff;fill-rule:evenodd;stroke:none;stroke-width:0.660048;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect887"
        width="273.83282"
        height="196.82939"

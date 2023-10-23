@@ -189,13 +189,13 @@ function plot_figure_5(assets_folder::String, interact::Interactions)
     for (i, p) in enumerate(ps)
         i+=1
         if p > 0.05
-            text!(ax5, "n.s.", position = (ctrlpos[i], mean_ctrl[i]+sd_ctrl[i] + 0.1), align = (:center, :center), fontsize=13)
+            text!(ax5, "n.s.", position = (ctrlpos[i], mean_ctrl[i]+sd_ctrl[i] + 0.1), align = (:center, :center), fontsize=17)
         elseif p > 0.01
-            text!(ax5, "⭑", position = (ctrlpos[i], mean_ctrl[i]+sd_ctrl[i] + 0.1), align = (:center, :center), fontsize=13)
+            text!(ax5, "⭑", position = (ctrlpos[i], mean_ctrl[i]+sd_ctrl[i] + 0.1), align = (:center, :center), fontsize=17)
         elseif p > 0.001
-            text!(ax5, "⭑⭑", position = (ctrlpos[i], mean_ctrl[i]+sd_ctrl[i] + 0.1), align = (:center, :center), fontsize=13)
+            text!(ax5, "⭑⭑", position = (ctrlpos[i], mean_ctrl[i]+sd_ctrl[i] + 0.1), align = (:center, :center), fontsize=17)
         else
-            text!(ax5, "⭑⭑⭑", position = (ctrlpos[i], mean_ctrl[i]+sd_ctrl[i] + 0.1), align = (:center, :center), fontsize=13)
+            text!(ax5, "⭑⭑⭑", position = (ctrlpos[i], mean_ctrl[i]+sd_ctrl[i] + 0.1), align = (:center, :center), fontsize=17)
         end
     end
 
@@ -203,13 +203,13 @@ function plot_figure_5(assets_folder::String, interact::Interactions)
     for (i, p) in enumerate(ps)
         i+=1
         if p > 0.05
-            text!(ax5, "n.s.", position = (spotpos[i], mean_spot[i]+sd_spot[i] + 0.1), align = (:center, :center), fontsize=13)
+            text!(ax5, "n.s.", position = (spotpos[i], mean_spot[i]+sd_spot[i] + 0.1), align = (:center, :center), fontsize=17)
         elseif p > 0.01
-            text!(ax5, "⭑", position = (spotpos[i], mean_spot[i]+sd_spot[i] + 0.1), align = (:center, :center), fontsize=13)
+            text!(ax5, "⭑", position = (spotpos[i], mean_spot[i]+sd_spot[i] + 0.1), align = (:center, :center), fontsize=17)
         elseif p > 0.001
-            text!(ax5, "⭑⭑", position = (spotpos[i], mean_spot[i]+sd_spot[i] + 0.1), align = (:center, :center), fontsize=13)
+            text!(ax5, "⭑⭑", position = (spotpos[i], mean_spot[i]+sd_spot[i] + 0.1), align = (:center, :center), fontsize=17)
         else
-            text!(ax5, "⭑⭑⭑", position = (spotpos[i], mean_spot[i]+sd_spot[i] + 0.1), align = (:center, :center), fontsize=13)
+            text!(ax5, "⭑⭑⭑", position = (spotpos[i], mean_spot[i]+sd_spot[i] + 0.1), align = (:center, :center), fontsize=17)
         end
     end
 
