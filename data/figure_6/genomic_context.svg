@@ -24,12 +24,12 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.77771465"
-     inkscape:cx="161.37024"
-     inkscape:cy="-104.79422"
-     inkscape:window-width="2490"
-     inkscape:window-height="1376"
-     inkscape:window-x="70"
-     inkscape:window-y="27"
+     inkscape:cx="145.94042"
+     inkscape:cy="-95.15058"
+     inkscape:window-width="2560"
+     inkscape:window-height="1403"
+     inkscape:window-x="2560"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
   <defs
@@ -556,11 +556,11 @@
          x="59.896194"
          y="54.197521">vc0715</tspan></text>
     <rect
-       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:1.24254;stroke-linecap:square"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:1.23177;stroke-linecap:square"
        id="rect919-6"
-       width="269.77197"
+       width="265.11789"
        height="36.772839"
-       x="-10.998299"
+       x="-6.344214"
        y="107.14967"
        inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/data/figure_6/genomic_context.png"
        inkscape:export-xdpi="159.95599"
@@ -570,7 +570,7 @@
        id="rect967-0-7"
        width="45.623798"
        height="15.877"
-       x="204.05611"
+       x="202.46863"
        y="117.62625"
        inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/data/figure_6/genomic_context.png"
        inkscape:export-xdpi="159.95599"
@@ -585,11 +585,11 @@
        inkscape:export-xdpi="159.95599"
        inkscape:export-ydpi="159.95599" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1.22401px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 172.931,125.43894 31.35971,0.0728"
+       style="fill:none;stroke:#000000;stroke-width:1.18968px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 172.93176,125.43889 29.58581,0.0729"
        id="path861-29-5"
        inkscape:path-effect="#path-effect863-3-3"
-       inkscape:original-d="m 172.931,125.43894 c 10.45471,0.046 20.90782,0.0682 31.35971,0.0728"
+       inkscape:original-d="m 172.93176,125.43889 c 9.86333,0.0461 19.72515,0.0683 29.58581,0.0729"
        inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/data/figure_6/genomic_context.png"
        inkscape:export-xdpi="159.95599"
        inkscape:export-ydpi="159.95599" />
@@ -618,11 +618,11 @@
          x="113.19345"
          y="128.52655">netX</tspan></text>
     <rect
-       style="fill:#deb887;fill-opacity:0.74902;fill-rule:evenodd;stroke:none;stroke-width:1.95412;stroke-linecap:square;stroke-opacity:1"
+       style="fill:#deb887;fill-opacity:0.74902;fill-rule:evenodd;stroke:none;stroke-width:1.87414;stroke-linecap:square;stroke-opacity:1"
        id="rect967-0"
-       width="45.623798"
+       width="41.96571"
        height="15.877"
-       x="-10.129711"
+       x="-6.4716225"
        y="117.0343"
        inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/data/figure_6/genomic_context.png"
        inkscape:export-xdpi="159.95599"
@@ -648,10 +648,10 @@
     </g>
     <path
        style="fill:none;stroke:#ffffff;stroke-width:1.29937px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 206.36299,133.25692 3.73165,-21.72479"
+       d="m 204.77548,133.25692 3.73165,-21.72479"
        id="path861-2-1-5-8-1-2-5"
        inkscape:path-effect="#path-effect863-6-6-3-2-7-36-3"
-       inkscape:original-d="m 206.36299,133.25692 c 1.27844,-7.21543 2.51478,-14.46276 3.73165,-21.72479"
+       inkscape:original-d="m 204.77548,133.25692 c 1.27844,-7.21543 2.51478,-14.46276 3.73165,-21.72479"
        inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/data/figure_6/genomic_context.png"
        inkscape:export-xdpi="159.95599"
        inkscape:export-ydpi="159.95599" />
@@ -669,7 +669,7 @@
        sodipodi:arg2="3.1131022"
        inkscape:rounded="0"
        inkscape:randomized="0"
-       transform="matrix(0.3020643,0.01201278,-0.00897669,0.40422791,106.96247,-22.681192)"
+       transform="matrix(0.3020643,0.01201278,-0.00897669,0.40422791,105.37496,-22.681192)"
        inkscape:transform-center-x="-1.70886"
        inkscape:transform-center-y="-0.0055911196"
        d="m 483.45683,372.05276 -1.1184,-39.24436 34.54582,18.65362 z"
@@ -678,17 +678,17 @@
        inkscape:export-ydpi="159.95599" />
     <path
        style="fill:none;stroke:#ffffff;stroke-width:1.29937px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 209.73574,133.25692 3.73165,-21.72479"
+       d="m 208.14823,133.25692 3.73165,-21.72479"
        id="path861-2-1-7-9-9-2-7-9"
        inkscape:path-effect="#path-effect863-6-6-8-7-2-3-7-5"
-       inkscape:original-d="m 209.73574,133.25692 c 1.27844,-7.21543 2.51478,-14.46276 3.73165,-21.72479"
+       inkscape:original-d="m 208.14823,133.25692 c 1.27844,-7.21543 2.51478,-14.46276 3.73165,-21.72479"
        inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/data/figure_6/genomic_context.png"
        inkscape:export-xdpi="159.95599"
        inkscape:export-ydpi="159.95599" />
     <text
        xml:space="preserve"
        style="font-weight:bold;font-size:8.46667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#000000;stroke-width:0.264583"
-       x="215.11024"
+       x="213.52277"
        y="128.56839"
        id="text6203-7-3-2"
        inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/data/figure_6/genomic_context.png"
@@ -697,7 +697,7 @@
          sodipodi:role="line"
          id="tspan6201-8-6-2"
          style="font-style:italic;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.46667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold Italic';fill:#000000;fill-opacity:1;stroke-width:0.264583"
-         x="215.11024"
+         x="213.52277"
          y="128.56839">vc0719</tspan></text>
     <path
        sodipodi:type="star"

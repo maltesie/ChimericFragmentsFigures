@@ -4,11 +4,24 @@ function coverage_plot!(ax::Axis, coverage::Coverage, interval::Interval, color)
     band!(ax, collect(0:(rightposition(interval)-leftposition(interval))), zeros(rightposition(interval)-leftposition(interval)+1), vals, color=color)
 end
 
-function ligation_points_plot!(ax::Axis, interact::Interactions, n1::String, n2::String,  max_fdr::Float64)
-    idx = findfirst(interact.nodes.name .== n)
-    cds = interact.nodes.cds[idx] == 0 ? (interact.nodes.strand[idx] == '-' ? interact.nodes.right[idx] : interact.nodes.left[idx]) : interact.nodes.cds[idx]
-    st = interact.nodes.strand[idx]
+function cdsframe(p::Int, idx::Int, interact::Interactions)
+    cds, left, right = interact.nodes[idx, [:cds, :left, :right]]
+    tp = interact.nodes.strand[idx] == '-' ? (cds > 0 ? cds : right)-p+1 : p-(cds > 0 ? cds : left)+1
+    return tp
+end
 
+function ligation_points_plot!(ax::Axis, interact::Interactions, name1::String, name2::String, limits1::Tuple{Int, Int}, limits2::Tuple{Int, Int}, max_fdr::Float64)
+    src, dst = findfirst(interact.nodes.name .== name1), findfirst(interact.nodes.name .== name2)
+    fdrs = adjust(PValues([interact.bpstats[(i1, i2)][1] for (i1, i2) in keys(interact.edgestats[(src,dst)][3])]), BenjaminiHochberg())
+    fdr_keys = [p for (i, p) in enumerate(keys(interact.edgestats[(src,dst)][3])) if fdrs[i] <= max_fdr]
+    points1, points2 = first.(fdr_keys), last.(fdr_keys)
+    maxints = maximum(values(interact.edgestats[(src, dst)][3]))
+    sizes = [ceil(interact.edgestats[(src, dst)][3][p]/maxints*4)*5 for p in zip(points1, points2)]
+    colors = [fdr for fdr in fdrs if fdr <= max_fdr]
+    points1, points2 = [cdsframe(p, src, interact) for p in first.(fdr_keys)], [cdsframe(p, dst, interact) - 2157 for p in last.(fdr_keys)]
+    in_limits1, in_limits2 = [first(limits1) <= p <= last(limits1) for p in points1], [first(limits2) <= p <= last(limits2) for p in points2]
+    plotindex = in_limits1 .& in_limits2
+    scatter!(ax, points1[plotindex], points2[plotindex], markersize=sizes[plotindex], color=colors[plotindex], colormap=Reverse(:heat))
 end
 
 function plot_figure_6(assets_folder::String, interact::Interactions)
@@ -25,10 +38,16 @@ function plot_figure_6(assets_folder::String, interact::Interactions)
     hidedecorations!(ax_graph)
     image!(ax_graph, img_graph, aspect = DataAspect())
 
-    ax_ligation_points = Axis(gb[2, 1], leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
-    img_ligation_points = rotr90(load(joinpath(assets_folder, "ligation_points_with_ascii_plot_rect.png")))
-    hidedecorations!(ax_ligation_points)
-    image!(ax_ligation_points, img_ligation_points, aspect = DataAspect())
+    gd = gb[2, 1] = GridLayout()
+
+    ax_bp_ligs = Axis(gd[1, 1:2], leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
+    img_bp_ligs = rotr90(load(joinpath(assets_folder, "basepairing.png")))
+    hidedecorations!(ax_bp_ligs)
+    image!(ax_bp_ligs, img_bp_ligs, aspect = DataAspect())
+
+    ax_ligation_points = Axis(gd[2:3, 1], title="ligation points", ylabel="coordinate in NetX", xlabel=rich("coordinate in ", rich("aphA", font=:italic)))
+    ligation_points_plot!(ax_ligation_points, interact, "aphA", "VC0715:VC0719", (1,30), (10, 100), 0.25)
+    Colorbar(gd[2:3, 2], colormap=Reverse(:heat), label = "complementarity FDR")
 
     ga = fig[1:2,2] = GridLayout()
 
@@ -151,7 +170,7 @@ function plot_figure_6(assets_folder::String, interact::Interactions)
     gc = fig[1:3,3] = GridLayout()
 
     img4 = rotr90(load(joinpath(assets_folder, "nb.png")))
-    ax4 = Axis(gc[1:6, 1], leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
+    ax4 = Axis(gc[1:6, 1], leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false)
     hidedecorations!(ax4)
     image!(ax4, img4, aspect = DataAspect())
 

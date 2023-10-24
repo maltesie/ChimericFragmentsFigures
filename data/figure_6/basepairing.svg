@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="basepairing.svg"
+   inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsPaper/figures/archetypes_seed_regions/basepairing.png"
+   inkscape:export-xdpi="98.284599"
+   inkscape:export-ydpi="98.284599"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.54992732"
+     inkscape:cx="655.54117"
+     inkscape:cy="-19.093432"
+     inkscape:window-width="2490"
+     inkscape:window-height="1376"
+     inkscape:window-x="70"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path133237" />
+    </marker>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect133152"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 148.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="210 : 148.5 : 1"
+       inkscape:persp3d-origin="105 : 99 : 1"
+       id="perspective133027" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-9"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path133237-4" />
+    </marker>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect133152-7"
+       is_visible="true"
+       lpeversion="1" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-3"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path133237-6" />
+    </marker>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect133152-75"
+       is_visible="true"
+       lpeversion="1" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-9-3"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path133237-4-5" />
+    </marker>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect133152-7-6"
+       is_visible="true"
+       lpeversion="1" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#ffffff;fill-rule:evenodd;stroke:none;stroke-width:0.376712;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect887"
+       width="270.13025"
+       height="64.99334"
+       x="46.351933"
+       y="38.329571"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/data/figure_6/basepairing.png"
+       inkscape:export-xdpi="194.2103"
+       inkscape:export-ydpi="194.2103" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.4742px;line-height:1.25;font-family:FreeMono;-inkscape-font-specification:'FreeMono Bold';stroke-width:0.28056"
+       x="60.924404"
+       y="60.458332"
+       id="text77329"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/data/figure_6/basepairing.png"
+       inkscape:export-xdpi="194.2103"
+       inkscape:export-ydpi="194.2103"><tspan
+         sodipodi:role="line"
+         id="tspan77327"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:'Arial Italic';stroke-width:0.28056"
+         x="60.924404"
+         y="60.458332">aphA</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:10.4742px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';white-space:pre;inline-size:0;stroke-width:0.28056"
+       x="39.944561"
+       y="86.271011"
+       id="text104825"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/data/figure_6/basepairing.png"
+       inkscape:export-xdpi="194.2103"
+       inkscape:export-ydpi="194.2103"
+       transform="translate(21.695841,2.1166667)"><tspan
+         id="tspan104823"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.28056"
+         x="39.944561"
+         y="86.271011">NetX</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:9.87777px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.264583"
+       x="81.374313"
+       y="45.551163"
+       id="text5697"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/data/figure_6/basepairing.png"
+       inkscape:export-xdpi="194.2103"
+       inkscape:export-ydpi="194.2103"><tspan
+         id="tspan5695"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:FreeMono;-inkscape-font-specification:'FreeMono Bold';stroke-width:0.264583"
+         x="81.374313"
+         y="45.551163"
+         sodipodi:role="line" /><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.2889px;font-family:FreeMono;-inkscape-font-specification:'FreeMono Bold';stroke-width:0.264583"
+         x="81.374313"
+         y="59.601086"
+         id="tspan5699"
+         sodipodi:role="line">     -6 GAAGACAU-GUCAUU +8</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.2889px;font-family:FreeMono;-inkscape-font-specification:'FreeMono Bold';stroke-width:0.264583"
+         x="81.374313"
+         y="73.712196"
+         id="tspan5701"
+         sodipodi:role="line">        |||||||| |||||·</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.2889px;font-family:FreeMono;-inkscape-font-specification:'FreeMono Bold';stroke-width:0.264583"
+         x="81.374313"
+         y="87.823311"
+         id="tspan5713"
+         sodipodi:role="line">    +80 CUUCUGUAGCAGUAG +66</tspan></text>
+  </g>
+</svg>
