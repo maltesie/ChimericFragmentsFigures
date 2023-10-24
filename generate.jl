@@ -52,8 +52,8 @@ include(joinpath(source_folder, "figure_s2.jl"))
 plot_figure_s2(joinpath(data_folder, "figure_s2"))
 
 include(joinpath(source_folder, "figure_s3.jl"))
-plot_figure_s3(joinpath(data_folder, "figure_s3"), interact_hcd, interact_lcd; bp_interval_len=30, fdr_cut=0.25,
-    probmass_min=0.4, probmass_max=0.8, min_partners=3, min_ligpoints=40, connect_within=1)
+plot_figure_s3(interact_hcd, interact_lcd; bp_interval_len=30, fdr_cut=0.25,
+    probmass_min=0.4, probmass_max=0.8, min_partners=3, min_ligpoints=10, connect_within=1)
 
 include(joinpath(source_folder, "figure_s4.jl"))
 plot_figure_s4(joinpath(data_folder, "figure_s4"), interact_lcd)

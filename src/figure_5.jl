@@ -1,8 +1,10 @@
-function count_ligation_sites_as1(node_id::Int, interact::Interactions, bp_len::Int, max_fdr::Float64)
+function count_ligation_sites_as1(node_id::Int, interact::Interactions, bp_len::Int, max_fdr::Float64; fisher_fdr=1.0)
     df = interact.edges
     counts = Dict{Int, Dict{String,Int}}()
     isnegative = interact.nodes.strand[node_id] == '-'
-    for partner in df[df.src .== node_id, :dst]
+    for row in eachrow(@view df[df.src .== node_id, [:dst, :fisher_fdr]])
+        partner = row.dst
+        row.fisher_fdr > fisher_fdr && continue
         ligation_points = interact.edgestats[(node_id, partner)][3]
         length(ligation_points) > 0 || continue
         n = interact.nodes.name[partner]
@@ -22,11 +24,13 @@ function count_ligation_sites_as1(node_id::Int, interact::Interactions, bp_len::
     return counts
 end
 
-function count_ligation_sites_as2(node_id::Int, interact::Interactions, bp_len::Int, max_fdr::Float64)
+function count_ligation_sites_as2(node_id::Int, interact::Interactions, bp_len::Int, max_fdr::Float64; fisher_fdr=1.0)
     df = interact.edges
     counts = Dict{Int, Dict{String,Int}}()
     isnegative = interact.nodes.strand[node_id] == '-'
-    for partner in df[df.dst .== node_id, :src]
+    for row in eachrow(@view df[df.dst .== node_id, [:src, :fisher_fdr]])
+        partner = row.src
+        row.fisher_fdr > fisher_fdr && continue
         ligation_points = interact.edgestats[(partner, node_id)][3]
         length(ligation_points) > 0 || continue
         n = interact.nodes.name[partner]
