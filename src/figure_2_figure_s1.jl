@@ -124,7 +124,7 @@ function make_random_chimeric_testseqs(genome::Genome, unique_set::Set{Int}; nse
     return Sequences(newseq, seqnames, ranges), truep
 end
 
-function bwa_mem_tpr_fpr(s::Sequences, truep::Matrix{Int}, g::Genome, min_seedlens::Vector{Int}, min_scores::Vector{Int})
+function bwa_mem_tpr_fpr(s::Sequences, truep::Matrix{Int}, genome_path::String, min_seedlens::Vector{Int}, min_scores::Vector{Int})
     nseqs = length(s)
     tptrans = Dict(hash("$i")=>i for i in 1:nseqs)
     fasta1_path = joinpath(@__DIR__, "test_chimeric_1.fasta.gz")
@@ -136,9 +136,10 @@ function bwa_mem_tpr_fpr(s::Sequences, truep::Matrix{Int}, g::Genome, min_seedle
     fpr_matrix = zeros((length(min_seedlens), length(min_scores)))
     foundids = Dict{Tuple{Int,Int}, Set{UInt}}()
     for (i,min_seedlen) in enumerate(min_seedlens), (j,min_score) in enumerate(min_scores)
-        align_mem(PairedSingleTypeFiles([fasta1_path], [fasta2_path]), g; min_seed_len=min_seedlen, min_score=min_score, unpair_penalty=15,
-            output_all_alignments=false, unpair_rescue=true, overwrite_existing=true)
-        alns = AlignedReads(joinpath(@__DIR__, "test_chimeric.bam"); include_alternative_alignments=false)
+        bam_path = joinpath(@__DIR__, "test_chimeric.bam")
+        align_mem(fasta1_path, fasta2_path, genome_path, bam_path; min_seed_len=min_seedlen, min_score=min_score, unpair_penalty=9,
+            unpair_rescue=true)
+        alns = AlignedReads(bam_path; include_alternative_alignments=false)
         cc = zeros(Int, 2)
         found = Set{UInt}()
         for aln in alns
@@ -165,11 +166,11 @@ function bwa_mem_tpr_fpr(s::Sequences, truep::Matrix{Int}, g::Genome, min_seedle
     return tpr_matrix, fpr_matrix, unique_rates
 end
 
-function bwa_mem_tpr_fpr(fname_tpr::String, fname_fpr::String, fname_unique::String, s::Sequences, truep::Matrix{Int}, g::Genome, seedlens::Vector{Int}, scores::Vector{Int})
+function bwa_mem_tpr_fpr(fname_tpr::String, fname_fpr::String, fname_unique::String, s::Sequences, truep::Matrix{Int}, genome_path::String, seedlens::Vector{Int}, scores::Vector{Int})
     if isfile(fname_tpr) && isfile(fname_fpr) && isfile(fname_unique)
         readdlm(fname_tpr, '\t', Float64, '\n'), readdlm(fname_fpr, '\t', Float64, '\n'), readdlm(fname_unique, '\t', Float64, '\n')
     else
-        tpr_tmp, fpr_tmp, unique_tmp = bwa_mem_tpr_fpr(s, truep, g, seedlens, scores)
+        tpr_tmp, fpr_tmp, unique_tmp = bwa_mem_tpr_fpr(s, truep, genome_path, seedlens, scores)
         open(fname_tpr, "w") do io
             writedlm(io, tpr_tmp)
         end
@@ -257,14 +258,22 @@ function unique_set(genome::Genome; k=12, dist_to_max=500)
 end
 
 function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::Int, lmaxadapter::Int, nerrmax::Int, nseqs::Int,
-        seedlens::Vector{Int}, scores::Vector{Int}, maxd::Int, params::Vector{Pair{Tuple{Int,Int}, String}})
+        seedlens::Vector{Int}, scores::Vector{Int}, genome_len::Int, params::Vector{Pair{Tuple{Int,Int}, String}})
     genome_path = joinpath(assets_path, "rand_genome.fna")
-    if !isfile(genome_path)
-        genomeseq = randdnaseq(5000000)
-        g = Genome(genomeseq, Dict("test"=>1:5000000))
-        write(genome_path, g)
+    g = if !isfile(genome_path)
+        genomeseq = randdnaseq(genome_len)
+        gen = Genome(genomeseq, Dict("test"=>1:genome_len))
+        write(genome_path, gen)
+        gen
+    else
+    	Genome(genome_path)
     end
-    g = Genome(genome_path)
+    if length(g.seq) != genome_len
+        genomeseq = randdnaseq(genome_len)
+        g = Genome(genomeseq, Dict("test"=>1:genome_len))
+        write(genome_path, g)
+        g = Genome(genome_path)
+    end
     resfactor = 1.
     fig = Figure(resolution=(1200*resfactor, 700*resfactor))
     fontsize_heatmap_text = 12
@@ -279,7 +288,7 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
 
     ax = Axis(ga[1,1], xlabel="FPR", ylabel="TPR", title="synthetic benchmarks")
     mkpath(joinpath(assets_path, "csv"))
-    us = unique_set(g)
+    us = unique_set(g; k=18)
 
     fig_si = Figure(resolution=(1200*resfactor, 1000*resfactor))
     gc = fig_si[3, 1:4] = GridLayout()
@@ -291,7 +300,7 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
     Label(fig_si[2,3, TopLeft()], "f", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     Label(gc[1,1, TopLeft()], "g", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     Label(gc[1,2, TopLeft()], "h", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    Label(gc[1,3, TopLeft()], "i", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    Label(gc[1,4, TopLeft()], "i", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     n_plots = 1
     for (j,nerr) in enumerate(0:nerrmax), (i,l) in enumerate(lens)
         s, truep = make_chimeric_testseqs(g, us; nseqs=nseqs, len1=l, len2=l, nerr=nerr)
@@ -300,7 +309,7 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
         fname_tpr = joinpath(assets_path, "csv", name * "_tpr.csv")
         fname_fpr = joinpath(assets_path, "csv", name * "_fpr.csv")
         fname_found = joinpath(assets_path, "csv", name * "_unique.csv")
-        tpr, fpr, _ = bwa_mem_tpr_fpr(fname_tpr, fname_fpr, fname_found, s, truep, g, seedlens, scores)
+        tpr, fpr, _ = bwa_mem_tpr_fpr(fname_tpr, fname_fpr, fname_found, s, truep, genome_path, seedlens, scores)
         sorted_points = sort(collect(zip(vec(fpr), vec(tpr))), by=x->x[2])
         scatter!(ax, [first(p) for p in sorted_points], [last(p) for p in sorted_points], label=label, mode="markers", alpha=0.6)
 
@@ -333,7 +342,7 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
     fname_tpr = joinpath(assets_path, "csv", name * "_tpr.csv")
     fname_fpr = joinpath(assets_path, "csv", name * "_fpr.csv")
     fname_found = joinpath(assets_path, "csv", name * "_unique.csv")
-    tpr, fpr, _ = bwa_mem_tpr_fpr(fname_tpr, fname_fpr, fname_found, s, truep, g, seedlens, scores)
+    tpr, fpr, _ = bwa_mem_tpr_fpr(fname_tpr, fname_fpr, fname_found, s, truep, genome_path, seedlens, scores)
     clims = (min(minimum(tpr), minimum(fpr)), max(maximum(tpr), maximum(fpr)))
     noisex = (rand()-0.5)*0.0003
     noisey = (rand()-0.5)*0.0003
@@ -342,11 +351,11 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
     Legend(ga[1,2], ax, "length | errors")
 
     colors = ("Brown", "Coral", "BlueViolet", "DarkGreen")
-    pcuts = [0.01, 0.05, 0.1, 0.25, 0.5, 1.0]
-    ax_cor = Axis(gc[1,3], ylabel="Pearson correlation", xlabel="complementarity FDR cutoff", title="LCD replicate correlation", xticks=(1:length(pcuts)+1, [["$(round(pc, digits=2))" for pc in pcuts]..., "all"]))
-    ax_count = Axis(gc[1,2], ylabel="median of read counts", xlabel="complementarity FDR cutoff", title="LCD reads per interaction", xticks=(1:length(pcuts)+1, [["$(round(pc, digits=2))" for pc in pcuts]..., "all"]), yscale=log10)
+    pcuts = [0.05, 0.1, 0.25, 0.5, 1.0]
+    ax_cor = Axis(gc[1,4], ylabel="Pearson correlation", xlabel="complementarity FDR cutoff", title="LCD replicate correlation", xticks=(1:length(pcuts)+1, [["$(round(pc, digits=2))" for pc in pcuts]..., "all"]))
+    #ax_count = Axis(gc[1,2], ylabel="median of read counts", xlabel="complementarity FDR cutoff", title="LCD reads per interaction", xticks=(1:length(pcuts)+1, [["$(round(pc, digits=2))" for pc in pcuts]..., "all"]), yscale=log10)
     ax_top = Axis(gb[1,3], ylabel="rank correlation", xlabel="top fraction of dataset", title="LCD replicate correlation", xticks=(1:length(pcuts), ["$(round(pc, digits=2))" for pc in pcuts]))
-    ax_ints_count = Axis(gc[1,1], ylabel="median of read counts", xlabel="top fraction of dataset", title="LCD reads per interaction", xticks=(1:length(pcuts), ["$(round(pc, digits=2))" for pc in pcuts]), yscale=log10)
+    #ax_ints_count = Axis(gc[1,1], ylabel="median of read counts", xlabel="top fraction of dataset", title="LCD reads per interaction", xticks=(1:length(pcuts), ["$(round(pc, digits=2))" for pc in pcuts]), yscale=log10)
     max_count = 0
     replicate_ids = ["hfq_lcd_1", "hfq_lcd_2"]
 
@@ -382,12 +391,12 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
         counts[length(pcuts)+1] = median(df.nb_ints)
         max_count = max(max_count, maximum(counts))
         scatter!(ax_cor, 1:(length(pcuts)+1), corr_mean, label=l, color=color)
-        scatter!(ax_count, 1:(length(pcuts)+1), counts, label=l, color=color)
+        #scatter!(ax_count, 1:(length(pcuts)+1), counts, label=l, color=color)
         scatter!(ax_top, 1:length(pcuts), corr_top_mean, label=l, color=color)
-        scatter!(ax_ints_count, 1:length(pcuts), subcounts, color=color)
+        #scatter!(ax_ints_count, 1:length(pcuts), subcounts, color=color)
     end
 
-    Legend(gc[1,4], ax_cor, "seed | score")
+    Legend(gc[1,5], ax_cor, "seed | score")
     Legend(gb[1,4], ax_cor, "seed | score")
 
     highlight_index = [(1,1), (3,1), (1, 3), (3, 4)]
@@ -433,6 +442,30 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
         vals = [v/pair_dict[k] for (k,v) in found_dict if v != 0.0]
         boxplot!(ax_ratio, repeat([i], length(vals)), vals, color=color)
     end
+
+    gensize_seed = 4
+    gensize_score = 5
+    ax_genome_size_tpr = Axis(gc[1,1], ylabel="TPR", xlabel="genome size", title="no sequencing error", xticks=(1:4, ["5M", "50M", "500M", "2G"]))
+    ax_genome_size_fpr = Axis(gc[1,2], ylabel="TPR", xlabel="genome size", title="one sequencing error", xticks=(1:4, ["5M", "50M", "500M", "2G"]))
+    tpr_vals = [zeros(4,2) for i in 1:4]
+    fpr_vals = [zeros(4,2) for i in 1:4]
+    for (ii,genome_size_folder) in enumerate([joinpath(assets_path, "csv_genome_size", size_name) for size_name in ("5M", "50M", "500M", "2G")])
+        for (i,seq_len_gen) in enumerate((15,20,25,40)), nerror_gen in (0,1)
+            fname_tpr = joinpath(genome_size_folder, "length=$(seq_len_gen), errors=$(nerror_gen)_tpr.csv")
+            fname_fpr = joinpath(genome_size_folder, "length=$(seq_len_gen), errors=$(nerror_gen)_fpr.csv")
+            tpr = readdlm(fname_tpr, '\t', Float64, '\n')
+            fpr = readdlm(fname_fpr, '\t', Float64, '\n')
+            tpr_vals[i][ii, nerror_gen+1] = tpr[gensize_seed, gensize_score]
+            fpr_vals[i][ii, nerror_gen+1] = fpr[gensize_seed, gensize_score]
+        end
+    end
+    for (seq_len_gen, tprs, fprs) in zip((15,20,25,40), tpr_vals, fpr_vals)
+        scatter!(ax_genome_size_tpr, 1:4, tprs[:,1], label = "$seq_len_gen")
+        scatter!(ax_genome_size_fpr, 1:4, tprs[:,2], label = "$seq_len_gen")
+        #scatter!(ax_genome_size_fpr, 1:4, fprs[:,1], label = "$seq_len_gen | 0")
+        #scatter!(ax_genome_size_fpr, 1:4, fprs[:,2], label = "$seq_len_gen | 1")
+    end
+    Legend(gc[1,3], ax_genome_size_tpr, "length")
 
     save("figure_2.svg", fig)
     save("figure_2.png", fig, px_per_unit = 2)
