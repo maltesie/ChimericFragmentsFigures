@@ -33,7 +33,7 @@ function plot_figure_6(assets_folder::String, interact::Interactions)
 
     gb = fig[1:3,1] = GridLayout()
 
-    ax_graph = Axis(gb[1, 1], leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
+    ax_graph = Axis(gb[1, 1], title="interactions with VC0715:VC0719", aspect = DataAspect())
     img_graph = rotr90(load(joinpath(assets_folder, "vc0715:vc0719_targets.png")))
     hidedecorations!(ax_graph)
     image!(ax_graph, img_graph, aspect = DataAspect())
@@ -177,7 +177,7 @@ function plot_figure_6(assets_folder::String, interact::Interactions)
 
     df_plate = DataFrame(CSV.File(joinpath(assets_folder, "platereader.csv")))
 
-    ax7 = Axis(fig[3,2], ylabel="AphA-FLAG levels [AU]", xlabel="OD at 600nm",
+    ax7 = Axis(fig[3,2], title="Western blot quantification", ylabel="AphA-FLAG levels [AU]", xlabel="OD at 600nm",
         xticks = (1:nrow(df_plate), ["$n" for n in df_plate.name]))
     groups = vcat(fill(1,nrow(df_plate)), fill(2,nrow(df_plate)))
 

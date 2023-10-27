@@ -105,8 +105,9 @@ function seed_correlation_plot!(ax::Axis, interact::Interactions, n::String, ran
                 end
             end
         end
-        scatter!(ax, log.(collect(values(region1)) .+ 1), log.(collect(values(region2)) .+ 1), label=label, color=color)
-
+        ks = collect(keys(region1))
+        scatter!(ax, log.([region1[k] for k in ks] .+ 1), log.([region2[k] for k in ks] .+ 1), label=label, color=color)
+        println(label, ": ", corspearman([region1[k] for k in ks], [region2[k] for k in ks]))
         if label == "RNA2"
             if hn1 in keys(region1)
                 text!(ax, log(region1[hn1]+1), log(region2[hn1]+1); text=hn1)
