@@ -20,6 +20,20 @@ Interactions(filepath::String) = jldopen(filepath,"r"; typemap=Dict("ChimericAna
     f["interactions"]
 end
 
+struct InteractionsNew
+    nodes::DataFrame
+    edges::DataFrame
+    edgestats::Dict{Tuple{Int,Int}, Tuple{Int, Dict{Tuple{Int,Int},Int}, Dict{Tuple{Int,Int},Int}}}
+    bpstats::Dict{Tuple{Int, Int, Int, Int}, Tuple{Float64, Int64, Int64, Int64, Int64, Float64, Int64}}
+    multichimeras::Dict{Vector{Int}, Int}
+    replicate_ids::Vector{Symbol}
+    counts::Dict{Symbol,Vector{Int}}
+end
+
+InteractionsNew(filepath::String) = jldopen(filepath,"r"; typemap=Dict("ChimericAnalysis.Interactions" => InteractionsNew)) do f
+    f["interactions"]
+end
+
 data_folder = joinpath(@__DIR__, "data")
 source_folder = joinpath(@__DIR__, "src")
 interact_hcd = Interactions(joinpath(@__DIR__, "data", "jlds", "hfq_hcd_12_17.jld2"))
@@ -27,6 +41,9 @@ interact_lcd = Interactions(joinpath(@__DIR__, "data", "jlds", "hfq_lcd_12_17.jl
 interact_il = Interactions(joinpath(@__DIR__, "data", "jlds", "iron_limit.jld2"))
 interact_sp = Interactions(joinpath(@__DIR__, "data", "jlds", "stationary.jld2"))
 interact_lp = Interactions(joinpath(@__DIR__, "data", "jlds", "log_phase.jld2"))
+interact_clash_exp = InteractionsNew(joinpath(@__DIR__, "data", "jlds", "clash_exp.jld2"))
+interact_clash_trans = InteractionsNew(joinpath(@__DIR__, "data", "jlds", "clash_transition.jld2"))
+interact_clash_stat = InteractionsNew(joinpath(@__DIR__, "data", "jlds", "clash_stationary.jld2"))
 
 include(joinpath(source_folder, "figure_1.jl"))
 plot_figure_1(joinpath(data_folder, "figure_1"))
@@ -47,6 +64,11 @@ plot_figure_5(joinpath(data_folder, "figure_5"), interact_lcd)
 
 include(joinpath(source_folder, "figure_6.jl"))
 plot_figure_6(joinpath(data_folder, "figure_6"), interact_lcd)
+
+include(joinpath(source_folder, "figure_s0.jl"))
+plot_figure_s0([interact_lcd, interact_hcd], [interact_lp, interact_sp, interact_il],
+    [interact_clash_exp, interact_clash_trans, interact_clash_stat], 
+    [[2400, 1800], [1027, 1844, 1947], [498, 1066, 706]], [10^4, 10^4, 10^2], 0.25)
 
 include(joinpath(source_folder, "figure_s2.jl"))
 plot_figure_s2(joinpath(data_folder, "figure_s2"))
