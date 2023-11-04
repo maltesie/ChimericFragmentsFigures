@@ -50,7 +50,7 @@ function count_ligation_sites_as2(node_id::Int, interact::Interactions, bp_len::
     return counts
 end
 
-function aggregation_plot!(ax::Axis, interact::Interactions, n::String, max_fdr::Float64)
+function aggregation_plot!(ax::Axis, interact::Interactions, n::String, max_fdr::Float64; norm=1.0)
     idx = findfirst(interact.nodes.name .== n)
     cds = interact.nodes.cds[idx] == 0 ? (interact.nodes.strand[idx] == '-' ? interact.nodes.right[idx] : interact.nodes.left[idx]) : interact.nodes.cds[idx]
     st = interact.nodes.strand[idx]
@@ -66,14 +66,15 @@ function aggregation_plot!(ax::Axis, interact::Interactions, n::String, max_fdr:
         pindex = in.(allpositions, Ref(positions))
         indextrans = [pindex[i] ? sum(view(pindex, 1:i)) : 0 for i in eachindex(allpositions)]
         allcounts = [pindex[i] ? counts[indextrans[i]] : 0 for i in eachindex(allpositions)]
+        allcounts_normed = allcounts ./ norm
         if st == '+'
             allpositions .-= cds
         else
             allpositions = reverse(-1.0 .* (allpositions .- cds))
-            reverse!(allcounts)
+            reverse!(allcounts_normed)
         end
         allpositions .+= 1
-        band!(ax, allpositions, zeros(length(allcounts)), allcounts, label=label, color=color)
+        band!(ax, allpositions, zeros(length(allcounts)), allcounts_normed, label=label, color=color)
     end
 end
 
