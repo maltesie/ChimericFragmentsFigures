@@ -1,4 +1,4 @@
-﻿sRNA,target,sRNA_from,sRNA_to,target_from,target_to
+sRNA,target,sRNA_from,sRNA_to,target_from,target_to
 arcZ,rpoS,64,71,-104,-97
 arcZ,sdaC,70,74,-13,-9
 arcZ,tpx,69,74,21,26
@@ -23,7 +23,6 @@ gcvB,livK,65,77,-29,-17
 gcvB,sstT,78,87,-22,-13
 glmZ,glmS,150,157,-40,-29
 glmZ,glmS,163,169,-29,-22
-istR,tisB,1,22,-14,8
 micA,lamB,19,26,1,8
 micA,ompA,8,24,-21,-6
 micA,phoP,6,15,-2,8
