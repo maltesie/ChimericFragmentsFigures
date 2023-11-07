@@ -107,7 +107,7 @@ function compare_interaction_sites(interact::Union{Interactions, InteractionsNew
     for (i, (n1, n2, l1, r1, l2, r2)) in enumerate(zip(partner1, partner2, from1, to1, from2, to2))
         idx1 = findfirst(interact.nodes.name .== n1)
         idx2 = findfirst(interact.nodes.name .== n2)
-        #(isnothing(idx1) || isnothing(idx2)) && continue
+        (isnothing(idx1) || isnothing(idx2)) && continue
         direction1 = interaction_set(interact, idx1, idx2, window_len)
         direction2 = interaction_set(interact, idx2, idx1, window_len)
 
@@ -239,4 +239,45 @@ function make_table_s1_coli(assets_folder::String, interact_il::Interactions,
     df_out.exponential_class = classes_lp
 
     CSV.write("table_s1_coli.csv", df_out)
+end
+
+function make_table_s1_clash(assets_folder::String, interact_exp::InteractionsNew,
+    interact_trans::InteractionsNew, interact_stat::InteractionsNew, window_len::Int)
+
+df_literature = DataFrame(CSV.File(joinpath(assets_folder, "all_literature_coli.csv"), stringtype=String))
+df_out = DataFrame(sRNA=df_literature.sRNA, target=df_literature.target)
+df_out.sRNA_region = ["$from - $to" for (from, to) in zip(df_literature.sRNA_from, df_literature.sRNA_to)]
+df_out.target_region = ["$from - $to" for (from, to) in zip(df_literature.target_from, df_literature.target_to)]
+
+overlaps_exp = compare_interaction_sites(interact_exp, df_literature.sRNA, df_literature.target,
+    df_literature.sRNA_from, df_literature.sRNA_to, df_literature.target_from, df_literature.target_to,
+    window_len)
+classes_exp, pvalues_exp = string_class_and_pvalue(overlaps_exp)
+counts_exp, combined_pvalues_exp = interaction_counts(interact_exp, df_literature.sRNA, df_literature.target)
+df_out.ironlimit_counts = counts_exp
+#df_out.ironlimit_cpvalue = combined_pvalues_exp
+df_out.ironlimit_pvalue = pvalues_exp
+df_out.ironlimit_class = classes_exp
+
+overlaps_trans = compare_interaction_sites(interact_trans, df_literature.sRNA, df_literature.target,
+    df_literature.sRNA_from, df_literature.sRNA_to, df_literature.target_from, df_literature.target_to,
+    window_len)
+classes_trans, pvalues_trans = string_class_and_pvalue(overlaps_trans)
+counts_trans, combined_pvalues_trans = interaction_counts(interact_trans, df_literature.sRNA, df_literature.target)
+df_out.stationary_counts = counts_trans
+#df_out.stationary_cpvalue = combined_pvalues_trans
+df_out.stationary_pvalue = pvalues_trans
+df_out.stationary_class = classes_trans
+
+overlaps_stat = compare_interaction_sites(interact_stat, df_literature.sRNA, df_literature.target,
+    df_literature.sRNA_from, df_literature.sRNA_to, df_literature.target_from, df_literature.target_to,
+    window_len)
+classes_stat, pvalues_stat = string_class_and_pvalue(overlaps_stat)
+counts_stat, combined_pvalues_stat = interaction_counts(interact_stat, df_literature.sRNA, df_literature.target)
+df_out.exponential_counts = counts_stat
+#df_out.exponential_cpvalue = combined_pvalues_stat
+df_out.exponential_pvalue = pvalues_stat
+df_out.exponential_class = classes_stat
+
+CSV.write("table_s1_clash.csv", df_out)
 end
