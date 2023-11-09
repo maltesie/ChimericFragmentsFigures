@@ -1,17 +1,17 @@
-function count_ligation_sites_as1(node_id::Int, interact::Interactions, bp_len::Int, max_fdr::Float64; fisher_fdr=1.0)
+function count_ligation_sites_as1(node_id::Int, interact::InteractionsNew, bp_len::Int, max_fdr::Float64; fisher_fdr=1.0)
     df = interact.edges
     counts = Dict{Int, Dict{String,Int}}()
     isnegative = interact.nodes.strand[node_id] == '-'
-    for row in eachrow(@view df[df.src .== node_id, [:dst, :fisher_fdr]])
+    for row in eachrow(@view df[df.src .== node_id, [:src, :dst, :fisher_fdr]])
         partner = row.dst
         row.fisher_fdr > fisher_fdr && continue
         ligation_points = interact.edgestats[(node_id, partner)][3]
         length(ligation_points) > 0 || continue
         n = interact.nodes.name[partner]
-        fdr = adjust(PValues([interact.bpstats[p][1] for p in keys(ligation_points)]), BenjaminiHochberg())
+        fdr = adjust(PValues([interact.bpstats[(row.src, first(p), row.dst, last(p))][1] for p in keys(ligation_points)]), BenjaminiHochberg())
         for ((p, c), f) in zip(ligation_points, fdr)
             f < max_fdr || continue
-            for pl in interact.bpstats[p][2]:interact.bpstats[p][3]
+            for pl in interact.bpstats[(row.src, first(p), row.dst, last(p))][2]:interact.bpstats[(row.src, first(p), row.dst, last(p))][3]
                 p1 = p[1] + (isnegative ? 1 : -1) * (bp_len - pl)
                 if p1 in keys(counts)
                     n in keys(counts[p1]) ? counts[p1][n] += c : counts[p1][n] = c
@@ -24,20 +24,20 @@ function count_ligation_sites_as1(node_id::Int, interact::Interactions, bp_len::
     return counts
 end
 
-function count_ligation_sites_as2(node_id::Int, interact::Interactions, bp_len::Int, max_fdr::Float64; fisher_fdr=1.0)
+function count_ligation_sites_as2(node_id::Int, interact::InteractionsNew, bp_len::Int, max_fdr::Float64; fisher_fdr=1.0)
     df = interact.edges
     counts = Dict{Int, Dict{String,Int}}()
     isnegative = interact.nodes.strand[node_id] == '-'
-    for row in eachrow(@view df[df.dst .== node_id, [:src, :fisher_fdr]])
+    for row in eachrow(@view df[df.dst .== node_id, [:src, :dst, :fisher_fdr]])
         partner = row.src
         row.fisher_fdr > fisher_fdr && continue
         ligation_points = interact.edgestats[(partner, node_id)][3]
         length(ligation_points) > 0 || continue
         n = interact.nodes.name[partner]
-        fdr = adjust(PValues([interact.bpstats[p][1] for p in keys(ligation_points)]), BenjaminiHochberg())
+        fdr = adjust(PValues([interact.bpstats[(row.src, first(p), row.dst, last(p))][1] for p in keys(ligation_points)]), BenjaminiHochberg())
         for ((p, c), f) in zip(ligation_points, fdr)
             f < max_fdr || continue
-            for pl in interact.bpstats[p][4]:interact.bpstats[p][5]
+            for pl in interact.bpstats[(row.src, first(p), row.dst, last(p))][4]:interact.bpstats[(row.src, first(p), row.dst, last(p))][5]
                 p2 = p[2] + (isnegative ? -1 : 1) * (bp_len - pl) - 1
                 if p2 in keys(counts)
                     n in keys(counts[p2]) ? counts[p2][n] += c : counts[p2][n] = c
@@ -50,7 +50,7 @@ function count_ligation_sites_as2(node_id::Int, interact::Interactions, bp_len::
     return counts
 end
 
-function aggregation_plot!(ax::Axis, interact::Interactions, n::String, max_fdr::Float64; norm=1.0)
+function aggregation_plot!(ax::Axis, interact::InteractionsNew, n::String, max_fdr::Float64; norm=1.0)
     idx = findfirst(interact.nodes.name .== n)
     cds = interact.nodes.cds[idx] == 0 ? (interact.nodes.strand[idx] == '-' ? interact.nodes.right[idx] : interact.nodes.left[idx]) : interact.nodes.cds[idx]
     st = interact.nodes.strand[idx]
@@ -78,7 +78,7 @@ function aggregation_plot!(ax::Axis, interact::Interactions, n::String, max_fdr:
     end
 end
 
-function seed_correlation_plot!(ax::Axis, interact::Interactions, n::String, range1::UnitRange, range2::UnitRange, hn1::String, hn2::String, max_fdr::Float64)
+function seed_correlation_plot!(ax::Axis, interact::InteractionsNew, n::String, range1::UnitRange, range2::UnitRange, hn1::String, hn2::String, max_fdr::Float64)
     idx = findfirst(interact.nodes.name .== n)
     cds = interact.nodes.cds[idx] == 0 ? (interact.nodes.strand[idx] == '-' ? interact.nodes.right[idx] : interact.nodes.left[idx]) : interact.nodes.cds[idx]
     st = interact.nodes.strand[idx]
@@ -108,7 +108,7 @@ function seed_correlation_plot!(ax::Axis, interact::Interactions, n::String, ran
         end
         ks = collect(keys(region1))
         scatter!(ax, log.([region1[k] for k in ks] .+ 1), log.([region2[k] for k in ks] .+ 1), label=label, color=color)
-        println(label, ": ", corspearman([region1[k] for k in ks], [region2[k] for k in ks]))
+        #println(label, ": ", corspearman([region1[k] for k in ks], [region2[k] for k in ks]))
         if label == "RNA2"
             if hn1 in keys(region1)
                 text!(ax, log(region1[hn1]+1), log(region2[hn1]+1); text=hn1)
@@ -120,7 +120,7 @@ function seed_correlation_plot!(ax::Axis, interact::Interactions, n::String, ran
     end
 end
 
-function plot_figure_5(assets_folder::String, interact::Interactions)
+function plot_figure_5(assets_folder::String, interact::InteractionsNew)
 
     resfactor = 1.
     fig = Figure(resolution=(1200*resfactor, 800*resfactor))
@@ -139,14 +139,16 @@ function plot_figure_5(assets_folder::String, interact::Interactions)
 
     ax3 = Axis(fig[1, 1], title="FarS basepairing", ylabel="count", xlabel="position")
     aggregation_plot!(ax3, interact, "FarS", 0.25)
-    band!(ax3, [30., 40.], [-200., -200.], [0., 0.], color=colors[3], label="seed 1")
-    band!(ax3, [53., 60.], [-200., -200.], [0., 0.], color=colors[4], label="seed 2")
-    ylims!(ax3, (-200, 4000))
+    band!(ax3, [30., 40.], [-150., -150.], [0., 0.], color=colors[3], label="seed 1")
+    band!(ax3, [50., 60.], [-150., -150.], [0., 0.], color=colors[4], label="seed 2")
+    ylims!(ax3, (-150, 2500))
     axislegend(ax3, position=:rt)
 
 
-    ax_seed_corr = Axis(fig[1, 2], title="FarS seeds correlation", ylabel="log count in seed 2", xlabel="log count in seed 1")
-    seed_correlation_plot!(ax_seed_corr, interact, "FarS", 30:40, 53:60, "VC1043", "VCA0848", 0.25)
+    ax_seed_corr = Axis(fig[1, 2], title="FarS seeds correlation", ylabel="log count in seed 2", xlabel="log count in seed 1", xticks=2:2:6)
+    seed_correlation_plot!(ax_seed_corr, interact, "FarS", 30:39, 44:50, "VC1043", "VCA0848", 0.25)
+    xlims!(ax_seed_corr, (-0.5, 7))
+    ylims!(ax_seed_corr, (-0.5, 5))
     Legend(fig[1,3], ax_seed_corr)
 
     img4 = rotr90(load(joinpath(assets_folder, "basepairing.png")))
@@ -224,7 +226,7 @@ function plot_figure_5(assets_folder::String, interact::Interactions)
 
 end
 
-function all_srna_aggregation_plots(interact_lcd::Interactions, interact_hcd::Interactions)
+function all_srna_aggregation_plots(interact_lcd::InteractionsNew, interact_hcd::InteractionsNew)
 
     resfactor = 1.
     fig = Figure(resolution=(800*resfactor, 1200*resfactor))

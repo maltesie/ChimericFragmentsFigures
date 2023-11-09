@@ -1,4 +1,4 @@
-function plot_figure_s6(assets_folder::String, interact::Interactions)
+function plot_figure_s6(assets_folder::String, interact::InteractionsNew)
     resfactor = 1.
 
     fig_1 = Figure(resolution=(900*resfactor, 1200*resfactor))

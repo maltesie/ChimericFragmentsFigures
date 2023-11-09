@@ -45,6 +45,11 @@ interact_clash_exp = InteractionsNew(joinpath(@__DIR__, "data", "jlds", "clash_e
 interact_clash_trans = InteractionsNew(joinpath(@__DIR__, "data", "jlds", "clash_transition.jld2"))
 interact_clash_stat = InteractionsNew(joinpath(@__DIR__, "data", "jlds", "clash_stationary.jld2"))
 interact_subtilis_ligrseq = InteractionsNew(joinpath(@__DIR__, "data", "jlds", "ligrseq_combined.jld2"))
+interact_pseudomonas_stat = InteractionsNew(joinpath(@__DIR__, "data", "jlds", "pseudomonas_stat.jld2"))
+interact_pseudomonas_exp = InteractionsNew(joinpath(@__DIR__, "data", "jlds", "pseudomonas_exp.jld2"))
+interact_salmonella = InteractionsNew(joinpath(@__DIR__, "data", "jlds", "salmonella.jld2"))
+interact_epec_wt = InteractionsNew(joinpath(@__DIR__, "data", "jlds", "epec_wt.jld2"))
+interact_epec_cond = InteractionsNew(joinpath(@__DIR__, "data", "jlds", "epec_T3SS_BFP.jld2"))
 
 include(joinpath(source_folder, "figure_1.jl"))
 plot_figure_1(joinpath(data_folder, "figure_1"))
@@ -60,7 +65,7 @@ include(joinpath(source_folder, "figure_4.jl"))
 plot_figure_4(joinpath(data_folder, "figure_4"))
 
 include(joinpath(source_folder, "figure_5.jl"))
-plot_figure_5(joinpath(data_folder, "figure_5"), interact_lcd)
+plot_figure_5(joinpath(data_folder, "figure_5"), interact_hcd)
 #all_srna_aggregation_plots(interact_lcd, interact_hcd)
 
 include(joinpath(source_folder, "figure_6.jl"))
@@ -74,8 +79,9 @@ plot_figure_s2(joinpath(data_folder, "figure_s2"))
 
 include(joinpath(source_folder, "figure_s4.jl"))
 plot_figure_s4([interact_lcd, interact_hcd], [interact_lp, interact_sp, interact_il],
-    [interact_clash_exp, interact_clash_trans, interact_clash_stat], [interact_subtilis_ligrseq],
-    [[2400, 1800], [1027, 1844, 1947], [498, 1066, 706], [10462]], 0.25)
+    [interact_clash_exp, interact_clash_trans, interact_clash_stat], [interact_subtilis_ligrseq], [interact_salmonella],
+    [interact_pseudomonas_exp, interact_pseudomonas_stat], [interact_epec_wt, interact_epec_cond],
+    [[2400, 1800], [1027, 1844, 1947], [498, 1066, 706], [10462], [1170], [997, 702], [744, 971]], 0.25)
 
 include(joinpath(source_folder, "figure_s5.jl"))
 plot_figure_s5(interact_hcd, interact_lcd; bp_interval_len=30, fdr_cut=0.25,

@@ -4,15 +4,15 @@ function coverage_plot!(ax::Axis, coverage::Coverage, interval::Interval, color)
     band!(ax, collect(0:(rightposition(interval)-leftposition(interval))), zeros(rightposition(interval)-leftposition(interval)+1), vals, color=color)
 end
 
-function cdsframe(p::Int, idx::Int, interact::Interactions)
+function cdsframe(p::Int, idx::Int, interact::InteractionsNew)
     cds, left, right = interact.nodes[idx, [:cds, :left, :right]]
     tp = interact.nodes.strand[idx] == '-' ? (cds > 0 ? cds : right)-p+1 : p-(cds > 0 ? cds : left)+1
     return tp
 end
 
-function ligation_points_plot!(ax::Axis, interact::Interactions, name1::String, name2::String, limits1::Tuple{Int, Int}, limits2::Tuple{Int, Int}, max_fdr::Float64)
+function ligation_points_plot!(ax::Axis, interact::InteractionsNew, name1::String, name2::String, limits1::Tuple{Int, Int}, limits2::Tuple{Int, Int}, max_fdr::Float64)
     src, dst = findfirst(interact.nodes.name .== name1), findfirst(interact.nodes.name .== name2)
-    fdrs = adjust(PValues([interact.bpstats[(i1, i2)][1] for (i1, i2) in keys(interact.edgestats[(src,dst)][3])]), BenjaminiHochberg())
+    fdrs = adjust(PValues([interact.bpstats[(src, i1, dst, i2)][1] for (i1, i2) in keys(interact.edgestats[(src,dst)][3])]), BenjaminiHochberg())
     fdr_keys = [p for (i, p) in enumerate(keys(interact.edgestats[(src,dst)][3])) if fdrs[i] <= max_fdr]
     points1, points2 = first.(fdr_keys), last.(fdr_keys)
     maxints = maximum(values(interact.edgestats[(src, dst)][3]))
@@ -24,7 +24,7 @@ function ligation_points_plot!(ax::Axis, interact::Interactions, name1::String, 
     scatter!(ax, points1[plotindex], points2[plotindex], markersize=sizes[plotindex], color=colors[plotindex], colormap=Reverse(:heat))
 end
 
-function plot_figure_6(assets_folder::String, interact::Interactions)
+function plot_figure_6(assets_folder::String, interact::InteractionsNew)
     resfactor = 1.
     fig = Figure(resolution=(1200*resfactor, 800*resfactor))
 

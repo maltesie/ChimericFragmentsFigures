@@ -1,6 +1,6 @@
 randstrand() = rand() > 0.5 ? '+' : '-'
 score_bp(paln::PairwiseAlignmentResult, shift_weight::Float64) = BioAlignments.score(paln) - (shift_weight * abs(paln.aln.a.aln.anchors[end].seqpos - paln.aln.a.aln.anchors[end].refpos))
-function plot_figure_3(assets_folder::String, interact::Interactions, nseqs::Int, check_interaction_distances::Tuple{Int,Int}, bp_parameters::NTuple{6,Int}, params::Vector{Tuple{Int, Int}})
+function plot_figure_3(assets_folder::String, interact::InteractionsNew, nseqs::Int, check_interaction_distances::Tuple{Int,Int}, bp_parameters::NTuple{6,Int}, params::Vector{Tuple{Int, Int}})
     genome = Genome(joinpath(assets_folder, "mg1655.fna"))
     complement_genome = Genome(complement(genome.seq), genome.chroms)
     reverse_genome = Genome(copy(genome.seq), genome.chroms)

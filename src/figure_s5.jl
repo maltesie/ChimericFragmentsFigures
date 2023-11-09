@@ -25,7 +25,7 @@ end
 
 countofnints(vals::Vector{Int}, n::Int) = [sum(vals .== i) for i in 1:n]
 
-function compute_counts(interact::Interactions, srnas::Vector{Int}; bp_interval_len=30, fdr_cut=0.25,
+function compute_counts(interact::InteractionsNew, srnas::Vector{Int}; bp_interval_len=30, fdr_cut=0.25,
         probmass_min=0.3, probmass_max=0.7, min_partners=3, min_ligpoints=10, connect_within=1, fisher_fdr=1.0)
 
     is_sponge = falses(length(srnas))
@@ -77,14 +77,14 @@ function compute_counts(interact::Interactions, srnas::Vector{Int}; bp_interval_
     return is_sponge, counter_regions, counter_partners
 end
 
-function plot_figure_s5(interact::Interactions, interact2::Interactions;
-        bp_interval_len=30, fdr_cut=0.25, probmass_min=0.3, probmass_max=0.7, 
+function plot_figure_s5(interact::InteractionsNew, interact2::InteractionsNew;
+        bp_interval_len=30, fdr_cut=0.25, probmass_min=0.3, probmass_max=0.7,
         min_partners=3, min_ligpoints=10, connect_within=1)
     resfactor = 1.
     fig = Figure(resolution=(1200*resfactor, 1200*resfactor))
 
     ax_pos = Axis(fig[1, 1], title="position in chimera", ylabel="count",
-        xticks = (1:4, ["RNA1,\nFDR <= 0.05", "RNA1,\nno FDR", "RNA2,\nFDR <= 0.05", "RNA1,\nno FDR"]))
+        xticks = (1:4, ["RNA1,\nFDR <= 0.05", "RNA1,\nno FDR", "RNA2,\nFDR <= 0.05", "RNA2,\nno FDR"]))
     ax_partner = Axis(fig[1, 2], title="partners of sRNAs", ylabel="# of partners", xticks = (1:2, ["RNA1", "RNA2"]))
 
     ax_regions_s = Axis(fig[2, 1], title="regions in RNA1 sRNAs", ylabel="count", xlabel="# of regions", xticks = 1:100, yticks=2:2:10)
