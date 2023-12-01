@@ -28,6 +28,6 @@ function plot_figure_s1(assets_folder::String)
     Label(fig[1,3, TopLeft()], "c", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
     Label(fig[5,1, TopLeft()], "d", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
-    save("figure_E1.svg", fig)
+    save("figure_E1.pdf", fig)
     save("figure_E1.png", fig, px_per_unit = 2)
 end

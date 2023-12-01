@@ -43,6 +43,6 @@ function plot_figure_1(assets_dir::String)
     Label(gb[1,2, TopLeft()], "e", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
     Label(gb[1,3, TopLeft()], "f", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
-    save("figure_1.svg", fig)
+    save("figure_1.pdf", fig)
     save("figure_1.png", fig, px_per_unit = 2)
 end

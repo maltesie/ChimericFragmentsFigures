@@ -10,7 +10,7 @@ function plot_figure_s6(assets_folder::String, interact_lcd::InteractionsNew, in
 
     #Label(fig_1[1,1, TopLeft()], "a", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
-    save( "figure_E8.svg", fig_1)
+    save( "figure_E8.pdf", fig_1)
     save( "figure_E8.png", fig_1, px_per_unit = 3)
 
     fig_2 = Figure(resolution=(1200*resfactor, 1500*resfactor))
@@ -96,6 +96,6 @@ function plot_figure_s6(assets_folder::String, interact_lcd::InteractionsNew, in
     Label(gc[1,2, TopLeft()], "e", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
     Label(gd[1,1, TopLeft()], "f", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
-    save("figure_E9.svg", fig_2)
+    save("figure_E9.pdf", fig_2)
     save("figure_E9.png", fig_2, px_per_unit = 2)
 end

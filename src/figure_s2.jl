@@ -16,10 +16,10 @@ function plot_figure_s2(assets_folder::String)
 
     Label(fig[2,1, TopLeft()], "b", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
-    save("figure_E2.svg", fig)
+    save("figure_E2.pdf", fig)
     save("figure_E2.png", fig)
 
-    cp(joinpath(assets_folder, "figure_si_S2_2.svg"), "figure_E3.svg"; force=true)
+    cp(joinpath(assets_folder, "figure_si_S2_2.pdf"), "figure_E3.pdf"; force=true)
     cp(joinpath(assets_folder, "figure_si_S2_2.png"), "figure_E3.png"; force=true)
 
     fig5 = Figure(resolution=(1200*resfactor, 800*resfactor))
@@ -31,6 +31,6 @@ function plot_figure_s2(assets_folder::String)
 
     #Label(fig5[1,1, TopLeft()], "g", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
-    save("figure_E4.svg", fig5)
+    save("figure_E4.pdf", fig5)
     save("figure_E4.png", fig5, px_per_unit = 2)
 end

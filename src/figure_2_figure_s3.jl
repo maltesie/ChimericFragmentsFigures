@@ -472,9 +472,9 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
     #end
     #Legend(gc[1,5], ax_genome_size_tpr, "length")
 
-    save("figure_2.svg", fig)
+    save("figure_2.pdf", fig)
     save("figure_2.png", fig, px_per_unit = 2)
 
-    save("figure_E5.svg", fig_si)
+    save("figure_E5.pdf", fig_si)
     save("figure_E5.png", fig_si, px_per_unit = 2)
 end

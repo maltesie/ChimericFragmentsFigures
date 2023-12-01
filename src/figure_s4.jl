@@ -130,6 +130,6 @@ function plot_figure_s4(interacts_vibrio, interacts_ecoli_rilseq, interacts_ecol
     Label(fig[4,2, TopLeft()], "g", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
     Label(fig[5,1, TopLeft()], "h", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
-    save("figure_E6.svg", fig)
+    save("figure_E6.pdf", fig)
     save("figure_E6.png", fig, px_per_unit = 2)
 end

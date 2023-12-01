@@ -133,7 +133,7 @@ function plot_figure_4(assets_folder::String)
     xlims!(axb4, (0,4.1))
     hideydecorations!(axb4, label = false, ticklabels = false, ticks = false, grid = true, minorgrid = false, minorticks = false)
 
-    save( "figure_4.svg", fig)
+    save( "figure_4.pdf", fig)
     save( "figure_4.png", fig, px_per_unit = 2)
 
 end

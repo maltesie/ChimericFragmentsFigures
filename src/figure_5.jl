@@ -221,7 +221,7 @@ function plot_figure_5(assets_folder::String, interact::InteractionsNew)
         end
     end
 
-    save("figure_5.svg", fig)
+    save("figure_5.pdf", fig)
     save("figure_5.png", fig, px_per_unit = 2)
 
 end
