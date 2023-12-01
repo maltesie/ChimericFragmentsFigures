@@ -187,6 +187,6 @@ function plot_figure_s5(interact::InteractionsNew, interact2::InteractionsNew;
     Label(fig[3,1, TopLeft()], "e", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
     Label(fig[3,2, TopLeft()], "f", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
-    save("figure_s5.svg", fig)
-    save("figure_s5.png", fig, px_per_unit = 2)
+    save("figure_E7.svg", fig)
+    save("figure_E7.png", fig, px_per_unit = 2)
 end

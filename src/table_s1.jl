@@ -73,6 +73,37 @@ function interaction_set(interact::InteractionsNew, idx1::Int, idx2::Int, window
     return set_pairs
 end
 
+function interaction_set(rnanue_df::DataFrame, interact::InteractionsNew, idx1::Int, idx2::Int)
+    set_pairs = Set{Tuple{Int, Int, Int, Int, Float64}}()
+
+    ref1, ref2 = interact.nodes.ref[idx1], interact.nodes.ref[idx2]
+    strand1, strand2 = interact.nodes.strand[idx1] == '-' ? "-" : "+", interact.nodes.strand[idx2] == '-' ? "-" : "+"
+    left1, left2 = interact.nodes.left[idx1], interact.nodes.left[idx2]
+    right1, right2 = interact.nodes.right[idx1], interact.nodes.right[idx2]
+
+    select_index = (rnanue_df.Segment1Strand .== strand1) .& (rnanue_df.Segment2Strand .== strand2)
+    select_index .&= (rnanue_df.Segment1RefName .== ref1) .& (rnanue_df.Segment2RefName .== ref2)
+    select_index .&= (rnanue_df.Segment1Start .< right1) .& (rnanue_df.Segment1End .> left1)
+    select_index .&= (rnanue_df.Segment2Start .< right2) .& (rnanue_df.Segment2End .> left2)
+    #println(interact.nodes.name[idx1], " ", interact.nodes.name[idx2])
+    #println(rnanue_df[select_index, :])
+    for r in eachrow(rnanue_df[select_index, :])
+
+        al1 = r.Segment1Start
+        ar1 = r.Segment1End
+        al2 = r.Segment2Start
+        ar2 = r.Segment2End
+
+        cal1 = cdsframecoordinate(al1, idx1, interact)
+        car1 = cdsframecoordinate(ar1, idx1, interact)
+        cal2 = cdsframecoordinate(al2, idx2, interact)
+        car2 = cdsframecoordinate(ar2, idx2, interact)
+        #println((min(cal1, car1), max(cal1, car1), min(cal2, car2), max(cal2, car2), 0.0))
+        push!(set_pairs, (min(cal1, car1), max(cal1, car1), min(cal2, car2), max(cal2, car2), 0.0))
+    end
+    return set_pairs
+end
+
 overlap(l1::Int, r1::Int, l2::Int, r2::Int) = min(1.0, max(0.0, min(r2-l1+1, r1-l2+1) / (r1-l1+1)))
 
 function best_overlap(l1::Int, r1::Int, l2::Int, r2::Int, interaction_set::Set{Tuple{Int,Int,Int,Int,Float64}})
@@ -137,6 +168,56 @@ function compare_interaction_sites(interact::Union{Interactions, InteractionsNew
     return overlaps
 end
 
+function compare_interaction_sites(interact::Union{Interactions, InteractionsNew}, rnanue_df::DataFrame,
+    partner1::Vector{String}, partner2::Vector{String}, from1::Vector{Int}, to1::Vector{Int}, from2::Vector{Int}, to2::Vector{Int}, window_len::Int)
+    overlaps = zeros(length(partner1), 4)
+    overlaps_rnanue = zeros(length(partner1), 4)
+    for (i, (n1, n2, l1, r1, l2, r2)) in enumerate(zip(partner1, partner2, from1, to1, from2, to2))
+        idx1 = findfirst(interact.nodes.name .== n1)
+        idx2 = findfirst(interact.nodes.name .== n2)
+        (isnothing(idx1) || isnothing(idx2)) && continue
+        direction1 = interaction_set(interact, idx1, idx2, window_len)
+        direction2 = interaction_set(interact, idx2, idx1, window_len)
+
+        olps_1, olps_1_pv, olp1_1, olp2_1 = best_overlap(l1, r1, l2, r2, direction1)
+        olps_2, olps_2_pv, olp1_2, olp2_2 = best_overlap(l2, r2, l1, r1, direction2)
+
+        if olps_1 > olps_2
+            overlaps[i, 1] = olps_1
+            overlaps[i, 2] = olps_1_pv
+        elseif olps_1 == olps_2
+            overlaps[i, 1] = olps_1
+            overlaps[i, 2] = (olps_1_pv == -1.0) ? olps_2_pv : (olps_2_pv == -1.0 ? olps_1_pv : min(olps_1_pv, olps_2_pv))
+        else
+            overlaps[i, 1] = olps_2
+            overlaps[i, 2] = olps_2_pv
+        end
+        overlaps[i, 3] = max(olp1_1, olp1_2)
+        overlaps[i, 4] = max(olp2_1, olp2_2)
+
+        rnanue1 = interaction_set(rnanue_df, interact, idx1, idx2)
+        rnanue2 = interaction_set(rnanue_df, interact, idx2, idx1)
+
+        olps_1, olps_1_pv, olp1_1, olp2_1 = best_overlap(l1, r1, l2, r2, rnanue1)
+        olps_2, olps_2_pv, olp1_2, olp2_2 = best_overlap(l2, r2, l1, r1, rnanue2)
+
+        if olps_1 > olps_2
+            overlaps_rnanue[i, 1] = olps_1
+            overlaps_rnanue[i, 2] = olps_1_pv
+        elseif olps_1 == olps_2
+            overlaps_rnanue[i, 1] = olps_1
+            overlaps_rnanue[i, 2] = (olps_1_pv == -1.0) ? olps_2_pv : (olps_2_pv == -1.0 ? olps_1_pv : min(olps_1_pv, olps_2_pv))
+        else
+            overlaps_rnanue[i, 1] = olps_2
+            overlaps_rnanue[i, 2] = olps_2_pv
+        end
+        overlaps_rnanue[i, 3] = max(olp1_1, olp1_2)
+        overlaps_rnanue[i, 4] = max(olp2_1, olp2_2)
+    end
+    #println(overlaps[23, :])
+    return overlaps, overlaps_rnanue
+end
+
 function string_class_and_pvalue(overlaps::Matrix{Float64})
 
     classes = Vector{String}(undef, size(overlaps)[1])
@@ -152,10 +233,10 @@ function string_class_and_pvalue(overlaps::Matrix{Float64})
             classes[i] = "partial"
             pvalues[i] = "$(round(r[2], digits=7))"
         elseif r[3] > 0.8
-            classes[i] = "target shifted"
+            classes[i] = "sRNA match"
             pvalues[i] = "-"
         elseif r[4] > 0.8
-            classes[i] = "sRNA shifted"
+            classes[i] = "target match"
             pvalues[i] = "-"
         else
             classes[i] = "no overlap"
@@ -168,34 +249,49 @@ end
 function make_table_s1(assets_folder::String, interact_hcd::InteractionsNew, interact_lcd::InteractionsNew, window_len::Int)
 
     df_literature = DataFrame(CSV.File(joinpath(assets_folder, "all_literature.csv"), stringtype=String))
+
+    rnanue_df_hcd = vcat(
+        DataFrame(CSV.File(joinpath(assets_folder, "rnanue", "trimmed_hfq_20_1_forward_preproc_interactions.txt"), stringtype=String)),
+        DataFrame(CSV.File(joinpath(assets_folder, "rnanue", "trimmed_hfq_20_2_forward_preproc_interactions.txt"), stringtype=String)),
+    )
+    rnanue_df_lcd = vcat(
+        DataFrame(CSV.File(joinpath(assets_folder, "rnanue", "trimmed_hfq_02_1_forward_preproc_interactions.txt"), stringtype=String)),
+        DataFrame(CSV.File(joinpath(assets_folder, "rnanue", "trimmed_hfq_02_2_forward_preproc_interactions.txt"), stringtype=String)),
+    )
+
     df_out = DataFrame(sRNA=df_literature.sRNA, target=df_literature.target)
     df_out.sRNA_region = ["$from - $to" for (from, to) in zip(df_literature.sRNA_from, df_literature.sRNA_to)]
     df_out.target_region = ["$from - $to" for (from, to) in zip(df_literature.target_from, df_literature.target_to)]
 
     mod_targets = [startswith(target, "vc") ? uppercase(target) : target for target in df_literature.target]
 
-    overlaps_hcd = compare_interaction_sites(interact_hcd, df_literature.sRNA, mod_targets,
+    overlaps_hcd, overlaps_hcd_rnanue = compare_interaction_sites(interact_hcd, rnanue_df_hcd, df_literature.sRNA, mod_targets,
         df_literature.sRNA_from, df_literature.sRNA_to, df_literature.target_from, df_literature.target_to,
         window_len)
 
     classes_hcd, pvalues_hcd = string_class_and_pvalue(overlaps_hcd)
+    classes_hcd_rnanue, _ = string_class_and_pvalue(overlaps_hcd_rnanue)
     counts_hcd, combined_pvalues_hcd = interaction_counts(interact_hcd, df_literature.sRNA, mod_targets)
     df_out.hcd_counts = counts_hcd
     #df_out.hcd_cpvalue = combined_pvalues_hcd
     df_out.hcd_pvalue = pvalues_hcd
     df_out.hcd_class = classes_hcd
+    df_out.hcd_rnanue = classes_hcd_rnanue
 
     #println(overlaps_hcd[23, :])
 
-    overlaps_lcd = compare_interaction_sites(interact_lcd, df_literature.sRNA, mod_targets,
+    overlaps_lcd, overlaps_lcd_rnanue = compare_interaction_sites(interact_lcd, rnanue_df_lcd, df_literature.sRNA, mod_targets,
         df_literature.sRNA_from, df_literature.sRNA_to, df_literature.target_from, df_literature.target_to,
         window_len)
+
     classes_lcd, pvalues_lcd = string_class_and_pvalue(overlaps_lcd)
+    classes_lcd_rnanue, _ = string_class_and_pvalue(overlaps_lcd_rnanue)
     counts_lcd, combined_pvalues_lcd = interaction_counts(interact_lcd, df_literature.sRNA, mod_targets)
     df_out.lcd_counts = counts_lcd
     #df_out.lcd_cpvalue = combined_pvalues_lcd
     df_out.lcd_pvalue = pvalues_lcd
     df_out.lcd_class = classes_lcd
+    df_out.lcd_rnanue = classes_lcd_rnanue
 
     CSV.write("table_s1.csv", df_out)
 end

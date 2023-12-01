@@ -8,7 +8,7 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
-   sodipodi:docname="figure_si_S6_2.svg"
+   sodipodi:docname="figure_si_S2_2.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -24,9 +24,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.54992731"
-     inkscape:cx="270.03569"
-     inkscape:cy="491.88319"
+     inkscape:zoom="0.77771466"
+     inkscape:cx="61.076385"
+     inkscape:cy="517.542"
      inkscape:window-width="2490"
      inkscape:window-height="1376"
      inkscape:window-x="70"
@@ -48,7 +48,7 @@
        height="287.8866"
        x="10.29789"
        y="4.9553967"
-       inkscape:export-filename="figure_si_S6_2.png"
+       inkscape:export-filename="figure_si_S2_2.png"
        inkscape:export-xdpi="200.06"
        inkscape:export-ydpi="200.06" />
     <image
@@ -59,7 +59,7 @@
        id="image832"
        x="22.77557"
        y="134.05872"
-       inkscape:export-filename="figure_si_S6_2.png"
+       inkscape:export-filename="figure_si_S2_2.png"
        inkscape:export-xdpi="200.06"
        inkscape:export-ydpi="200.06" />
     <image
@@ -70,7 +70,7 @@
        id="image844"
        x="111.58294"
        y="133.64819"
-       inkscape:export-filename="figure_si_S6_2.png"
+       inkscape:export-filename="figure_si_S2_2.png"
        inkscape:export-xdpi="200.06"
        inkscape:export-ydpi="200.06" />
     <image
@@ -81,7 +81,7 @@
        id="image856"
        x="142.9473"
        y="181.61971"
-       inkscape:export-filename="figure_si_S6_2.png"
+       inkscape:export-filename="figure_si_S2_2.png"
        inkscape:export-xdpi="200.06"
        inkscape:export-ydpi="200.06" />
     <image
@@ -92,12 +92,12 @@
        id="image868"
        x="23.58437"
        y="188.01465"
-       inkscape:export-filename="figure_si_S6_2.png"
+       inkscape:export-filename="figure_si_S2_2.png"
        inkscape:export-xdpi="200.06"
        inkscape:export-ydpi="200.06" />
     <g
        id="g948"
-       inkscape:export-filename="figure_si_S6_2.png"
+       inkscape:export-filename="figure_si_S2_2.png"
        inkscape:export-xdpi="200.06"
        inkscape:export-ydpi="200.06"
        transform="matrix(0.29897695,0,0,0.29897695,59.234664,140.26753)">
@@ -129,7 +129,7 @@
        id="image904"
        x="19.638186"
        y="240.11571"
-       inkscape:export-filename="figure_si_S6_2.png"
+       inkscape:export-filename="figure_si_S2_2.png"
        inkscape:export-xdpi="200.06"
        inkscape:export-ydpi="200.06" />
     <image
@@ -140,7 +140,7 @@
        id="image916"
        x="111.54594"
        y="240.11571"
-       inkscape:export-filename="figure_si_S6_2.png"
+       inkscape:export-filename="figure_si_S2_2.png"
        inkscape:export-xdpi="200.06"
        inkscape:export-ydpi="200.06" />
     <text
@@ -149,42 +149,42 @@
        x="12.368079"
        y="238.81404"
        id="text14444"
-       inkscape:export-filename="figure_si_S6_2.png"
+       inkscape:export-filename="figure_si_S2_2.png"
        inkscape:export-xdpi="200.06"
        inkscape:export-ydpi="200.06"><tspan
          sodipodi:role="line"
          id="tspan14442"
          style="font-size:4.93889px;stroke-width:0.278188"
          x="12.368079"
-         y="238.81404">f</tspan></text>
+         y="238.81404">d</tspan></text>
     <text
        xml:space="preserve"
        style="font-weight:bold;font-size:4.93889px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.278188"
        x="12.348157"
        y="186.79266"
        id="text20322"
-       inkscape:export-filename="figure_si_S6_2.png"
+       inkscape:export-filename="figure_si_S2_2.png"
        inkscape:export-xdpi="200.06"
        inkscape:export-ydpi="200.06"><tspan
          sodipodi:role="line"
          id="tspan20320"
          style="font-size:4.93889px;stroke-width:0.278188"
          x="12.348157"
-         y="186.79266">e</tspan></text>
+         y="186.79266">c</tspan></text>
     <text
        xml:space="preserve"
        style="font-weight:bold;font-size:4.93889px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.278188"
        x="12.314651"
        y="9.7653236"
        id="text8280"
-       inkscape:export-filename="figure_si_S6_2.png"
+       inkscape:export-filename="figure_si_S2_2.png"
        inkscape:export-xdpi="200.06"
        inkscape:export-ydpi="200.06"><tspan
          sodipodi:role="line"
          id="tspan8278"
          style="font-size:4.93889px;stroke-width:0.278188"
          x="12.314651"
-         y="9.7653236">c</tspan></text>
+         y="9.7653236">a</tspan></text>
     <rect
        style="fill:#ffffff;fill-rule:evenodd;stroke-width:1.11813;stroke-linecap:square;stroke-opacity:0.695683"
        id="rect881"
@@ -192,7 +192,7 @@
        height="7.4006681"
        x="97.357735"
        y="240.34456"
-       inkscape:export-filename="figure_si_S6_2.png"
+       inkscape:export-filename="figure_si_S2_2.png"
        inkscape:export-xdpi="200.06"
        inkscape:export-ydpi="200.06" />
     <text
@@ -201,14 +201,14 @@
        x="12.036644"
        y="133.33058"
        id="text8280-3"
-       inkscape:export-filename="figure_si_S6_2.png"
+       inkscape:export-filename="figure_si_S2_2.png"
        inkscape:export-xdpi="200.06"
        inkscape:export-ydpi="200.06"><tspan
          sodipodi:role="line"
          id="tspan8278-5"
          style="font-size:4.93889px;stroke-width:0.278188"
          x="12.036644"
-         y="133.33058">d</tspan></text>
+         y="133.33058">b</tspan></text>
     <image
        width="163.98972"
        height="110.80711"
@@ -217,7 +217,7 @@
        id="image930"
        x="20.702541"
        y="11.490721"
-       inkscape:export-filename="figure_si_S6_2.png"
+       inkscape:export-filename="figure_si_S2_2.png"
        inkscape:export-xdpi="200.06"
        inkscape:export-ydpi="200.06" />
   </g>

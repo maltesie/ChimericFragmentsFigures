@@ -3,12 +3,12 @@ function plot_figure_s1(assets_folder::String)
     fig = Figure(resolution=(1400*resfactor, 900*resfactor))
 
     ax_graph = Axis(fig[1:4, 3], leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
-    img_graph = rotr90(load(joinpath(assets_folder, "screenshot_aggregation.png")))
+    img_graph = rotr90(load(joinpath(assets_folder, "screenshot_aggregation_annot.png")))
     hidedecorations!(ax_graph)
     image!(ax_graph, img_graph, aspect = DataAspect())
 
     ax_graph2 = Axis(fig[1:4, 2], leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
-    img_graph2 = rotr90(load(joinpath(assets_folder, "screenshot_ligation_points.png")))
+    img_graph2 = rotr90(load(joinpath(assets_folder, "screenshot_ligation_points_annot.png")))
     hidedecorations!(ax_graph2)
     image!(ax_graph2, img_graph2, aspect = DataAspect())
 
@@ -28,6 +28,6 @@ function plot_figure_s1(assets_folder::String)
     Label(fig[1,3, TopLeft()], "c", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
     Label(fig[5,1, TopLeft()], "d", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
-    save("figure_s1.svg", fig)
-    save("figure_s1.png", fig, px_per_unit = 2)
+    save("figure_E1.svg", fig)
+    save("figure_E1.png", fig, px_per_unit = 2)
 end

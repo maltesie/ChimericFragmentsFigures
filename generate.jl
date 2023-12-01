@@ -50,6 +50,9 @@ interact_pseudomonas_exp = InteractionsNew(joinpath(@__DIR__, "data", "jlds", "p
 interact_salmonella = InteractionsNew(joinpath(@__DIR__, "data", "jlds", "salmonella.jld2"))
 interact_epec_wt = InteractionsNew(joinpath(@__DIR__, "data", "jlds", "epec_wt.jld2"))
 interact_epec_cond = InteractionsNew(joinpath(@__DIR__, "data", "jlds", "epec_T3SS_BFP.jld2"))
+interact_yeast_nop1 = InteractionsNew(joinpath(@__DIR__, "data", "jlds", "NOP1_glucose.jld2"))
+interact_yeast_nop56 = InteractionsNew(joinpath(@__DIR__, "data", "jlds", "NOP56_glucose.jld2"))
+interact_yeast_nop58 = InteractionsNew(joinpath(@__DIR__, "data", "jlds", "NOP58_glucose.jld2"))
 
 include(joinpath(source_folder, "figure_1.jl"))
 plot_figure_1(joinpath(data_folder, "figure_1"))
@@ -88,7 +91,7 @@ plot_figure_s5(interact_hcd, interact_lcd; bp_interval_len=30, fdr_cut=0.25,
     probmass_min=0.4, probmass_max=0.8, min_partners=3, min_ligpoints=10, connect_within=1)
 
 include(joinpath(source_folder, "figure_s6.jl"))
-plot_figure_s6(joinpath(data_folder, "figure_s6"), interact_lcd)
+plot_figure_s6(joinpath(data_folder, "figure_s6"), interact_lcd, [interact_yeast_nop1, interact_yeast_nop56, interact_yeast_nop58], 0.25)
 
 include(joinpath(source_folder, "table_s1.jl"))
 make_table_s1(joinpath(data_folder, "table_s1"), interact_hcd, interact_lcd, 30)

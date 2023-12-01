@@ -291,16 +291,16 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
     us = unique_set(g; k=18)
 
     fig_si = Figure(resolution=(1200*resfactor, 1000*resfactor))
-    gc = fig_si[3, 1:4] = GridLayout()
+    #gc = fig_si[3, 1:2] = GridLayout()
     Label(fig_si[1,1, TopLeft()], "a", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     Label(fig_si[1,2, TopLeft()], "b", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     Label(fig_si[1,3, TopLeft()], "c", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     Label(fig_si[2,1, TopLeft()], "d", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     Label(fig_si[2,2, TopLeft()], "e", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     Label(fig_si[2,3, TopLeft()], "f", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    Label(gc[1,1, TopLeft()], "g", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    Label(gc[1,3, TopLeft()], "h", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    Label(gc[1,4, TopLeft()], "i", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    Label(fig_si[3,1, TopLeft()], "g", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    #Label(gc[1,3, TopLeft()], "h", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    #Label(gc[1,4, TopLeft()], "i", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     n_plots = 1
     for (j,nerr) in enumerate(0:nerrmax), (i,l) in enumerate(lens)
         s, truep = make_chimeric_testseqs(g, us; nseqs=nseqs, len1=l, len2=l, nerr=nerr)
@@ -352,7 +352,7 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
 
     colors = ("Brown", "Coral", "BlueViolet", "DarkGreen")
     pcuts = [0.05, 0.1, 0.25, 0.5, 1.0]
-    ax_cor = Axis(gc[1,1], ylabel="Pearson correlation", xlabel="complementarity FDR cutoff", title="LCD replicate correlation", xticks=(1:length(pcuts)+1, [["$(round(pc, digits=2))" for pc in pcuts]..., "all"]))
+    ax_cor = Axis(fig_si[3,1], ylabel="Pearson correlation", xlabel="complementarity FDR cutoff", title="LCD replicate correlation", xticks=(1:length(pcuts)+1, [["$(round(pc, digits=2))" for pc in pcuts]..., "all"]))
     #ax_count = Axis(gc[1,2], ylabel="median of read counts", xlabel="complementarity FDR cutoff", title="LCD reads per interaction", xticks=(1:length(pcuts)+1, [["$(round(pc, digits=2))" for pc in pcuts]..., "all"]), yscale=log10)
     ax_top = Axis(gb[1,3], ylabel="rank correlation", xlabel="top fraction of dataset", title="LCD replicate correlation", xticks=(1:length(pcuts), ["$(round(pc, digits=2))" for pc in pcuts]))
     #ax_ints_count = Axis(gc[1,1], ylabel="median of read counts", xlabel="top fraction of dataset", title="LCD reads per interaction", xticks=(1:length(pcuts), ["$(round(pc, digits=2))" for pc in pcuts]), yscale=log10)
@@ -396,7 +396,12 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
         #scatter!(ax_ints_count, 1:length(pcuts), subcounts, color=color)
     end
 
-    Legend(gc[1,2], ax_cor, "seed | score")
+    l = Legend(fig_si[3,2], ax_cor, "seed | score")
+
+    l.halign = :left
+    l.tellwidth = false
+    l.tellheight = false
+
     Legend(gb[1,4], ax_cor, "seed | score")
 
     highlight_index = [(1,1), (3,1), (1, 3), (3, 4)]
@@ -443,33 +448,33 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
         boxplot!(ax_ratio, repeat([i], length(vals)), vals, color=color)
     end
 
-    gensize_seed = 4
-    gensize_score = 5
-    ax_genome_size_tpr = Axis(gc[1,3], ylabel="TPR", xlabel="genome size", title="no sequencing error", xticks=(1:4, ["5M", "50M", "500M", "2G"]))
-    ax_genome_size_fpr = Axis(gc[1,4], ylabel="TPR", xlabel="genome size", title="one sequencing error", xticks=(1:4, ["5M", "50M", "500M", "2G"]))
-    tpr_vals = [zeros(4,2) for i in 1:4]
-    fpr_vals = [zeros(4,2) for i in 1:4]
-    for (ii,genome_size_folder) in enumerate([joinpath(assets_path, "csv_genome_size", size_name) for size_name in ("5M", "50M", "500M", "2G")])
-        for (i,seq_len_gen) in enumerate((15,20,25,40)), nerror_gen in (0,1)
-            fname_tpr = joinpath(genome_size_folder, "length=$(seq_len_gen), errors=$(nerror_gen)_tpr.csv")
-            fname_fpr = joinpath(genome_size_folder, "length=$(seq_len_gen), errors=$(nerror_gen)_fpr.csv")
-            tpr = readdlm(fname_tpr, '\t', Float64, '\n')
-            fpr = readdlm(fname_fpr, '\t', Float64, '\n')
-            tpr_vals[i][ii, nerror_gen+1] = tpr[gensize_seed, gensize_score]
-            fpr_vals[i][ii, nerror_gen+1] = fpr[gensize_seed, gensize_score]
-        end
-    end
-    for (seq_len_gen, tprs, fprs) in zip((15,20,25,40), tpr_vals, fpr_vals)
-        scatter!(ax_genome_size_tpr, 1:4, tprs[:,1], label = "$seq_len_gen")
-        scatter!(ax_genome_size_fpr, 1:4, tprs[:,2], label = "$seq_len_gen")
-        #scatter!(ax_genome_size_fpr, 1:4, fprs[:,1], label = "$seq_len_gen | 0")
-        #scatter!(ax_genome_size_fpr, 1:4, fprs[:,2], label = "$seq_len_gen | 1")
-    end
-    Legend(gc[1,5], ax_genome_size_tpr, "length")
+    #gensize_seed = 4
+    #gensize_score = 5
+    #ax_genome_size_tpr = Axis(gc[1,3], ylabel="TPR", xlabel="genome size", title="no sequencing error", xticks=(1:4, ["5M", "50M", "500M", "2G"]))
+    #ax_genome_size_fpr = Axis(gc[1,4], ylabel="TPR", xlabel="genome size", title="one sequencing error", xticks=(1:4, ["5M", "50M", "500M", "2G"]))
+    #tpr_vals = [zeros(4,2) for i in 1:4]
+    #fpr_vals = [zeros(4,2) for i in 1:4]
+    #for (ii,genome_size_folder) in enumerate([joinpath(assets_path, "csv_genome_size", size_name) for size_name in ("5M", "50M", "500M", "2G")])
+    #    for (i,seq_len_gen) in enumerate((15,20,25,40)), nerror_gen in (0,1)
+    #        fname_tpr = joinpath(genome_size_folder, "length=$(seq_len_gen), errors=$(nerror_gen)_tpr.csv")
+    #        fname_fpr = joinpath(genome_size_folder, "length=$(seq_len_gen), errors=$(nerror_gen)_fpr.csv")
+    #        tpr = readdlm(fname_tpr, '\t', Float64, '\n')
+    #        fpr = readdlm(fname_fpr, '\t', Float64, '\n')
+    #        tpr_vals[i][ii, nerror_gen+1] = tpr[gensize_seed, gensize_score]
+    #        fpr_vals[i][ii, nerror_gen+1] = fpr[gensize_seed, gensize_score]
+    #    end
+    #end
+    #for (seq_len_gen, tprs, fprs) in zip((15,20,25,40), tpr_vals, fpr_vals)
+    #    scatter!(ax_genome_size_tpr, 1:4, tprs[:,1], label = "$seq_len_gen")
+    #    scatter!(ax_genome_size_fpr, 1:4, tprs[:,2], label = "$seq_len_gen")
+    #    #scatter!(ax_genome_size_fpr, 1:4, fprs[:,1], label = "$seq_len_gen | 0")
+    #    #scatter!(ax_genome_size_fpr, 1:4, fprs[:,2], label = "$seq_len_gen | 1")
+    #end
+    #Legend(gc[1,5], ax_genome_size_tpr, "length")
 
     save("figure_2.svg", fig)
     save("figure_2.png", fig, px_per_unit = 2)
 
-    save("figure_s3.svg", fig_si)
-    save("figure_s3.png", fig_si, px_per_unit = 2)
+    save("figure_E5.svg", fig_si)
+    save("figure_E5.png", fig_si, px_per_unit = 2)
 end
