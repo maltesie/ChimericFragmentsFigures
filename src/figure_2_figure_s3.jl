@@ -298,7 +298,7 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
     Label(fig_si[2,1, TopLeft()], "d", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     Label(fig_si[2,2, TopLeft()], "e", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     Label(fig_si[2,3, TopLeft()], "f", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    Label(fig_si[3,1, TopLeft()], "g", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    Label(fig_si[3,2, TopLeft()], "g", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     #Label(gc[1,3, TopLeft()], "h", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     #Label(gc[1,4, TopLeft()], "i", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     n_plots = 1
@@ -326,7 +326,7 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
                 ylabel="minimum alignment score", xlabel="seed length", title="FPR, length=$l")
             heatmap!(ax_si_fpr, fpr, colorrange=clims)
             for i in 1:length(seedlens), j in 1:length(scores)
-                text!(ax_si_fpr, string(round(fpr[i,j], digits=3)), position = (i,j), align = (:center, :center),
+                text!(ax_si_fpr, string(round(fpr[i,j], digits=4)), position = (i,j), align = (:center, :center),
                     color = fpr[i,j] < 0.5 ? :white : :black, fontsize=fontsize_heatmap_text)
             end
 
@@ -352,9 +352,11 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
 
     colors = ("Brown", "Coral", "BlueViolet", "DarkGreen")
     pcuts = [0.05, 0.1, 0.25, 0.5, 1.0]
-    ax_cor = Axis(fig_si[3,1], ylabel="Pearson correlation", xlabel="complementarity FDR cutoff", title="LCD replicate correlation", xticks=(1:length(pcuts)+1, [["$(round(pc, digits=2))" for pc in pcuts]..., "all"]))
+    ax_cor = Axis(fig_si[3,2], ylabel="Pearson correlation", xlabel="top fraction of interactions", 
+        title="LCD replicate correlation", xticks=(1:length(pcuts), ["$(round(pc, digits=2))" for pc in pcuts]))
     #ax_count = Axis(gc[1,2], ylabel="median of read counts", xlabel="complementarity FDR cutoff", title="LCD reads per interaction", xticks=(1:length(pcuts)+1, [["$(round(pc, digits=2))" for pc in pcuts]..., "all"]), yscale=log10)
-    ax_top = Axis(gb[1,3], ylabel="rank correlation", xlabel="top fraction of dataset", title="LCD replicate correlation", xticks=(1:length(pcuts), ["$(round(pc, digits=2))" for pc in pcuts]))
+    ax_top = Axis(gb[1,3], ylabel="rank correlation", xlabel="top fraction of dataset", 
+        title="LCD replicate correlation", xticks=(1:length(pcuts), ["$(round(pc, digits=2))" for pc in pcuts]))
     #ax_ints_count = Axis(gc[1,1], ylabel="median of read counts", xlabel="top fraction of dataset", title="LCD reads per interaction", xticks=(1:length(pcuts), ["$(round(pc, digits=2))" for pc in pcuts]), yscale=log10)
     max_count = 0
     replicate_ids = ["hfq_lcd_1", "hfq_lcd_2"]
@@ -363,9 +365,9 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
         l = "$(se) | $(ms)"
         fp = joinpath(assets_path, "csv_correlation", "hfq_lcd_$(se)_$(ms).csv")
         df = DataFrame(CSV.File(fp))
-        corr_mean = zeros(length(pcuts)+1)
-        corr_sd = zeros(length(pcuts)+1)
-        counts = zeros(length(pcuts)+1)
+        corr_mean = zeros(length(pcuts))
+        corr_sd = zeros(length(pcuts))
+        counts = zeros(length(pcuts))
         subcounts = zeros(length(pcuts))
         corr_top_mean = zeros(length(pcuts))
 
@@ -377,7 +379,7 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
             count_ints = Int(floor(nrow(df)*pcut))
             subpindex = 1:count_ints
             subcounts[i] = median(sorted_ints[subpindex])
-
+            corr = [cor(df[subpindex, p1], df[subpindex, p2]) for (p1, p2) in combinations(replicate_ids, 2)]
             corr_top = [corspearman(df[subpindex, p1], df[subpindex, p2]) for (p1, p2) in combinations(replicate_ids, 2)]
             corr_mean[i] = mean(corr)
             corr_sd[i] = std(corr)
@@ -385,18 +387,18 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
             corr_top_mean[i] = mean(corr_top)
         end
 
-        corr = [cor(df[!, p1], df[!, p2]) for (p1, p2) in combinations(replicate_ids, 2)]
-        corr_mean[length(pcuts)+1] = mean(corr)
-        corr_sd[length(pcuts)+1] = std(corr)
-        counts[length(pcuts)+1] = median(df.nb_ints)
-        max_count = max(max_count, maximum(counts))
-        scatter!(ax_cor, 1:(length(pcuts)+1), corr_mean, label=l, color=color)
+        #corr = [cor(df[!, p1], df[!, p2]) for (p1, p2) in combinations(replicate_ids, 2)]
+        #corr_mean[length(pcuts)+1] = mean(corr)
+        #corr_sd[length(pcuts)+1] = std(corr)
+        #counts[length(pcuts)+1] = median(df.nb_ints)
+        #max_count = max(max_count, maximum(counts))
+        scatter!(ax_cor, 1:length(pcuts), corr_mean, label=l, color=color)
         #scatter!(ax_count, 1:(length(pcuts)+1), counts, label=l, color=color)
         scatter!(ax_top, 1:length(pcuts), corr_top_mean, label=l, color=color)
         #scatter!(ax_ints_count, 1:length(pcuts), subcounts, color=color)
     end
 
-    l = Legend(fig_si[3,2], ax_cor, "seed | score")
+    l = Legend(fig_si[3,3], ax_cor, "seed | score")
 
     l.halign = :left
     l.tellwidth = false
@@ -422,7 +424,7 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
         ylabel="minimum alignment score", xlabel="seed length", title="FPR")
     heatmap!(ax3, fpr, colorrange=clims)
     for i in 1:length(seedlens), j in 1:length(scores)
-        text!(ax3, string(round(fpr[i,j], digits=3)), position = (i,j), align = (:center, :center),
+        text!(ax3, string(round(fpr[i,j], digits=4)), position = (i,j), align = (:center, :center),
             color = fpr[i,j] < 0.5 ? :white : :black, fontsize=fontsize_heatmap_text)
     end
     poly!(ax3, [square_with_hole(x,y) for (x,y) in highlight_index], color=collect(colors))
