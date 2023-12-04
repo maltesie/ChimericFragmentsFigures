@@ -83,25 +83,25 @@ function plot_figure_s5(interact::InteractionsNew, interact2::InteractionsNew;
     resfactor = 1.
     fig = Figure(resolution=(1200*resfactor, 1200*resfactor))
 
-    ax_pos = Axis(fig[1, 1], title="position in chimera", ylabel="count",
+    ax_pos = Axis(fig[3, 2], title="position in chimera", ylabel="count",
         xticks = (1:4, ["RNA1,\nFDR <= 0.05", "RNA1,\nno FDR", "RNA2,\nFDR <= 0.05", "RNA2,\nno FDR"]))
-    ax_partner = Axis(fig[1, 2], title="partners of sRNAs", ylabel="# of partners", xticks = (1:2, ["RNA1", "RNA2"]))
+    ax_partner = Axis(fig[2, 1], title="partners of sRNAs", ylabel="# of partners", xticks = (1:2, ["RNA1", "RNA2"]))
 
-    ax_regions_s = Axis(fig[2, 1], title="regions in RNA1 sRNAs", ylabel="count", xlabel="# of regions", xticks = 1:100, yticks=2:2:10)
-    ax_regions = Axis(fig[2, 2], title="regions in RNA2 sRNAs", ylabel="count", xlabel="# of regions", xticks = 1:100)
+    ax_regions_s = Axis(fig[2, 2], title="regions in RNA1 sRNAs", ylabel="count", xlabel="# of regions", xticks = 1:100, yticks=2:2:10)
+    ax_regions = Axis(fig[3, 1], title="regions in RNA2 sRNAs", ylabel="count", xlabel="# of regions", xticks = 1:100)
 
-    ax_graph = Axis(fig[3, 1], title="OppZ basepairing", ylabel="count / 10^3", xlabel="position")
+    ax_graph = Axis(fig[1, 1], title="OppZ basepairing", ylabel="count / 10^3", xlabel="position")
     aggregation_plot!(ax_graph, interact, "OppZ", fdr_cut; norm=1000)
     #axislegend(ax_graph)
 
-    ax_graph2 = Axis(fig[3, 2], title=rich(rich("oppB"; font=:bold_italic), rich(" basepairing")),
+    ax_graph2 = Axis(fig[1, 2], title=rich(rich("oppB"; font=:bold_italic), rich(" basepairing")),
         ylabel="count", xlabel="position")
     aggregation_plot!(ax_graph2, interact, "oppB", fdr_cut)
     #axislegend(ax_graph2)
 
     labels = ["RNA1", "RNA2"]
     elements = [PolyElement(polycolor = i) for i in (RGBAf(0.388, 0.431, 0.98, 0.6), RGBAf(0.937, 0.333, 0.231, 0.6))]
-    Legend(fig[3, 3], elements, labels)
+    Legend(fig[1, 3], elements, labels)
 
     srnas1 = findall(interact.nodes.type .== "sRNA")
     srnas2 = findall(interact2.nodes.type .== "sRNA")
@@ -178,7 +178,7 @@ function plot_figure_s5(interact::InteractionsNew, interact2::InteractionsNew;
     barplot!(ax_regions, vcat(1:n, 1:n), count_regions, dodge=regions_groups, color=colors[regions_groups])
     #axislegend(ax_regions, elements, labels, position=:rt)
 
-    Legend(fig[1:2, 3], elements, labels)
+    Legend(fig[2:3, 3], elements, labels)
 
     Label(fig[1,1, TopLeft()], "a", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
     Label(fig[1,2, TopLeft()], "b", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)

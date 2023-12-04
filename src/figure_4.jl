@@ -63,6 +63,7 @@ function plot_figure_4(assets_folder::String)
     counter ./= 2
     ax1 = Axis(fig[1,1], ylabel="count", title="annotation types", xticks = (1:4, ["previous", "improved\nmapping", "no FDR,\nreads >= 20", "FDR < 0.25,\nreads >= 3"]))
     colors = Makie.wong_colors()
+    colors_spot42 = [RGBAf(0.0, 0.4, 0.0, 1.0), RGBAf(0.7, 0.1, 0.0, 1.0)]
     groups = [1,2,3,1,2,3,1,2,3,1,2,3]
 
     barplot!(ax1, vcat(fill(1, 3), fill(2, 3), fill(3, 3), fill(4, 3)), counter, stack=groups, color=colors[groups])
@@ -82,30 +83,43 @@ function plot_figure_4(assets_folder::String)
 
     p_big = decompose(Point2f, Circle(Point2f(0), 0.8))
     p_small = decompose(Point2f, Circle(Point2f(0), 0.4))
-    scatter!(axb2, log10.(df_new[tested_index, :nb_ints]), -1 .* log10.(df_new[tested_index, :bp_fdr]), label="tested",
-        marker=Polygon(p_big, [p_small]), markersize=7, color=RGBAf(0.8, 0.1, 0.0, 1.0))
-    axislegend(axb2, position=:lt)
-    scatter!(axb2, log10.(df_new[tested_index, :nb_ints]), -1 .* log10.(df_new[tested_index, :bp_fdr]),  color=colors[1], markersize=9)
-    scatter!(axb2, log10.(df_new[tested_index, :nb_ints]), -1 .* log10.(df_new[tested_index, :bp_fdr]), label="tested",
-        marker=Polygon(p_big, [p_small]), markersize=7, color=RGBAf(0.8, 0.1, 0.0, 1.0))
+    #scatter!(axb2, log10.(df_new[tested_index, :nb_ints]), -1 .* log10.(df_new[tested_index, :bp_fdr]), label="tested",
+    #    marker=Polygon(p_big, [p_small]), markersize=7, color=RGBAf(0.8, 0.1, 0.0, 1.0))
 
+    not_significant_index = tested_index[df_new[tested_index ,:bp_fdr] .> 0.05]
+    significant_index = tested_index[df_new[tested_index ,:bp_fdr] .< 0.05]
+
+
+    scatter!(axb2, log10.(df_new[tested_index, :nb_ints]), -1 .* log10.(df_new[tested_index, :bp_fdr]),  color=colors[1], markersize=9)
+
+    scatter!(axb2, log10.(df_new[significant_index, :nb_ints]), -1 .* log10.(df_new[significant_index, :bp_fdr]), label="tested, significant",
+        marker=Polygon(p_big, [p_small]), markersize=7, color=colors_spot42[1])
+
+    scatter!(axb2, log10.(df_new[not_significant_index, :nb_ints]), -1 .* log10.(df_new[not_significant_index, :bp_fdr]), label="tested, unsignificant",
+        marker=Polygon(p_big, [p_small]), markersize=7, color=colors_spot42[2])
+
+    axislegend(axb2, position=:lt)
     df_plate = DataFrame(CSV.File(joinpath(assets_folder, "platereader.csv")))
-    xlabels_latex = [rich(String(cl); font=:italic) for cl in df_plate.name]
+
+    index = [12,9,1,2,3,4,5,6,7,8,10,11]
+    xlabels_latex = [rich(String(cl); font=:italic) for cl in df_plate.name][index]
 
     axb4 = Axis(fig[1:2,2], title="Spot 42 reporter assay", xlabel="relative fluorescence [AU]", yticks = (1:nrow(df_plate), xlabels_latex))
 
-    groups = vcat(fill(1,nrow(df_plate)), fill(2,nrow(df_plate)))
-    ctrl = Matrix(df_plate[:, [:ctrl1, :ctrl2, :ctrl3]])
+    #groups = vcat(fill(1,nrow(df_plate)), fill(2,nrow(df_plate)))
+
+    groups = [2,2,1,1,1,1,1,1,1,1,1,1]
+    ctrl = Matrix(df_plate[index, [:ctrl1, :ctrl2, :ctrl3]])
     mean_ctrl = vec(mean(ctrl; dims=2))
     ctrl ./= mean_ctrl
     sd_ctrl = vec(std(ctrl; dims=2))
-    spot = Matrix(df_plate[:, [:exp1, :exp2, :exp3]])
+    spot = Matrix(df_plate[index, [:exp1, :exp2, :exp3]])
     spot ./= mean_ctrl
     mean_spot = vec(mean(spot; dims=2))
     sd_spot = vec(std(spot; dims=2))
     sd_spot = mean_spot .* sqrt.((sd_ctrl./mean_ctrl).^2 + (sd_spot./mean_spot).^2)
     mean_ctrl = ones(nrow(df_plate))
-    barplot!(axb4, 1:nrow(df_plate), mean_spot, direction=:x, color=colors[1])#, dodge=groups, color=colors[groups])
+    barplot!(axb4, 1:nrow(df_plate), mean_spot, direction=:x, color=colors_spot42[groups])#, dodge=groups, color=colors[groups])
     #scatter!(axb4, collect(1:nrow(df_plate)) .- 0.35, vec(ctrl[:, 1]), color="black", markersize=5)
     #scatter!(axb4, collect(1:nrow(df_plate)) .- 0.2, vec(ctrl[:, 2]), color="black", markersize=5)
     #scatter!(axb4, collect(1:nrow(df_plate)) .- 0.05, vec(ctrl[:, 3]), color="black", markersize=5)

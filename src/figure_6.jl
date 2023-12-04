@@ -33,7 +33,8 @@ function plot_figure_6(assets_folder::String, interact::InteractionsNew)
 
     gb = fig[1:3,1] = GridLayout()
 
-    ax_graph = Axis(gb[1, 1], title="interactions with VC0715:VC0719", aspect = DataAspect())
+    ax_graph = Axis(gb[1, 1], leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false,
+        aspect = DataAspect())
     img_graph = rotr90(load(joinpath(assets_folder, "vc0715:vc0719_targets.png")))
     hidedecorations!(ax_graph)
     image!(ax_graph, img_graph, aspect = DataAspect())
@@ -170,14 +171,14 @@ function plot_figure_6(assets_folder::String, interact::InteractionsNew)
     gc = fig[1:3,3] = GridLayout()
 
     img4 = rotr90(load(joinpath(assets_folder, "AL_NetX.png")))
-    ax4 = Axis(gc[1:3, 1], leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
+    ax4 = Axis(gc[1:8, 1], leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
     hidedecorations!(ax4)
     image!(ax4, img4, aspect = DataAspect())
 
     img_pan_f = rotr90(load(joinpath(assets_folder, "AL_AphA+CT.png")))
-    ax_pan_f = Axis(gc[4:6, 1], leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
+    ax_pan_f = Axis(gc[9:12, 1], leftspinevisible = false, rightspinevisible = false, bottomspinevisible = false, topspinevisible = false, aspect = DataAspect())
     hidedecorations!(ax_pan_f)
-    image!(ax_pan_f, img_pan_f, aspect = DataAspect())
+    image!(ax_pan_f, img_pan_f, aspect = DataAspect(), offset=(10,0))
 
     df_plate = DataFrame(CSV.File(joinpath(assets_folder, "platereader.csv")))
 
@@ -248,8 +249,9 @@ function plot_figure_6(assets_folder::String, interact::InteractionsNew)
     Label(fig[3,2, TopLeft()], "e", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
     Label(gc[1,1, TopLeft()], "c", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
-    Label(gc[4,1, TopLeft()], "f", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
+    Label(gc[9,1, TopLeft()], "f", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
     save("figure_6.pdf", fig)
+    save("figure_6.svg", fig)
     save("figure_6.png", fig, px_per_unit = 2)
 end
