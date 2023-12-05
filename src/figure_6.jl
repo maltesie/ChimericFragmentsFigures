@@ -115,7 +115,7 @@ function plot_figure_6(assets_folder::String, interact::InteractionsNew)
     hidespines!(ax1_2_2, :l, :t, :r)
     xlims!(ax1_2_2, limits_low, limits_high)
 
-    ax1_3_2 = Axis(ga[4,2:3], xlabel=rich("coordinate relative to ", rich("vc0715"; font=:italic)), title="TERM-seq", xticks=([2150, 2250], ["3100", "3200"]))
+    ax1_3_2 = Axis(ga[4,2:3], xlabel=rich("coordinates relative to ", rich("vc0715"; font=:italic)), title="TERM-seq", xticks=([2150, 2250], ["3100", "3200"]))
     coverage_plot!(ax1_3_2, coverage_term, interval, colors[1])
     hideydecorations!(ax1_3_2, grid = false)
     hidespines!(ax1_3_2, :l, :t, :r)
