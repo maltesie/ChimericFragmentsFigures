@@ -128,7 +128,7 @@ function plot_figure_s5(interact::InteractionsNew, interact2::InteractionsNew;
     colors = Makie.wong_colors()
 
     barplot!(ax_runtime, [1,1,2,2], log10.([3, 1140, 10, 1290]), dodge=[1,2,1,2],
-        color=colors[[3,4,3,4]], bar_labels = :y, label_formatter = x->"$(Int(floor(10^x, digits=0)))")
+        color=colors[[3,4,3,4]], bar_labels = :y, label_formatter = x->"$(Int(floor(10^x)))")
     ylims!(ax_runtime, (-0.1,3.8))
     xlims!(ax_runtime, (0.3,2.5))
     labels = ["Chimeric\nFragments", "RNAnue"]
