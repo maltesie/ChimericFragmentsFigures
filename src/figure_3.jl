@@ -62,7 +62,7 @@ function plot_figure_3(assets_folder::String, interact::InteractionsNew, nseqs::
     h22 = hist!(ax2, right2, label="RNA2, right", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
     h21 = hist!(ax2, right1, label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
-    linkyaxes!(ax1, ax2)
+    #linkyaxes!(ax1, ax2)
 
 
     resize!.((left1, left2, right1, right2), length(interact.bpstats))
@@ -86,7 +86,7 @@ function plot_figure_3(assets_folder::String, interact::InteractionsNew, nseqs::
     h102 = hist!(ax10, right2, label="RNA2, right", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
     h101 = hist!(ax10, right1, label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
-    linkyaxes!(ax9, ax10)
+    #linkyaxes!(ax9, ax10)
 
 
     ax3 = Axis(fig[3,3], xlabel="postion in alignment", ylabel="frequency", title="significant, left")
@@ -97,7 +97,7 @@ function plot_figure_3(assets_folder::String, interact::InteractionsNew, nseqs::
     h42 = hist!(ax4, right2[fdrv .<= fcut], label="RNA2, right", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
     h41 = hist!(ax4, right1[fdrv .<= fcut], label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
-    linkyaxes!(ax3, ax4)
+    #linkyaxes!(ax3, ax4)
 
 
     ax5 = Axis(fig[3,1], xlabel="postion in alignment", ylabel="frequency", title="unsignificant, left")
@@ -108,8 +108,9 @@ function plot_figure_3(assets_folder::String, interact::InteractionsNew, nseqs::
     h62 = hist!(ax6, right2[fdrv .> fcut], label="RNA2, right", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
     h61 = hist!(ax6, right1[fdrv .> fcut], label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
-    linkyaxes!(ax5, ax6)
+    #linkyaxes!(ax5, ax6)
 
+    linkyaxes!(ax1, ax2, ax3, ax4, ax5, ax6, ax9, ax10)
 
     Legend(fig[2:3,5], [h31, h32], ["RNA1", "RNA2"])
 
