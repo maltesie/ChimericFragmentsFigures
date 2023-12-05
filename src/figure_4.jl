@@ -106,6 +106,7 @@ function plot_figure_4(assets_folder::String)
 
     axb4 = Axis(fig[1:2,2], title="Spot 42 reporter assay", xlabel="relative fluorescence [AU]", yticks = (1:nrow(df_plate), xlabels_latex))
 
+    vlines!(axb4, [0.75, 1.25], color=:lightgrey, linestyle=:dot, linewidth=1.0)
     #groups = vcat(fill(1,nrow(df_plate)), fill(2,nrow(df_plate)))
 
     groups = [2,2,1,1,1,1,1,1,1,1,1,1]
