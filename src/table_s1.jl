@@ -73,7 +73,7 @@ function interaction_set(interact::InteractionsNew, idx1::Int, idx2::Int, window
     return set_pairs
 end
 
-function interaction_set(rnanue_df::DataFrame, interact::InteractionsNew, idx1::Int, idx2::Int)
+function interaction_set(rnanue_df::DataFrame, interact::Union{InteractionsNew,Interactions}, idx1::Int, idx2::Int)
     set_pairs = Set{Tuple{Int, Int, Int, Int, Float64}}()
 
     ref1, ref2 = interact.nodes.ref[idx1], interact.nodes.ref[idx2]
@@ -304,35 +304,60 @@ function make_table_s1_coli(assets_folder::String, interact_il::Interactions,
     df_out.sRNA_region = ["$from - $to" for (from, to) in zip(df_literature.sRNA_from, df_literature.sRNA_to)]
     df_out.target_region = ["$from - $to" for (from, to) in zip(df_literature.target_from, df_literature.target_to)]
 
-    overlaps_il = compare_interaction_sites(interact_il, df_literature.sRNA, df_literature.target,
+    rnanue_df_il = vcat(
+        DataFrame(CSV.File(joinpath(assets_folder, "rnanue", "ecoli_rilseq_hfq_iron_limit_1_forward_preproc_interactions.txt"), stringtype=String)),
+        DataFrame(CSV.File(joinpath(assets_folder, "rnanue", "ecoli_rilseq_hfq_iron_limit_2_forward_preproc_interactions.txt"), stringtype=String)),
+        DataFrame(CSV.File(joinpath(assets_folder, "rnanue", "ecoli_rilseq_hfq_iron_limit_3_forward_preproc_interactions.txt"), stringtype=String)),
+    )
+    rnanue_df_sp = vcat(
+        DataFrame(CSV.File(joinpath(assets_folder, "rnanue", "ecoli_rilseq_hfq_stationary_1_forward_preproc_interactions.txt"), stringtype=String)),
+        DataFrame(CSV.File(joinpath(assets_folder, "rnanue", "ecoli_rilseq_hfq_stationary_2_forward_preproc_interactions.txt"), stringtype=String)),
+        DataFrame(CSV.File(joinpath(assets_folder, "rnanue", "ecoli_rilseq_hfq_stationary_3_forward_preproc_interactions.txt"), stringtype=String)),
+    )
+    rnanue_df_lp = vcat(
+        DataFrame(CSV.File(joinpath(assets_folder, "rnanue", "rep1_forward_preproc_interactions.txt"), stringtype=String)),
+        DataFrame(CSV.File(joinpath(assets_folder, "rnanue", "rep2_forward_preproc_interactions.txt"), stringtype=String)),
+        DataFrame(CSV.File(joinpath(assets_folder, "rnanue", "rep3_forward_preproc_interactions.txt"), stringtype=String)),
+        DataFrame(CSV.File(joinpath(assets_folder, "rnanue", "rep4_forward_preproc_interactions.txt"), stringtype=String)),
+        DataFrame(CSV.File(joinpath(assets_folder, "rnanue", "rep5_forward_preproc_interactions.txt"), stringtype=String)),
+        DataFrame(CSV.File(joinpath(assets_folder, "rnanue", "rep6_forward_preproc_interactions.txt"), stringtype=String)),
+    )
+
+    overlaps_il, overlaps_il_rnanue = compare_interaction_sites(interact_il, rnanue_df_il, df_literature.sRNA, df_literature.target,
         df_literature.sRNA_from, df_literature.sRNA_to, df_literature.target_from, df_literature.target_to,
         window_len)
     classes_il, pvalues_il = string_class_and_pvalue(overlaps_il)
+    classes_il_rnanue, _ = string_class_and_pvalue(overlaps_il_rnanue)
     counts_il, combined_pvalues_il = interaction_counts(interact_il, df_literature.sRNA, df_literature.target)
     df_out.ironlimit_counts = counts_il
     #df_out.ironlimit_cpvalue = combined_pvalues_il
     df_out.ironlimit_pvalue = pvalues_il
     df_out.ironlimit_class = classes_il
+    df_out.ironlimit_rnanue = classes_il_rnanue
 
-    overlaps_sp = compare_interaction_sites(interact_sp, df_literature.sRNA, df_literature.target,
+    overlaps_sp, overlaps_sp_rnanue = compare_interaction_sites(interact_sp, rnanue_df_sp, df_literature.sRNA, df_literature.target,
         df_literature.sRNA_from, df_literature.sRNA_to, df_literature.target_from, df_literature.target_to,
         window_len)
     classes_sp, pvalues_sp = string_class_and_pvalue(overlaps_sp)
+    classes_sp_rnanue, _ = string_class_and_pvalue(overlaps_sp_rnanue)
     counts_sp, combined_pvalues_sp = interaction_counts(interact_sp, df_literature.sRNA, df_literature.target)
     df_out.stationary_counts = counts_sp
     #df_out.stationary_cpvalue = combined_pvalues_sp
     df_out.stationary_pvalue = pvalues_sp
     df_out.stationary_class = classes_sp
+    df_out.stationary_rnanue = classes_sp_rnanue
 
-    overlaps_lp = compare_interaction_sites(interact_lp, df_literature.sRNA, df_literature.target,
+    overlaps_lp, overlaps_lp_rnanue = compare_interaction_sites(interact_lp, rnanue_df_lp, df_literature.sRNA, df_literature.target,
         df_literature.sRNA_from, df_literature.sRNA_to, df_literature.target_from, df_literature.target_to,
         window_len)
     classes_lp, pvalues_lp = string_class_and_pvalue(overlaps_lp)
+    classes_lp_rnanue, _ = string_class_and_pvalue(overlaps_lp_rnanue)
     counts_lp, combined_pvalues_lp = interaction_counts(interact_lp, df_literature.sRNA, df_literature.target)
     df_out.exponential_counts = counts_lp
     #df_out.exponential_cpvalue = combined_pvalues_lp
     df_out.exponential_pvalue = pvalues_lp
     df_out.exponential_class = classes_lp
+    df_out.exponential_rnanue = classes_lp_rnanue
 
     CSV.write("table_s1_coli.csv", df_out)
 end
