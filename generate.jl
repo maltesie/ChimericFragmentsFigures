@@ -55,45 +55,45 @@ interact_yeast_nop56 = InteractionsNew(joinpath(@__DIR__, "data", "jlds", "NOP56
 interact_yeast_nop58 = InteractionsNew(joinpath(@__DIR__, "data", "jlds", "NOP58_glucose.jld2"))
 
 include(joinpath(source_folder, "figure_1.jl"))
-#plot_figure_1(joinpath(data_folder, "figure_1"))
+plot_figure_1(joinpath(data_folder, "figure_1"))
 
 include(joinpath(source_folder, "figure_2_figure_s3.jl"))
-#plot_figure_2(joinpath(data_folder, "figure_2"), [15,25,40], 15, 40, 0, 1, 100000, [12,14,15,16,18], [14,16,17,18,20], 5000000,
-#    [(12, 14)=>"FPR=0.0143", (15, 14)=>"FPR=0.0210", (12, 17)=>"FPR=0.0013",  (15, 18)=>"FPR=0.0012"])
+plot_figure_2(joinpath(data_folder, "figure_2"), [15,25,40], 15, 40, 0, 1, 100000, [12,14,15,16,18], [14,16,17,18,20], 5000000,
+    [(12, 14)=>"FPR=0.0143", (15, 14)=>"FPR=0.0210", (12, 17)=>"FPR=0.0013",  (15, 18)=>"FPR=0.0012"])
 
 include(joinpath(source_folder, "figure_3.jl"))
-#plot_figure_3(joinpath(data_folder, "figure_3"), interact_lcd, 100000, (30,0), (4,5,0,7,8,3), [(12, 14), (15, 14), (12, 17),  (15, 18)])
+plot_figure_3(joinpath(data_folder, "figure_3"), interact_lcd, 100000, (30,0), (4,5,0,7,8,3), [(12, 14), (15, 14), (12, 17),  (15, 18)])
 
 include(joinpath(source_folder, "figure_4.jl"))
-#plot_figure_4(joinpath(data_folder, "figure_4"))
+plot_figure_4(joinpath(data_folder, "figure_4"))
 
 include(joinpath(source_folder, "figure_5.jl"))
-#plot_figure_5(joinpath(data_folder, "figure_5"), interact_hcd)
+plot_figure_5(joinpath(data_folder, "figure_5"), interact_hcd)
 #all_srna_aggregation_plots(interact_lcd, interact_hcd)
 
 include(joinpath(source_folder, "figure_6.jl"))
-#plot_figure_6(joinpath(data_folder, "figure_6"), interact_lcd)
+plot_figure_6(joinpath(data_folder, "figure_6"), interact_lcd)
 
 include(joinpath(source_folder, "figure_s1.jl"))
-#plot_figure_s1(joinpath(data_folder, "figure_s1"))
+plot_figure_s1(joinpath(data_folder, "figure_s1"))
 
 include(joinpath(source_folder, "figure_s2.jl"))
-#plot_figure_s2(joinpath(data_folder, "figure_s2"))
+plot_figure_s2(joinpath(data_folder, "figure_s2"))
 
 include(joinpath(source_folder, "figure_s4.jl"))
-#plot_figure_s4([interact_lcd, interact_hcd], [interact_lp, interact_sp, interact_il],
-#    [interact_clash_exp, interact_clash_trans, interact_clash_stat], [interact_subtilis_ligrseq], [interact_salmonella],
-#    [interact_pseudomonas_exp, interact_pseudomonas_stat], [interact_epec_wt, interact_epec_cond],
-#    [[2400, 1800], [1027, 1844, 1947], [498, 1066, 706], [10462], [1170], [997, 702], [744, 971]], 0.25)
+plot_figure_s4([interact_lcd, interact_hcd], [interact_lp, interact_sp, interact_il],
+    [interact_clash_exp, interact_clash_trans, interact_clash_stat], [interact_subtilis_ligrseq], [interact_salmonella],
+    [interact_pseudomonas_exp, interact_pseudomonas_stat], [interact_epec_wt, interact_epec_cond],
+    [[2400, 1800], [1027, 1844, 1947], [498, 1066, 706], [10462], [1170], [997, 702], [744, 971]], 0.25)
 
 include(joinpath(source_folder, "figure_s5.jl"))
 plot_figure_s5(interact_hcd, interact_lcd; bp_interval_len=30, fdr_cut=0.25,
     probmass_min=0.4, probmass_max=0.8, min_partners=3, min_ligpoints=10, connect_within=1)
 
 include(joinpath(source_folder, "figure_s6.jl"))
-#plot_figure_s6(joinpath(data_folder, "figure_s6"), interact_lcd, [interact_yeast_nop1, interact_yeast_nop56, interact_yeast_nop58], 0.25)
+plot_figure_s6(joinpath(data_folder, "figure_s6"), interact_lcd, [interact_yeast_nop1, interact_yeast_nop56, interact_yeast_nop58], 0.25)
 
 include(joinpath(source_folder, "table_s1.jl"))
-#make_table_s1(joinpath(data_folder, "table_s1"), interact_hcd, interact_lcd, 30)
-#make_table_s1_coli(joinpath(data_folder, "table_s1"), interact_il, interact_sp, interact_lp, 30)
-#make_table_s1_clash(joinpath(data_folder, "table_s1"), interact_clash_exp, interact_clash_trans, interact_clash_stat, 30)
+make_table_s1(joinpath(data_folder, "table_s1"), interact_hcd, interact_lcd, 30)
+make_table_s1_coli(joinpath(data_folder, "table_s1"), interact_il, interact_sp, interact_lp, 30)
+make_table_s1_clash(joinpath(data_folder, "table_s1"), interact_clash_exp, interact_clash_trans, interact_clash_stat, 30)
