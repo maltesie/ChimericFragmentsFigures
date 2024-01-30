@@ -221,6 +221,9 @@ function plot_figure_5(assets_folder::String, interact::InteractionsNew)
         end
     end
 
+    #titlelayout = GridLayout(fig[0, 1], halign = :left, tellwidth = false)
+    #Label(titlelayout[1, 1], "Fig. 5", halign = :left, fontsize=30)
+
     save("figure_5.pdf", fig)
     save("figure_5.png", fig, px_per_unit = 2)
 

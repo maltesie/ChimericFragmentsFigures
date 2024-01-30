@@ -251,6 +251,9 @@ function plot_figure_6(assets_folder::String, interact::InteractionsNew)
     Label(gc[1,1, TopLeft()], "c", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
     Label(gc[9,1, TopLeft()], "f", fontsize = 26, font = :bold, padding = (0, 5, 5, 0), halign = :right)
 
+    #titlelayout = GridLayout(fig[0, 1], halign = :left, tellwidth = false)
+    #Label(titlelayout[1, 1], "Fig. 6", halign = :left, fontsize=30)
+
     save("figure_6.pdf", fig)
     save("figure_6.svg", fig)
     save("figure_6.png", fig, px_per_unit = 2)

@@ -177,6 +177,9 @@ function plot_figure_3(assets_folder::String, interact::InteractionsNew, nseqs::
     Label(fig[3,1, TopLeft()], "f", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
     Label(fig[3,3, TopLeft()], "g", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
+    #titlelayout = GridLayout(fig[0, 1], halign = :left, tellwidth = false)
+    #Label(titlelayout[1, 1], "Fig. 3", halign = :left, fontsize=30)
+
     save("figure_3.pdf", fig)
     save("figure_3.png", fig, px_per_unit = 2)
 end
