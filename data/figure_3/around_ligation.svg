@@ -15,7 +15,373 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
-     id="defs6" />
+     id="defs6">
+    <marker
+       style="overflow:visible"
+       id="Triangle-2-87-9-0"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-1-2-9-2" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle-2-87-9-0-6"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-1-2-9-2-1" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle-2-87-9-0-3"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-1-2-9-2-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle-2-87-9-0-6-7"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-1-2-9-2-1-5" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle-2-87-9-0-2"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-1-2-9-2-9" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle-2-87-9-0-6-1"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-1-2-9-2-1-2" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle-2-87-9-0-9"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-1-2-9-2-3" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle-2-87-9-0-6-6"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-1-2-9-2-1-0" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle-2-87-9-0-61-3"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-1-2-9-2-5-3" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle-2-87-9-0-6-9-3"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-1-2-9-2-1-4-8" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle-2-87-9-0-3-5-6"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-1-2-9-2-6-9-0" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle-2-87-9-0-6-7-7-4"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-1-2-9-2-1-5-7-8" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle-2-87-9-0-6-7-7-4-6"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-1-2-9-2-1-5-7-8-9" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Mend-1-1-2-7"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path59630-49-1-7-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle-2-87-9-0-6-9-3-0"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-1-2-9-2-1-4-8-5" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle-2-87-9-0-6-9-3-0-0"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-1-2-9-2-1-4-8-5-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle-2-87-9-0-6-9-3-0-0-0"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-1-2-9-2-1-4-8-5-6-4" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle-2-87-9-0-6-9-3-0-04"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-1-2-9-2-1-4-8-5-2" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Mend-1-1-2-7-4"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path59630-49-1-7-6-4" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Mend-1-1-2-7-4-6"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path59630-49-1-7-6-4-0" />
+    </marker>
+  </defs>
   <sodipodi:namedview
      id="namedview4"
      pagecolor="#ffffff"
@@ -25,13 +391,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      showgrid="false"
-     inkscape:zoom="2.0055991"
-     inkscape:cx="125.39894"
-     inkscape:cy="107.44919"
-     inkscape:window-width="2490"
-     inkscape:window-height="1376"
-     inkscape:window-x="70"
-     inkscape:window-y="27"
+     inkscape:zoom="1"
+     inkscape:cx="204"
+     inkscape:cy="619"
+     inkscape:window-width="2560"
+     inkscape:window-height="1403"
+     inkscape:window-x="2560"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="g8" />
   <g
@@ -43,8 +409,8 @@
        id="rect849"
        width="264.00211"
        height="177.56398"
-       x="28.451248"
-       y="77.69632"
+       x="265.9053"
+       y="-112.72659"
        inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/data/figure_3/combined.png"
        inkscape:export-xdpi="241.31964"
        inkscape:export-ydpi="241.31964" />
@@ -54,8 +420,8 @@
        preserveAspectRatio="none"
        xlink:href="data:image/png;base64,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 AAAASUVORK5CYII= "
        id="image10"
-       x="42.068913"
-       y="190.80334"
+       x="279.52298"
+       y="0.38043427"
        inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/data/figure_3/combined.png"
        inkscape:export-xdpi="241.31964"
        inkscape:export-ydpi="241.31964" />
@@ -65,38 +431,1582 @@
        preserveAspectRatio="none"
        xlink:href="data:image/png;base64,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 "
        id="image835"
-       x="43.364964"
-       y="95.476044"
+       x="280.81903"
+       y="-94.946869"
        inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/data/figure_3/combined.png"
        inkscape:export-xdpi="241.31964"
        inkscape:export-ydpi="241.31964" />
     <text
        xml:space="preserve"
        style="font-weight:bold;font-size:12px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'"
-       x="42.880444"
-       y="90.229919"
+       x="280.3345"
+       y="-100.19299"
        id="text4361"
        inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/data/figure_3/combined.png"
        inkscape:export-xdpi="241.31964"
        inkscape:export-ydpi="241.31964"><tspan
          sodipodi:role="line"
          id="tspan4359"
-         x="42.880444"
-         y="90.229919"
+         x="280.3345"
+         y="-100.19299"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:sans-serif;-inkscape-font-specification:sans-serif">random:</tspan></text>
     <text
        xml:space="preserve"
        style="font-weight:bold;font-size:12px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'"
-       x="42.31863"
-       y="183.14967"
+       x="279.77271"
+       y="-7.2732372"
        id="text9051"
        inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/data/figure_3/combined.png"
        inkscape:export-xdpi="241.31964"
        inkscape:export-ydpi="241.31964"><tspan
          sodipodi:role="line"
-         x="42.31863"
-         y="183.14967"
+         x="279.77271"
+         y="-7.2732372"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:sans-serif;-inkscape-font-specification:sans-serif"
          id="tspan40405">experiment:</tspan></text>
+    <rect
+       style="fill:#ff0000;fill-opacity:0.333333;stroke:none;stroke-width:9.80688;stroke-dasharray:none;stroke-opacity:1"
+       id="rect14-8-06"
+       width="43.014278"
+       height="33.184032"
+       x="-262.16281"
+       y="238.55095"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <rect
+       style="fill:#77d052;fill-opacity:0.466667;stroke:none;stroke-width:13.7215;stroke-dasharray:none;stroke-opacity:1"
+       id="rect14-8-0-1"
+       width="84.207947"
+       height="33.184032"
+       x="-282.93451"
+       y="383.20932"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.10523;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle-2-87-9-0)"
+       d="m -219.1245,281.44168 -0.0207,-1.96255"
+       id="path10-7-82-6-7"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.10523;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle-2-87-9-0-6)"
+       d="m -218.95972,228.23378 -0.0207,1.96255"
+       id="path10-7-82-6-7-3"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.10523;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle-2-87-9-0-2)"
+       d="m -198.75351,426.42693 -0.0207,-1.96255"
+       id="path10-7-82-6-7-7"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.10523;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle-2-87-9-0-6-1)"
+       d="m -198.58873,373.21903 -0.0207,1.96255"
+       id="path10-7-82-6-7-3-0"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.10523;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle-2-87-9-0-9)"
+       d="m -283.01687,426.42696 -0.0207,-1.96255"
+       id="path10-7-82-6-7-6"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.10523;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle-2-87-9-0-6-6)"
+       d="m -282.85209,373.21906 -0.0207,1.96255"
+       id="path10-7-82-6-7-3-2"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.10523;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle-2-87-9-0-3)"
+       d="m -262.30689,281.5694 -0.0207,-1.96255"
+       id="path10-7-82-6-7-35"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.10523;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle-2-87-9-0-6-7)"
+       d="m -262.31839,228.3615 -0.0207,1.96255"
+       id="path10-7-82-6-7-3-6"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:13.3333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:1.14128"
+       x="-373.30453"
+       y="261.83228"
+       id="text4361-9-7"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         id="tspan4359-6-7"
+         x="-373.30453"
+         y="261.83228"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:1.14128">random</tspan></text>
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m -255.41084,243.71189 -0.0862,22.92415"
+       id="path10-7-8-53-12"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m -247.99452,243.71188 -0.0862,22.92415"
+       id="path10-7-8-53-8-8"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m -225.74556,243.71189 -0.0862,22.92415"
+       id="path10-7-8-53-83-9"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m -240.57819,243.71188 -0.0862,22.92415"
+       id="path10-7-8-53-1-3"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:4.67787;stroke-dasharray:none;stroke-opacity:1"
+       d="m -311.45217,236.3057 187.59121,0.028"
+       id="path10-7-8-5-9-6"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#5588d4;stroke-width:5.62991;stroke-dasharray:none;stroke-opacity:0.686275"
+       d="m -363.90969,661.04205 255.20719,0.0299"
+       id="path10-7-8-5-9-6-4"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#f23d54;stroke-width:5.63438;stroke-dasharray:none;stroke-opacity:0.658824"
+       d="m -108.71117,661.07191 255.6086,0.0299"
+       id="path10-7-8-5-9-6-0"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:4.67787;stroke-dasharray:none;stroke-opacity:1"
+       d="m -373.83546,273.41491 187.5912,0.028"
+       id="path10-7-8-5-7-8"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.668688;stroke-dasharray:none;stroke-opacity:1"
+       d="m -282.95692,416.08256 0.003,-32.87474"
+       id="path10-7-8-5-7-8-9"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.668688;stroke-dasharray:none;stroke-opacity:1"
+       d="m -198.84893,416.48478 0.003,-32.87474"
+       id="path10-7-8-5-7-8-9-2"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.668688;stroke-dasharray:none;stroke-opacity:1"
+       d="m -219.03335,271.16656 0.003,-32.87474"
+       id="path10-7-8-5-7-8-9-2-0"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.668688;stroke-dasharray:none;stroke-opacity:1"
+       d="m -262.35494,271.69542 0.003,-32.87474"
+       id="path10-7-8-5-7-8-9-2-2"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <text
+       xml:space="preserve"
+       style="font-size:12.1737px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:9.04462;stroke-dasharray:none;stroke-opacity:1"
+       x="-314.24152"
+       y="228.76862"
+       id="text11-1"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         id="tspan11-0"
+         x="-314.24152"
+         y="228.76862"
+         style="font-size:12.1737px;stroke-width:9.04462">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12.1737px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:9.04462;stroke-dasharray:none;stroke-opacity:1"
+       x="-128.87189"
+       y="229.63622"
+       id="text12-5"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         id="tspan12-1"
+         x="-128.87189"
+         y="229.63622"
+         style="font-size:12.1737px;stroke-width:9.04462">30</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12.1737px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:9.04462;stroke-dasharray:none;stroke-opacity:1"
+       x="-376.69153"
+       y="289.18137"
+       id="text13-1"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         id="tspan13-0"
+         x="-376.69153"
+         y="289.18137"
+         style="font-size:12.1737px;stroke-width:9.04462">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12.1737px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:9.04462;stroke-dasharray:none;stroke-opacity:1"
+       x="-191.82053"
+       y="289.3606"
+       id="text14-8"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         id="tspan14-5"
+         x="-191.82053"
+         y="289.3606"
+         style="font-size:12.1737px;stroke-width:9.04462">30</tspan></text>
+    <text
+       xml:space="preserve"
+       style="baseline-shift:baseline;white-space:pre;inline-size:0;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.925;stroke-dasharray:none;stroke-opacity:1"
+       x="93.520004"
+       y="310.73337"
+       id="text14-8-7"
+       transform="matrix(1.1412772,0,0,1.1412772,-150.60774,-348.77271)"><tspan
+         id="tspan14-5-5"
+         x="93.520004"
+         y="310.73337"
+         style="baseline-shift:baseline">r<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan18">1</tspan> = 7</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12.1737px;white-space:pre;inline-size:0;fill:#000000;fill-opacity:1;stroke:none;stroke-width:9.04462;stroke-dasharray:none;stroke-opacity:1"
+       x="-32.573532"
+       y="49.54211"
+       id="text14-8-6"><tspan
+         sodipodi:role="line"
+         id="tspan73458"
+         x="-84.186928"
+         y="49.54211"
+         style="text-align:center;text-anchor:middle"><tspan
+           id="tspan14-5-9"
+           x="-84.186928"
+           y="49.54211"
+           style="text-align:center;baseline-shift:baseline;text-anchor:middle;stroke-width:9.04462">ends of </tspan></tspan><tspan
+         sodipodi:role="line"
+         id="tspan73460"
+         x="-84.186928"
+         y="49.54211"
+         style="text-align:center;text-anchor:middle"><tspan
+           x="-84.186928"
+           y="49.54211"
+           style="text-align:center;baseline-shift:baseline;text-anchor:middle;stroke-width:9.04462"
+           id="tspan73462">complementarity</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:12.1737px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:1.14128"
+       x="-136.48976"
+       y="394.99493"
+       id="text4361-6-2"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         id="tspan4359-9-2"
+         x="-136.48976"
+         y="394.99493"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.1737px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:1.14128">ligation</tspan><tspan
+         sodipodi:role="line"
+         x="-136.48976"
+         y="410.21207"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.1737px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:1.14128"
+         id="tspan16-4">point</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:13.3333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:1.14128"
+       x="-372.82928"
+       y="404.69342"
+       id="text9051-3-5"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         x="-372.82928"
+         y="404.69342"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:1.14128"
+         id="tspan40405-0-4">experiment</tspan></text>
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m -236.76435,388.57595 -0.0862,22.92415"
+       id="path10-7-8-53-9-6"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m -229.34803,388.57594 -0.0862,22.92415"
+       id="path10-7-8-53-8-2-2"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m -207.09907,388.57595 -0.0862,22.92415"
+       id="path10-7-8-53-83-5-5"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m -221.93171,388.57594 -0.0862,22.92415"
+       id="path10-7-8-53-1-4-8"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <ellipse
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:13.8634;stroke-dasharray:none;stroke-opacity:1"
+       id="path11-0-6"
+       cx="-214.43712"
+       cy="400.24118"
+       rx="2.4677925"
+       ry="2.4227884"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <ellipse
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:13.8634;stroke-dasharray:none;stroke-opacity:1"
+       id="path11-0-6-6"
+       cx="-252.73975"
+       cy="400.61804"
+       rx="2.4677925"
+       ry="2.4227884"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m -274.97028,388.6899 -0.0862,22.92415"
+       id="path10-7-8-53-3-2"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m -267.55396,388.68988 -0.0862,22.92416"
+       id="path10-7-8-53-8-3-8"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m -245.30501,388.6899 -0.0862,22.92415"
+       id="path10-7-8-53-83-8-4"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m -260.13764,388.68988 -0.0862,22.92416"
+       id="path10-7-8-53-1-6-7"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:4.67787;stroke-dasharray:none;stroke-opacity:1"
+       d="m -372.02293,381.33681 187.5912,0.028"
+       id="path10-7-8-5-9-0-2"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:4.67787;stroke-dasharray:none;stroke-opacity:1"
+       d="m -372.77726,418.44602 187.59121,0.028"
+       id="path10-7-8-5-7-4-4"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <text
+       xml:space="preserve"
+       style="font-size:12.1737px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:9.04462;stroke-dasharray:none;stroke-opacity:1"
+       x="-374.81229"
+       y="373.79968"
+       id="text11-8-6"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         id="tspan11-8-2"
+         x="-374.81229"
+         y="373.79968"
+         style="font-size:12.1737px;stroke-width:9.04462">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12.1737px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:9.04462;stroke-dasharray:none;stroke-opacity:1"
+       x="-189.44266"
+       y="374.66727"
+       id="text12-9-9"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         id="tspan12-7-9"
+         x="-189.44266"
+         y="374.66727"
+         style="font-size:12.1737px;stroke-width:9.04462">30</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12.1737px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:9.04462;stroke-dasharray:none;stroke-opacity:1"
+       x="-375.6333"
+       y="434.61487"
+       id="text13-7-0"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         id="tspan13-6-8"
+         x="-375.6333"
+         y="434.61487"
+         style="font-size:12.1737px;stroke-width:9.04462">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12.1737px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:9.04462;stroke-dasharray:none;stroke-opacity:1"
+       x="-190.76233"
+       y="434.39175"
+       id="text14-4-1"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         id="tspan14-3-3"
+         x="-190.76233"
+         y="434.39175"
+         style="font-size:12.1737px;stroke-width:9.04462">30</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12.1737px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:9.04462;stroke-dasharray:none;stroke-opacity:1"
+       x="543.53839"
+       y="831.56055"
+       id="text13-7-0-1"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         id="tspan13-6-8-1"
+         x="543.53839"
+         y="831.56055"
+         style="font-size:12.1737px;stroke-width:9.04462">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12.1737px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:9.04462;stroke-dasharray:none;stroke-opacity:1"
+       x="728.40936"
+       y="831.33746"
+       id="text14-4-1-0"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         id="tspan14-3-3-3"
+         x="728.40936"
+         y="831.33746"
+         style="font-size:12.1737px;stroke-width:9.04462">30</tspan></text>
+    <g
+       id="g16-1"
+       transform="matrix(0.80080051,0,0,0.80080051,-20.090567,461.04534)"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693">
+      <path
+         style="fill:none;fill-opacity:0.461748;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+         d="m -202.59159,-96.659877 c 6.2432,9.68205 16.047,17.327426 27.40966,19.825814"
+         id="path16-0" />
+      <path
+         style="fill:none;fill-opacity:0.461748;stroke:#000000;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+         d="m -202.53065,-57.391795 c 6.2432,-9.68205 16.047,-17.327426 27.40966,-19.825814"
+         id="path16-5-3" />
+    </g>
+    <ellipse
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:13.8634;stroke-dasharray:none;stroke-opacity:1"
+       id="path11-0-6-5"
+       cx="-233.17389"
+       cy="254.48611"
+       rx="2.4677925"
+       ry="2.4227884"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:18.6667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'"
+       x="-714.94299"
+       y="-13.639168"
+       id="text7166"><tspan
+         sodipodi:role="line"
+         id="tspan7164"
+         x="-714.94299"
+         y="-13.639168"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6667px;font-family:sans-serif;-inkscape-font-specification:sans-serif">RNA1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:19.9058px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:1.06638"
+       x="-364.17416"
+       y="652.41998"
+       id="text7166-4"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         id="tspan7164-8"
+         x="-364.17416"
+         y="652.41998"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.9058px;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:1.06638">RNA1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:18.6667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'"
+       x="-714.94299"
+       y="21.90139"
+       id="text11568"><tspan
+         sodipodi:role="line"
+         id="tspan11566"
+         x="-714.94299"
+         y="21.90139"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.6667px;font-family:sans-serif;-inkscape-font-specification:sans-serif">RNA2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:19.9058px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:1.06638"
+       x="91.01609"
+       y="651.92841"
+       id="text11568-1"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         id="tspan11566-2"
+         x="91.01609"
+         y="651.92841"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:19.9058px;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:1.06638">RNA2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:13.3333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'"
+       x="-241.02148"
+       y="323.306"
+       id="text100190"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         x="-241.02148"
+         y="323.306"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle"
+         id="tspan108454">complementarity</tspan><tspan
+         sodipodi:role="line"
+         x="-241.02148"
+         y="339.97263"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle"
+         id="tspan126942">regions</tspan></text>
+    <g
+       id="g159640"
+       style="stroke-width:1.1;stroke-miterlimit:4;stroke-dasharray:none"
+       transform="translate(0.66619272,-1.85129)"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m -262.97309,283.42069 c 11.16805,5.08485 17.62361,16.82399 21.85851,28.09603"
+         id="path4414-7-5-6"
+         inkscape:export-filename="/home/abc/interactive_visualization.png"
+         inkscape:export-xdpi="99.273491"
+         inkscape:export-ydpi="99.273491" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m -219.25557,283.40584 c -11.16804,5.08488 -17.62361,16.82402 -21.8585,28.09604"
+         id="path4414-7-5-8-0"
+         inkscape:export-filename="/home/abc/interactive_visualization.png"
+         inkscape:export-xdpi="99.273491"
+         inkscape:export-ydpi="99.273491" />
+    </g>
+    <g
+       id="g1969-6"
+       transform="matrix(0,-0.8388623,1.0044394,0,-574.9672,1810.725)"
+       style="stroke-width:1.19835;stroke-miterlimit:4;stroke-dasharray:none"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693">
+      <g
+         id="g28952-3-1"
+         transform="matrix(1.4034608,0,0,1.4034608,686.59669,-86.172305)"
+         style="stroke-width:0.853857;stroke-miterlimit:4;stroke-dasharray:none"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/scheme3_same_length.png"
+         inkscape:export-xdpi="98.284576"
+         inkscape:export-ydpi="98.284576">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.853857;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 731.79166,328.3934 c 3.97448,-15.1868 13.15015,-23.96536 21.96072,-29.72415"
+           id="path4414-7-5-6-8"
+           inkscape:export-filename="/home/abc/interactive_visualization.png"
+           inkscape:export-xdpi="99.273491"
+           inkscape:export-ydpi="99.273491" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.853857;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 731.78006,268.9444 c 3.97449,15.1868 13.15016,23.96536 21.96072,29.72415"
+           id="path4414-7-5-8-0-7"
+           inkscape:export-filename="/home/abc/interactive_visualization.png"
+           inkscape:export-xdpi="99.273491"
+           inkscape:export-ydpi="99.273491" />
+      </g>
+    </g>
+    <rect
+       style="fill:#ff9500;fill-opacity:0.33333334;stroke:none;stroke-width:9.80688;stroke-dasharray:none;stroke-opacity:1"
+       id="rect14-8-06-6"
+       width="43.014278"
+       height="33.184032"
+       x="417.59869"
+       y="279.68604"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <rect
+       style="fill:#77d052;fill-opacity:0.466667;stroke:none;stroke-width:13.7215;stroke-dasharray:none;stroke-opacity:1"
+       id="rect14-8-0-1-7"
+       width="84.207947"
+       height="33.184032"
+       x="394.83261"
+       y="375.97964"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:13.3333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:1.14128"
+       x="306.457"
+       y="302.96664"
+       id="text4361-9-7-2"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         id="tspan4359-6-7-9"
+         x="306.457"
+         y="302.96664"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:1.14128">random model</tspan></text>
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m 424.35068,284.84642 -0.0862,22.92415"
+       id="path10-7-8-53-12-3"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m 431.767,284.84641 -0.0862,22.92415"
+       id="path10-7-8-53-8-8-9"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m 454.01596,284.84642 -0.0862,22.92415"
+       id="path10-7-8-53-83-9-0"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m 439.18333,284.84641 -0.0862,22.92415"
+       id="path10-7-8-53-1-3-8"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:4.67787;stroke-dasharray:none;stroke-opacity:1"
+       d="m 368.30936,277.44023 187.5912,0.028"
+       id="path10-7-8-5-9-6-8"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:4.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 147.10054,454.75742 44.00069,0.0903"
+       id="path10-7-8-5-9-6-8-2"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:4.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 147.1102,491.41279 44.00069,0.0903"
+       id="path10-7-8-5-9-6-8-2-5"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:4.67787;stroke-dasharray:none;stroke-opacity:1"
+       d="m 305.92607,314.54944 187.59119,0.028"
+       id="path10-7-8-5-7-8-5"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.668688;stroke-dasharray:none;stroke-opacity:1"
+       d="m 394.8102,408.85289 0.003,-32.87474"
+       id="path10-7-8-5-7-8-9-0"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.668688;stroke-dasharray:none;stroke-opacity:1"
+       d="m 478.91819,409.25511 0.003,-32.87474"
+       id="path10-7-8-5-7-8-9-2-9"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.668688;stroke-dasharray:none;stroke-opacity:1"
+       d="m 460.72817,312.30109 0.003,-32.87474"
+       id="path10-7-8-5-7-8-9-2-0-6"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.668688;stroke-dasharray:none;stroke-opacity:1"
+       d="m 417.40658,312.58063 0.003,-32.87474"
+       id="path10-7-8-5-7-8-9-2-2-3"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <text
+       xml:space="preserve"
+       style="font-size:12.1737px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:9.04462;stroke-dasharray:none;stroke-opacity:1"
+       x="365.52002"
+       y="269.90399"
+       id="text11-1-8"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         id="tspan11-0-5"
+         x="365.52002"
+         y="269.90399"
+         style="font-size:12.1737px;stroke-width:9.04462">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12.1737px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:9.04462;stroke-dasharray:none;stroke-opacity:1"
+       x="550.88965"
+       y="270.77158"
+       id="text12-5-6"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         id="tspan12-1-1"
+         x="550.88965"
+         y="270.77158"
+         style="font-size:12.1737px;stroke-width:9.04462">30</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12.1737px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:9.04462;stroke-dasharray:none;stroke-opacity:1"
+       x="303.07001"
+       y="330.31552"
+       id="text13-1-1"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         id="tspan13-0-5"
+         x="303.07001"
+         y="330.31552"
+         style="font-size:12.1737px;stroke-width:9.04462">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12.1737px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:9.04462;stroke-dasharray:none;stroke-opacity:1"
+       x="487.94104"
+       y="330.49475"
+       id="text14-8-9"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         id="tspan14-5-8"
+         x="487.94104"
+         y="330.49475"
+         style="font-size:12.1737px;stroke-width:9.04462">30</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:12px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:1.21704"
+       x="-109.42406"
+       y="638.11725"
+       id="text4361-6-2-4-2"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         x="-109.42406"
+         y="638.11725"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:1.21704"
+         id="tspan16-4-1-7">ligation point</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:12.1737px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:1.14128"
+       x="639.99634"
+       y="851.46979"
+       id="text4361-6-2-4-2-6-1"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         x="639.99634"
+         y="851.46979"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.1737px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:1.14128"
+         id="tspan16-4-1-7-2-3">position in segment</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:13.3333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:1.14128"
+       x="304.93784"
+       y="397.46375"
+       id="text9051-3-5-0"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         x="304.93784"
+         y="397.46375"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:1.14128"
+         id="tspan40405-0-4-3">experiment</tspan></text>
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m 441.00277,381.34628 -0.0862,22.92415"
+       id="path10-7-8-53-9-6-0"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m 448.41909,381.34627 -0.0862,22.92415"
+       id="path10-7-8-53-8-2-2-4"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m 470.66805,381.34628 -0.0862,22.92415"
+       id="path10-7-8-53-83-5-5-4"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m 455.83541,381.34627 -0.0862,22.92415"
+       id="path10-7-8-53-1-4-8-4"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <ellipse
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:13.8634;stroke-dasharray:none;stroke-opacity:1"
+       id="path11-0-6-4"
+       cx="463.33002"
+       cy="393.01151"
+       rx="2.4677925"
+       ry="2.4227884"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <ellipse
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:13.8634;stroke-dasharray:none;stroke-opacity:1"
+       id="path11-0-6-6-7"
+       cx="425.02737"
+       cy="393.38837"
+       rx="2.4677925"
+       ry="2.4227884"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m 402.79684,381.46023 -0.0862,22.92415"
+       id="path10-7-8-53-3-2-6"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m 410.21316,381.46021 -0.0862,22.92416"
+       id="path10-7-8-53-8-3-8-3"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m 432.46211,381.46023 -0.0862,22.92415"
+       id="path10-7-8-53-83-8-4-1"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+       d="m 417.62948,381.46021 -0.0862,22.92416"
+       id="path10-7-8-53-1-6-7-7"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:4.67787;stroke-dasharray:none;stroke-opacity:1"
+       d="m 305.74419,374.10714 187.5912,0.028"
+       id="path10-7-8-5-9-0-2-5"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:4.67787;stroke-dasharray:none;stroke-opacity:1"
+       d="m 304.98986,411.21635 187.59121,0.028"
+       id="path10-7-8-5-7-4-4-9"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <text
+       xml:space="preserve"
+       style="font-size:12.1737px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:9.04462;stroke-dasharray:none;stroke-opacity:1"
+       x="302.95483"
+       y="366.57001"
+       id="text11-8-6-6"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         id="tspan11-8-2-2"
+         x="302.95483"
+         y="366.57001"
+         style="font-size:12.1737px;stroke-width:9.04462">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12.1737px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:9.04462;stroke-dasharray:none;stroke-opacity:1"
+       x="488.32446"
+       y="367.43759"
+       id="text12-9-9-1"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         id="tspan12-7-9-7"
+         x="488.32446"
+         y="367.43759"
+         style="font-size:12.1737px;stroke-width:9.04462">30</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12.1737px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:9.04462;stroke-dasharray:none;stroke-opacity:1"
+       x="302.13382"
+       y="427.38519"
+       id="text13-7-0-8"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         id="tspan13-6-8-5"
+         x="302.13382"
+         y="427.38519"
+         style="font-size:12.1737px;stroke-width:9.04462">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12.1737px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:9.04462;stroke-dasharray:none;stroke-opacity:1"
+       x="487.00479"
+       y="427.16208"
+       id="text14-4-1-7"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         id="tspan14-3-3-4"
+         x="487.00479"
+         y="427.16208"
+         style="font-size:12.1737px;stroke-width:9.04462">30</tspan></text>
+    <ellipse
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:13.8634;stroke-dasharray:none;stroke-opacity:1"
+       id="path11-0-6-5-9"
+       cx="446.58768"
+       cy="295.6207"
+       rx="2.4677925"
+       ry="2.4227884"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.10523;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle-2-87-9-0-61-3)"
+       d="m 190.65855,499.64204 -0.0207,-1.96255"
+       id="path10-7-82-6-7-36-8"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.10523;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle-2-87-9-0-6-9-3)"
+       d="m 190.82333,446.80812 -0.0207,1.96255"
+       id="path10-7-82-6-7-3-5-9"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.10523;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle-2-87-9-0-3-5-6)"
+       d="m 147.47616,499.45811 -0.0207,-1.96255"
+       id="path10-7-82-6-7-35-8-7"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.10523;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle-2-87-9-0-6-7-7-4)"
+       d="m 147.46466,446.74885 -0.0207,1.96255"
+       id="path10-7-82-6-7-3-6-1-7"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.93221;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle-2-87-9-0-6-7-7-4-6)"
+       d="m -108.44122,648.35196 -0.0361,3.431"
+       id="path10-7-82-6-7-3-6-1-7-2"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.668688;stroke-dasharray:none;stroke-opacity:1"
+       d="m 190.7497,489.36692 0.003,-32.87474"
+       id="path10-7-8-5-7-8-9-2-0-6-3"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.58379;stroke-dasharray:none;stroke-opacity:1"
+       d="m 546.99456,817.42484 186.61455,0.003"
+       id="path10-7-8-5-7-8-9-2-0-6-3-08"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:12px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:1.14128"
+       x="-252.75777"
+       y="640.44342"
+       id="text4361-6-2-4-2-6-2-9"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         x="-252.75777"
+         y="640.44342"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:1.14128"
+         id="tspan16-4-1-7-2-96-3">30 nucleotides</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:12px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:1.14128"
+       x="35.074448"
+       y="640.44342"
+       id="text4361-6-2-4-2-6-2-9-2"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         x="35.074448"
+         y="640.44342"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:1.14128"
+         id="tspan16-4-1-7-2-96-3-9">30 nucleotides</tspan></text>
+    <g
+       id="g297880"
+       transform="translate(-2,-10.038818)"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693">
+      <path
+         style="fill:none;fill-opacity:1;stroke:#5588d4;stroke-width:4.67787;stroke-dasharray:none;stroke-opacity:0.686287"
+         d="m -107.36623,769.60789 187.591243,0.028"
+         id="path10-7-8-5-9-6-4-7"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#f23d54;stroke-width:4.67787;stroke-dasharray:none;stroke-opacity:0.657659"
+         d="m -107.33272,805.31111 187.591243,0.028"
+         id="path10-7-8-5-9-6-0-5"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <rect
+         style="fill:#77d052;fill-opacity:0.466667;stroke:none;stroke-width:13.0221;stroke-dasharray:none;stroke-opacity:1"
+         id="rect14-8-0-1-7-2"
+         width="80.669586"
+         height="31.198454"
+         x="-15.386118"
+         y="771.83771"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <text
+         xml:space="preserve"
+         style="font-weight:bold;font-size:12.1737px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:1.14128"
+         x="127.15547"
+         y="783.16162"
+         id="text4361-6-2-4"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693"><tspan
+           sodipodi:role="line"
+           id="tspan4359-9-2-8"
+           x="127.15547"
+           y="783.16162"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.1737px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:1.14128">ligation</tspan><tspan
+           sodipodi:role="line"
+           x="127.15547"
+           y="798.37872"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.1737px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:1.14128"
+           id="tspan16-4-1">point</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-weight:bold;font-size:12.1737px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:1.14128"
+         x="-15.588083"
+         y="756.80042"
+         id="text4361-6-2-4-2-6"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693"><tspan
+           sodipodi:role="line"
+           x="-15.588083"
+           y="756.80042"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.1737px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:1.14128"
+           id="tspan16-4-1-7-2">left</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-weight:bold;font-size:12.1737px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:1.14128"
+         x="65.1642"
+         y="756.80042"
+         id="text4361-6-2-4-2-6-9"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693"><tspan
+           sodipodi:role="line"
+           x="65.1642"
+           y="756.80042"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.1737px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:1.14128"
+           id="tspan16-4-1-7-2-9">right</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-weight:bold;font-size:13.3333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:1.14128"
+         x="-107.16592"
+         y="791.86847"
+         id="text9051-3-5-0-4"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693"><tspan
+           sodipodi:role="line"
+           x="-107.16592"
+           y="791.86847"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:1.14128"
+           id="tspan40405-0-4-3-0">experiment</tspan></text>
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+         d="m 29.407207,776.20889 -0.0862,22.92415"
+         id="path10-7-8-53-9-6-0-5"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+         d="m 36.823527,776.20888 -0.0862,22.92415"
+         id="path10-7-8-53-8-2-2-4-8"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+         d="m 59.072483,776.20889 -0.0862,22.92415"
+         id="path10-7-8-53-83-5-5-4-6"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+         d="m 44.239848,776.20888 -0.0862,22.92415"
+         id="path10-7-8-53-1-4-8-4-2"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <ellipse
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:13.8634;stroke-dasharray:none;stroke-opacity:1"
+         id="path11-0-6-4-8"
+         cx="51.734444"
+         cy="787.87408"
+         rx="2.4677925"
+         ry="2.4227884"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <ellipse
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:13.8634;stroke-dasharray:none;stroke-opacity:1"
+         id="path11-0-6-6-7-4"
+         cx="13.431816"
+         cy="788.25098"
+         rx="2.4677925"
+         ry="2.4227884"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+         d="m -8.7987228,776.32284 -0.0862,22.92415"
+         id="path10-7-8-53-3-2-6-7"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+         d="m -1.3824018,776.32282 -0.0862,22.92416"
+         id="path10-7-8-53-8-3-8-3-2"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+         d="m 20.866546,776.32284 -0.0862,22.92415"
+         id="path10-7-8-53-83-8-4-1-4"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.8669;stroke-dasharray:none;stroke-opacity:1"
+         d="m 6.033917,776.32282 -0.0862,22.92416"
+         id="path10-7-8-53-1-6-7-7-0"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <g
+         id="g16-1-1"
+         transform="matrix(0.80080051,0,0,0.80080051,243.55468,849.21204)"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693"
+         style="stroke-width:0.625624;stroke-miterlimit:4;stroke-dasharray:none">
+        <path
+           style="fill:none;fill-opacity:0.461748;stroke:#000000;stroke-width:0.625624;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m -202.59159,-96.659877 c 6.2432,9.68205 16.047,17.327426 27.40966,19.825814"
+           id="path16-0-8" />
+        <path
+           style="fill:none;fill-opacity:0.461748;stroke:#000000;stroke-width:0.625624;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m -202.53065,-57.391795 c 6.2432,-9.68205 16.047,-17.327426 27.40966,-19.825814"
+           id="path16-5-3-5" />
+      </g>
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.10523;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle-2-87-9-0-6-9-3-0)"
+         d="m 65.352493,761.48088 -0.0207,1.96255"
+         id="path10-7-82-6-7-3-5-9-1"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.740555;stroke-dasharray:none;stroke-opacity:1"
+         d="m 65.278863,807.63923 0.003,-40.34353"
+         id="path10-7-8-5-7-8-9-2-0-6-3-0"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.10523;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle-2-87-9-0-6-9-3-0-0)"
+         d="m -15.278943,761.44661 -0.0207,1.96255"
+         id="path10-7-82-6-7-3-5-9-1-6"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.740914;stroke-dasharray:none;stroke-opacity:1"
+         d="m -15.352573,807.64415 0.003,-40.38272"
+         id="path10-7-8-5-7-8-9-2-0-6-3-0-2"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+    </g>
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.668688;stroke-dasharray:none;stroke-opacity:1"
+       d="m 147.42811,489.89578 0.003,-32.87474"
+       id="path10-7-8-5-7-8-9-2-2-3-0"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:13.3333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'"
+       x="66.846123"
+       y="479.79208"
+       id="text100190-75"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693"><tspan
+         sodipodi:role="line"
+         x="66.846123"
+         y="479.79208"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle"
+         id="tspan126942-8">complementarity</tspan></text>
+    <g
+       id="g159640-8"
+       style="stroke-width:1.1;stroke-miterlimit:4;stroke-dasharray:none"
+       transform="translate(-226.2884,-401.35095)"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m -262.97309,283.42069 c 11.16805,5.08485 17.62361,16.82399 21.85851,28.09603"
+         id="path4414-7-5-6-3"
+         inkscape:export-filename="/home/abc/interactive_visualization.png"
+         inkscape:export-xdpi="99.273491"
+         inkscape:export-ydpi="99.273491" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m -219.25557,283.40584 c -11.16804,5.08488 -17.62361,16.82402 -21.8585,28.09604"
+         id="path4414-7-5-8-0-1"
+         inkscape:export-filename="/home/abc/interactive_visualization.png"
+         inkscape:export-xdpi="99.273491"
+         inkscape:export-ydpi="99.273491" />
+    </g>
+    <g
+       id="g297900"
+       transform="translate(-2,-10)"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693">
+      <path
+         style="fill:none;fill-opacity:1;stroke:#5588d4;stroke-width:4.67787;stroke-dasharray:none;stroke-opacity:0.686287"
+         d="m -322.26696,769.6019 187.59121,0.028"
+         id="path10-7-8-5-9-6-4-7-6"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <text
+         xml:space="preserve"
+         style="font-weight:bold;font-size:12.1737px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:1.14128"
+         x="-207.75726"
+         y="756.77783"
+         id="text4361-6-2-4-2-6-9-2"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693"><tspan
+           sodipodi:role="line"
+           x="-207.75726"
+           y="756.77783"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.1737px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:1.14128"
+           id="tspan16-4-1-7-2-9-2">right</tspan></text>
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.10523;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle-2-87-9-0-6-9-3-0-04)"
+         d="m -207.56898,761.45838 -0.0207,1.96255"
+         id="path10-7-82-6-7-3-5-9-1-0"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <text
+         xml:space="preserve"
+         style="font-weight:bold;font-size:12.1737px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:1.14128"
+         x="-251.09306"
+         y="756.7616"
+         id="text4361-6-2-4-2-6-2"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693"><tspan
+           sodipodi:role="line"
+           x="-251.09306"
+           y="756.7616"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.1737px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;stroke-width:1.14128"
+           id="tspan16-4-1-7-2-96">left</tspan></text>
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.10523;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle-2-87-9-0-6-9-3-0-0-0)"
+         d="m -250.78392,761.40778 -0.0207,1.96255"
+         id="path10-7-82-6-7-3-5-9-1-6-1"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <text
+         xml:space="preserve"
+         style="font-weight:bold;font-size:13.3333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:1.14128"
+         x="-360.83392"
+         y="792.70398"
+         id="text4361-9-7-2-7"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693"><tspan
+           sodipodi:role="line"
+           id="tspan4359-6-7-9-6"
+           x="-360.83392"
+           y="792.70398"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:sans-serif;-inkscape-font-specification:sans-serif;stroke-width:1.14128">random model</tspan></text>
+      <rect
+         style="fill:#ff9500;fill-opacity:0.333333;stroke:none;stroke-width:9.54446;stroke-dasharray:none;stroke-opacity:1"
+         id="rect14-8-06-6-1"
+         width="43.014278"
+         height="31.431894"
+         x="-250.68436"
+         y="771.67181"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.79019;stroke-dasharray:none;stroke-opacity:1"
+         d="m -243.93237,776.55973 -0.0862,21.71374"
+         id="path10-7-8-53-12-3-3"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.79019;stroke-dasharray:none;stroke-opacity:1"
+         d="m -236.51605,776.55972 -0.0862,21.71374"
+         id="path10-7-8-53-8-8-9-2"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.79019;stroke-dasharray:none;stroke-opacity:1"
+         d="m -214.26709,776.55973 -0.0862,21.71374"
+         id="path10-7-8-53-83-9-0-1"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.79019;stroke-dasharray:none;stroke-opacity:1"
+         d="m -229.09972,776.55972 -0.0862,21.71374"
+         id="path10-7-8-53-1-3-8-5"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.740399;stroke-dasharray:none;stroke-opacity:1"
+         d="m -207.55488,807.6391 0.003,-40.32916"
+         id="path10-7-8-5-7-8-9-2-0-6-9"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.74113;stroke-dasharray:none;stroke-opacity:1"
+         d="m -250.87647,807.68469 0.003,-40.41073"
+         id="path10-7-8-5-7-8-9-2-2-3-9"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <ellipse
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:13.4924;stroke-dasharray:none;stroke-opacity:1"
+         id="path11-0-6-5-9-1"
+         cx="-221.69537"
+         cy="786.76508"
+         rx="2.4677925"
+         ry="2.2948637"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#f23d54;stroke-width:4.67787;stroke-dasharray:none;stroke-opacity:0.657659"
+         d="m -362.20843,805.28532 187.5912,0.028"
+         id="path10-7-8-5-9-6-0-5-9"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+         inkscape:export-xdpi="388.53693"
+         inkscape:export-ydpi="388.53693" />
+    </g>
+    <g
+       id="g1969-6-8"
+       transform="matrix(0,-0.8388623,1.0044394,0,-801.92179,1411.2254)"
+       style="stroke-width:1.19835;stroke-miterlimit:4;stroke-dasharray:none"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693">
+      <g
+         id="g28952-3-1-9"
+         transform="matrix(1.4034608,0,0,1.4034608,686.59669,-86.172305)"
+         style="stroke-width:0.853857;stroke-miterlimit:4;stroke-dasharray:none"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/scheme3_same_length.png"
+         inkscape:export-xdpi="98.284576"
+         inkscape:export-ydpi="98.284576">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.853857;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 731.79166,328.3934 c 3.97448,-15.1868 13.15015,-23.96536 21.96072,-29.72415"
+           id="path4414-7-5-6-8-6"
+           inkscape:export-filename="/home/abc/interactive_visualization.png"
+           inkscape:export-xdpi="99.273491"
+           inkscape:export-ydpi="99.273491" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.853857;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 731.78006,268.9444 c 3.97449,15.1868 13.15016,23.96536 21.96072,29.72415"
+           id="path4414-7-5-8-0-7-4"
+           inkscape:export-filename="/home/abc/interactive_visualization.png"
+           inkscape:export-xdpi="99.273491"
+           inkscape:export-ydpi="99.273491" />
+      </g>
+    </g>
+    <g
+       id="g1969-6-2"
+       transform="matrix(0,-0.8388623,1.0044394,0,274.32577,1807.06)"
+       style="stroke-width:1.19835;stroke-miterlimit:4;stroke-dasharray:none"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693">
+      <g
+         id="g28952-3-1-6"
+         transform="matrix(1.4034608,0,0,1.4034608,686.59669,-86.172305)"
+         style="stroke-width:0.853857;stroke-miterlimit:4;stroke-dasharray:none"
+         inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/scheme3_same_length.png"
+         inkscape:export-xdpi="98.284576"
+         inkscape:export-ydpi="98.284576">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.853857;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 731.79166,328.3934 c 3.97448,-15.1868 13.15015,-23.96536 21.96072,-29.72415"
+           id="path4414-7-5-6-8-1"
+           inkscape:export-filename="/home/abc/interactive_visualization.png"
+           inkscape:export-xdpi="99.273491"
+           inkscape:export-ydpi="99.273491" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.853857;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 731.78006,268.9444 c 3.97449,15.1868 13.15016,23.96536 21.96072,29.72415"
+           id="path4414-7-5-8-0-7-0"
+           inkscape:export-filename="/home/abc/interactive_visualization.png"
+           inkscape:export-xdpi="99.273491"
+           inkscape:export-ydpi="99.273491" />
+      </g>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2.10364;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Mend-1-1-2-7)"
+       d="m -108.56568,692.65484 c 0,8.14514 0,16.29019 0,24.4354"
+       id="path59539-2-5-0-1"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.41783;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Mend-1-1-2-7-4)"
+       d="m -108.37876,648.3538 c -62.07969,0 -124.15871,0 -186.23893,0"
+       id="path59539-2-5-0-1-9"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.41783;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Mend-1-1-2-7-4-6)"
+       d="m -108.44122,648.35196 c 62.079689,0 124.158709,0 186.238929,0"
+       id="path59539-2-5-0-1-9-5"
+       inkscape:export-filename="/home/abc/Workspace/ChimericFragmentsFigures/complementarity_regions.png"
+       inkscape:export-xdpi="388.53693"
+       inkscape:export-ydpi="388.53693" />
   </g>
 </svg>

@@ -275,33 +275,36 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
         g = Genome(genome_path)
     end
     resfactor = 1.
-    fig = Figure(resolution=(1200*resfactor, 700*resfactor))
+    fig = Figure(resolution=(1200*resfactor, 950*resfactor))
     fontsize_heatmap_text = 12
     ga = fig[1, 1] = GridLayout()
     Label(ga[1,1, TopLeft()], "a", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     Label(ga[1,3, TopLeft()], "b", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     Label(ga[1,4, TopLeft()], "c", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    gb = fig[2, 1] = GridLayout()
+    gb = fig[2:3, 1] = GridLayout()
     Label(gb[1,1, TopLeft()], "d", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     Label(gb[1,2, TopLeft()], "e", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     Label(gb[1,3, TopLeft()], "f", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
 
+    Label(gb[2,1, TopLeft()], "g", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    Label(gb[2,2, TopLeft()], "h", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    #Label(gb[1,3, TopLeft()], "f", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     ax = Axis(ga[1,1], xlabel="FPR", ylabel="TPR", title="synthetic benchmarks")
     mkpath(joinpath(assets_path, "csv"))
     us = unique_set(g; k=18)
 
-    fig_si = Figure(resolution=(1200*resfactor, 1000*resfactor))
+    #fig_si = Figure(resolution=(1200*resfactor, 1000*resfactor))
     #gc = fig_si[3, 1:2] = GridLayout()
-    Label(fig_si[1,1, TopLeft()], "a", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    Label(fig_si[1,2, TopLeft()], "b", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    Label(fig_si[1,3, TopLeft()], "c", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    Label(fig_si[2,1, TopLeft()], "d", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    Label(fig_si[2,2, TopLeft()], "e", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    Label(fig_si[2,3, TopLeft()], "f", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    Label(fig_si[3,2, TopLeft()], "g", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    #Label(fig_si[1,1, TopLeft()], "a", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    #Label(fig_si[1,2, TopLeft()], "b", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    #Label(fig_si[1,3, TopLeft()], "c", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    #Label(fig_si[2,1, TopLeft()], "d", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    #Label(fig_si[2,2, TopLeft()], "e", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    #Label(fig_si[2,3, TopLeft()], "f", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
+    #Label(fig_si[3,2, TopLeft()], "g", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     #Label(gc[1,3, TopLeft()], "h", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     #Label(gc[1,4, TopLeft()], "i", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
-    n_plots = 1
+
     for (j,nerr) in enumerate(0:nerrmax), (i,l) in enumerate(lens)
         s, truep = make_chimeric_testseqs(g, us; nseqs=nseqs, len1=l, len2=l, nerr=nerr)
         name = "length=$l, errors=$nerr"
@@ -313,28 +316,28 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
         sorted_points = sort(collect(zip(vec(fpr), vec(tpr))), by=x->x[2])
         scatter!(ax, [first(p) for p in sorted_points], [last(p) for p in sorted_points], label=label, mode="markers", alpha=0.6)
 
-        if nerr > 0
-            clims = (0.0, 1.0)
-            ax_si_tpr = Axis(fig_si[1, n_plots], yticks=(1:length(scores), string.(scores)), xticks = (1:length(seedlens), string.(seedlens)),
-                ylabel="minimum alignment score", xlabel="seed length", title="TPR, length=$l")
-            heatmap!(ax_si_tpr, tpr, colorrange=clims)
-            for i in 1:length(seedlens), j in 1:length(scores)
-                text!(ax_si_tpr, string(round(tpr[i,j], digits=2)), position = (i,j), align = (:center, :center),
-                    color = tpr[i,j] < 0.5 ? :white : :black, fontsize=fontsize_heatmap_text)
-            end
-            ax_si_fpr = Axis(fig_si[2, n_plots], yticks=(1:length(scores), string.(scores)), xticks = (1:length(seedlens), string.(seedlens)),
-                ylabel="minimum alignment score", xlabel="seed length", title="FPR, length=$l")
-            heatmap!(ax_si_fpr, fpr, colorrange=clims)
-            for i in 1:length(seedlens), j in 1:length(scores)
-                text!(ax_si_fpr, string(round(fpr[i,j], digits=4)), position = (i,j), align = (:center, :center),
-                    color = fpr[i,j] < 0.5 ? :white : :black, fontsize=fontsize_heatmap_text)
-            end
+        #if nerr > 0
+        #    clims = (0.0, 1.0)
+        #    ax_si_tpr = Axis(fig_si[1, n_plots], yticks=(1:length(scores), string.(scores)), xticks = (1:length(seedlens), string.(seedlens)),
+        #        ylabel="minimum alignment score", xlabel="seed length", title="TPR, length=$l")
+        #    heatmap!(ax_si_tpr, tpr, colorrange=clims)
+        #    for i in 1:length(seedlens), j in 1:length(scores)
+        #        text!(ax_si_tpr, string(round(tpr[i,j], digits=2)), position = (i,j), align = (:center, :center),
+        #            color = tpr[i,j] < 0.5 ? :white : :black, fontsize=fontsize_heatmap_text)
+        #    end
+        #    ax_si_fpr = Axis(fig_si[2, n_plots], yticks=(1:length(scores), string.(scores)), xticks = (1:length(seedlens), string.(seedlens)),
+        #        ylabel="minimum alignment score", xlabel="seed length", title="FPR, length=$l")
+        #    heatmap!(ax_si_fpr, fpr, colorrange=clims)
+        #    for i in 1:length(seedlens), j in 1:length(scores)
+        #        text!(ax_si_fpr, string(round(fpr[i,j], digits=4)), position = (i,j), align = (:center, :center),
+        #            color = fpr[i,j] < 0.5 ? :white : :black, fontsize=fontsize_heatmap_text)
+        #    end
 
-            n_plots += 1
-        end
+        #    n_plots += 1
+        #end
     end
 
-    Colorbar(fig_si[1:2,4], limits=(0.0, 1.0))
+    #Colorbar(fig_si[1:2,4], limits=(0.0, 1.0))
 
     s, truep = make_random_chimeric_testseqs(g, us; minlen=lmin, maxlen=lmax, maxrandlen=lmaxadapter, nseqs=nseqs)
     name = "length=$lmin-$lmax, errors=0-$nerrmax"
@@ -352,20 +355,24 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
 
     colors = ("Brown", "Coral", "BlueViolet", "DarkGreen")
     pcuts = [0.05, 0.1, 0.25, 0.5, 1.0]
-    ax_cor = Axis(fig_si[3,2], ylabel="Pearson correlation", xlabel="top fraction of interactions",
-        title="LCD replicate correlation", xticks=(1:length(pcuts), ["$(round(pc, digits=2))" for pc in pcuts]))
+    ax_cor = Axis(gb[2,1], ylabel="Pearson correlation", xlabel="top fraction of interactions",
+        title="RIL-seq replicate correlation", xticks=(1:length(pcuts), ["$(round(pc, digits=2))" for pc in pcuts]))
+    ax_corsp = Axis(gb[2,2], ylabel="Rank correlation", xlabel="complementarity FDR cutoff", title="RIL-seq replicate correlation",
+        xticks=(1:length(pcuts)+1, [["$(round(pc, digits=2))" for pc in pcuts]..., "all"]))
     #ax_count = Axis(gc[1,2], ylabel="median of read counts", xlabel="complementarity FDR cutoff", title="LCD reads per interaction", xticks=(1:length(pcuts)+1, [["$(round(pc, digits=2))" for pc in pcuts]..., "all"]), yscale=log10)
     ax_top = Axis(gb[1,3], ylabel="rank correlation", xlabel="top fraction of dataset",
-        title="LCD replicate correlation", xticks=(1:length(pcuts), ["$(round(pc, digits=2))" for pc in pcuts]))
+        title="RIL-seq replicate correlation", xticks=(1:length(pcuts), ["$(round(pc, digits=2))" for pc in pcuts]))
     #ax_ints_count = Axis(gc[1,1], ylabel="median of read counts", xlabel="top fraction of dataset", title="LCD reads per interaction", xticks=(1:length(pcuts), ["$(round(pc, digits=2))" for pc in pcuts]), yscale=log10)
     max_count = 0
     replicate_ids = ["hfq_lcd_1", "hfq_lcd_2"]
+    offsets = [-0.09, -0.03, 0.03, 0.09]
 
-    for (((se, ms), label), color) in zip(params, colors)
+    for (ii, (((se, ms), label), color)) in enumerate(zip(params, colors))
         l = "$(se) | $(ms)"
         fp = joinpath(assets_path, "csv_correlation", "hfq_lcd_$(se)_$(ms).csv")
         df = DataFrame(CSV.File(fp))
         corr_mean = zeros(length(pcuts))
+        corrsp_mean = zeros(length(pcuts))
         corr_sd = zeros(length(pcuts))
         counts = zeros(length(pcuts))
         subcounts = zeros(length(pcuts))
@@ -375,6 +382,7 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
         for (i, pcut) in enumerate(pcuts)
             pindex = df.bp_fdr .<= pcut
             corr = [cor(df[pindex, p1], df[pindex, p2]) for (p1, p2) in combinations(replicate_ids, 2)]
+            corrsp = [corspearman(df[pindex, p1], df[pindex, p2]) for (p1, p2) in combinations(replicate_ids, 2)]
             subpindex = sort(sample(1:findlast(pindex), sum(pindex), replace=false))
             count_ints = Int(floor(nrow(df)*pcut))
             subpindex = 1:count_ints
@@ -382,6 +390,7 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
             corr = [cor(df[subpindex, p1], df[subpindex, p2]) for (p1, p2) in combinations(replicate_ids, 2)]
             corr_top = [corspearman(df[subpindex, p1], df[subpindex, p2]) for (p1, p2) in combinations(replicate_ids, 2)]
             corr_mean[i] = mean(corr)
+            corrsp_mean[i] = mean(corrsp)
             corr_sd[i] = std(corr)
             counts[i] = median(df.nb_ints[pindex])
             corr_top_mean[i] = mean(corr_top)
@@ -392,19 +401,23 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
         #corr_sd[length(pcuts)+1] = std(corr)
         #counts[length(pcuts)+1] = median(df.nb_ints)
         #max_count = max(max_count, maximum(counts))
-        scatter!(ax_cor, 1:length(pcuts), corr_mean, label=l, color=color)
+        scatter!(ax_cor, collect(1:length(pcuts)) .+ offsets[ii], corr_mean, label=l, color=color)
+        scatter!(ax_corsp, collect(1:length(pcuts)) .+ offsets[ii], corrsp_mean, label=l, color=color)
         #scatter!(ax_count, 1:(length(pcuts)+1), counts, label=l, color=color)
-        scatter!(ax_top, 1:length(pcuts), corr_top_mean, label=l, color=color)
+        scatter!(ax_top, collect(1:length(pcuts)) .+ offsets[ii], corr_top_mean, label=l, color=color)
         #scatter!(ax_ints_count, 1:length(pcuts), subcounts, color=color)
     end
 
-    l = Legend(fig_si[3,3], ax_cor, "seed | score")
+    #l = Legend(fig_si[3,3], ax_cor, "seed | score")
 
-    l.halign = :left
+    #l.halign = :left
+    #l.tellwidth = false
+    #l.tellheight = false
+
+    l = Legend(gb[2,3], ax_cor, "seed | score")
+    #l.halign = :left
     l.tellwidth = false
     l.tellheight = false
-
-    Legend(gb[1,4], ax_cor, "seed | score")
 
     highlight_index = [(1,1), (3,1), (1, 3), (3, 4)]
     square_with_hole(x, y) = Makie.Polygon(
@@ -412,7 +425,7 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
         [Point2f[(x-0.45, y+0.45), (x+0.45, y+0.45), (x+0.45, y-0.45), (x-0.45, y-0.45)]])
 
     ax2 = Axis(ga[1,3], yticks=(1:length(scores), string.(scores)), xticks = (1:length(seedlens), string.(seedlens)),
-        ylabel="minimum alignment score", xlabel="seed length", title="TPR")
+        ylabel="minimum alignment score", xlabel="seed length", title="TPR 15-40 | 0-1")
     heatmap!(ax2, tpr, colorrange=clims)
     for i in 1:length(seedlens), j in 1:length(scores)
         text!(ax2, string(round(tpr[i,j], digits=2)), position = (i,j), align = (:center, :center),
@@ -421,7 +434,7 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
     poly!(ax2, [square_with_hole(x,y) for (x,y) in highlight_index], color=collect(colors))
 
     ax3 = Axis(ga[1,4], yticks=(1:length(scores), string.(scores)), xticks = (1:length(seedlens), string.(seedlens)),
-        ylabel="minimum alignment score", xlabel="seed length", title="FPR")
+        ylabel="minimum alignment score", xlabel="seed length", title="FPR 15-40 | 0-1")
     heatmap!(ax3, fpr, colorrange=clims)
     for i in 1:length(seedlens), j in 1:length(scores)
         text!(ax3, string(round(fpr[i,j], digits=4)), position = (i,j), align = (:center, :center),
@@ -477,9 +490,9 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
     #titlelayout = GridLayout(fig[0, 1], halign = :left, tellwidth = false)
     #Label(titlelayout[1, 1], "Fig. 2", halign = :left, fontsize=30)
 
-    save("figure_2.pdf", fig)
-    save("figure_2.png", fig, px_per_unit = 2)
+    #save("figure_2.pdf", fig)
+    #save("figure_2.png", fig, px_per_unit = 2)
 
-    save("figure_E5.pdf", fig_si)
-    save("figure_E5.png", fig_si, px_per_unit = 2)
+    save("figure_S5.pdf", fig)
+    save("figure_S5.png", fig, px_per_unit = 2)
 end

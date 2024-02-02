@@ -54,11 +54,11 @@ function plot_figure_3(assets_folder::String, interact::InteractionsNew, nseqs::
     resfactor = 1.
     fig = Figure(resolution=(1200*resfactor, 850*resfactor))
 
-    ax1 = Axis(fig[2,1], title="random, left", xlabel="postion in alignment", ylabel="frequency")
+    ax1 = Axis(fig[2,1], title="random, left", xlabel="postion in segment", ylabel="frequency")
     h12 = hist!(ax1, left2, label="RNA2, left", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
     h11 = hist!(ax1, left1, label="RNA1, left", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
-    ax2 = Axis(fig[2,2], title="random, right", xlabel="postion in alignment", ylabel="frequency")
+    ax2 = Axis(fig[2,2], title="random, right", xlabel="postion in segment", ylabel="frequency")
     h22 = hist!(ax2, right2, label="RNA2, right", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
     h21 = hist!(ax2, right1, label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
@@ -78,33 +78,33 @@ function plot_figure_3(assets_folder::String, interact::InteractionsNew, nseqs::
         interacts[i] = s
     end
 
-    ax9 = Axis(fig[2,3], xlabel="postion in alignment", ylabel="frequency", title="total, left")
+    ax9 = Axis(fig[2,3], xlabel="postion in segment", ylabel="frequency", title="total, left")
     h92 = hist!(ax9, left2, label="RNA2, left", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
     h91 = hist!(ax9, left1, label="RNA1, left", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
-    ax10 = Axis(fig[2,4], xlabel="postion in alignment", ylabel="frequency", title="total, right")
+    ax10 = Axis(fig[2,4], xlabel="postion in segment", ylabel="frequency", title="total, right")
     h102 = hist!(ax10, right2, label="RNA2, right", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
     h101 = hist!(ax10, right1, label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
     #linkyaxes!(ax9, ax10)
 
 
-    ax3 = Axis(fig[3,3], xlabel="postion in alignment", ylabel="frequency", title="significant, left")
+    ax3 = Axis(fig[3,3], xlabel="postion in segment", ylabel="frequency", title="significant, left")
     h32 = hist!(ax3, left2[fdrv .<= fcut], label="RNA2, left", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
     h31 = hist!(ax3, left1[fdrv .<= fcut], label="RNA1, left", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
-    ax4 = Axis(fig[3,4], xlabel="postion in alignment", ylabel="frequency", title="significant, right")
+    ax4 = Axis(fig[3,4], xlabel="postion in segment", ylabel="frequency", title="significant, right")
     h42 = hist!(ax4, right2[fdrv .<= fcut], label="RNA2, right", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
     h41 = hist!(ax4, right1[fdrv .<= fcut], label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
     #linkyaxes!(ax3, ax4)
 
 
-    ax5 = Axis(fig[3,1], xlabel="postion in alignment", ylabel="frequency", title="unsignificant, left")
+    ax5 = Axis(fig[3,1], xlabel="postion in segment", ylabel="frequency", title="unsignificant, left")
     h52 = hist!(ax5, left2[fdrv .> fcut], label="RNA2, left", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
     h51 = hist!(ax5, left1[fdrv .> fcut], label="RNA1, left", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
-    ax6 = Axis(fig[3,2], xlabel="postion in alignment", ylabel="frequency", title="unsignificant, right")
+    ax6 = Axis(fig[3,2], xlabel="postion in segment", ylabel="frequency", title="unsignificant, right")
     h62 = hist!(ax6, right2[fdrv .> fcut], label="RNA2, right", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
     h61 = hist!(ax6, right1[fdrv .> fcut], label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
@@ -117,69 +117,69 @@ function plot_figure_3(assets_folder::String, interact::InteractionsNew, nseqs::
     ga = fig[1, 1:5]= GridLayout()
 
     significant_score = minimum(interacts[fdrv .<= fcut])
-    ax7 = Axis(ga[1, 2], title="complementarity scores", xlabel="score", ylabel="density")
-    density!(ax7, rands, color=(:red, 0.3), label="random model")
-    density!(ax7, interacts, color=(:green, 0.3), label="ligation points")
+    ax7 = Axis(ga[1, 3], title="complementarity scores", xlabel="score", ylabel="density")
+    density!(ax7, rands, color=(:orange, 0.6), label="random model")
+    density!(ax7, interacts, color=(:green, 0.3), label="experiment")
     vlines!(ax7, [significant_score], color = :blue, label="FDR = $(fcut)")
     axislegend(ax7)
 
 
-    colors = ("Brown", "Coral", "BlueViolet", "DarkGreen")
-    pcuts = [0.01, 0.05, 0.1, 0.25, 0.5, 1.0]
-    ax_cor = Axis(ga[1, 3], ylabel="rank correlation", xlabel="complementarity FDR cutoff", title="RIL-seq replicate correlation",
-        xticks=(1:length(pcuts)+1, [["$(round(pc, digits=2))" for pc in pcuts]..., "all"]))
-    replicate_ids = ["hfq_lcd_1", "hfq_lcd_2"]
+    #colors = ("Brown", "Coral", "BlueViolet", "DarkGreen")
+    #pcuts = [0.01, 0.05, 0.1, 0.25, 0.5, 1.0]
+    #ax_cor = Axis(ga[1, 3], ylabel="rank correlation", xlabel="complementarity FDR cutoff", title="RIL-seq replicate correlation",
+    #    xticks=(1:length(pcuts)+1, [["$(round(pc, digits=2))" for pc in pcuts]..., "all"]))
+    #replicate_ids = ["hfq_lcd_1", "hfq_lcd_2"]
 
-    for ((se, ms), color) in zip(params, colors)
-        l = "$(se) | $(ms)"
-        fp = joinpath(assets_folder, "..", "figure_2", "csv_correlation", "hfq_lcd_$(se)_$(ms).csv")
-        df = DataFrame(CSV.File(fp))
-        corr_mean = zeros(length(pcuts)+1)
-        corr_sd = zeros(length(pcuts)+1)
-        counts = zeros(length(pcuts)+1)
-        subcounts = zeros(length(pcuts))
-        corr_top_mean = zeros(length(pcuts))
+    #for ((se, ms), color) in zip(params, colors)
+    #    l = "$(se) | $(ms)"
+    #    fp = joinpath(assets_folder, "..", "figure_2", "csv_correlation", "hfq_lcd_$(se)_$(ms).csv")
+    #    df = DataFrame(CSV.File(fp))
+    #    corr_mean = zeros(length(pcuts)+1)
+    #    corr_sd = zeros(length(pcuts)+1)
+    #    counts = zeros(length(pcuts)+1)
+    #    subcounts = zeros(length(pcuts))
+    #    corr_top_mean = zeros(length(pcuts))
 
-        for (i, pcut) in enumerate(pcuts)
-            pindex = df.bp_fdr .<= pcut
-            corr = [corspearman(df[pindex, p1], df[pindex, p2]) for (p1, p2) in combinations(replicate_ids, 2)]
-            subpindex = sort(sample(1:findlast(pindex), sum(pindex), replace=false))
-            count_ints = Int(floor(nrow(df)*pcut))
-            subcounts[i] = count_ints
-            subpindex = 1:count_ints
+    #    for (i, pcut) in enumerate(pcuts)
+    #        pindex = df.bp_fdr .<= pcut
+    #        corr = [corspearman(df[pindex, p1], df[pindex, p2]) for (p1, p2) in combinations(replicate_ids, 2)]
+    #        subpindex = sort(sample(1:findlast(pindex), sum(pindex), replace=false))
+    #        count_ints = Int(floor(nrow(df)*pcut))
+    #        subcounts[i] = count_ints
+    #        subpindex = 1:count_ints
 
-            corr_top = [corspearman(df[subpindex, p1], df[subpindex, p2]) for (p1, p2) in combinations(replicate_ids, 2)]
-            corr_mean[i] = mean(corr)
-            corr_sd[i] = std(corr)
-            counts[i] = sum(pindex)
-            corr_top_mean[i] = mean(corr_top)
-        end
+    #        corr_top = [corspearman(df[subpindex, p1], df[subpindex, p2]) for (p1, p2) in combinations(replicate_ids, 2)]
+    #        corr_mean[i] = mean(corr)
+    #        corr_sd[i] = std(corr)
+    #        counts[i] = sum(pindex)
+    #        corr_top_mean[i] = mean(corr_top)
+    #    end
 
-        corr = [corspearman(df[!, p1], df[!, p2]) for (p1, p2) in combinations(replicate_ids, 2)]
-        corr_mean[length(pcuts)+1] = mean(corr)
-        corr_sd[length(pcuts)+1] = std(corr)
-        counts[length(pcuts)+1] = nrow(df)
-        scatter!(ax_cor, 1:(length(pcuts)+1), corr_mean, label=l, color=color)
-    end
+    #    corr = [corspearman(df[!, p1], df[!, p2]) for (p1, p2) in combinations(replicate_ids, 2)]
+    #    corr_mean[length(pcuts)+1] = mean(corr)
+    #    corr_sd[length(pcuts)+1] = std(corr)
+    #    counts[length(pcuts)+1] = nrow(df)
+    #    scatter!(ax_cor, 1:(length(pcuts)+1), corr_mean, label=l, color=color)
+    #end
 
-    Legend(ga[1,4], ax_cor, "seed | score")
+    #Legend(ga[1,4], ax_cor, "seed | score")
 
     img = rotr90(load(joinpath(assets_folder, "combined.png")))
-    ax8 = Axis(ga[1, 1], title="basepairing scheme")
+    ax8 = Axis(ga[1, 1:2], title="complementarity scheme")
     hidedecorations!(ax8)
     image!(ax8, img, aspect = DataAspect())
     Label(ga[1,1, TopLeft()], "a", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
-    Label(ga[1,2, TopLeft()], "b", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
-    Label(ga[1,3, TopLeft()], "c", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(ga[1,3, TopLeft()], "b", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    #Label(ga[1,3, TopLeft()], "c", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
-    Label(fig[2,1, TopLeft()], "d", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
-    Label(fig[2,3, TopLeft()], "e", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
-    Label(fig[3,1, TopLeft()], "f", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
-    Label(fig[3,3, TopLeft()], "g", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(fig[2,1, TopLeft()], "c", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(fig[2,3, TopLeft()], "d", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(fig[3,1, TopLeft()], "e", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(fig[3,3, TopLeft()], "f", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
     #titlelayout = GridLayout(fig[0, 1], halign = :left, tellwidth = false)
     #Label(titlelayout[1, 1], "Fig. 3", halign = :left, fontsize=30)
 
-    save("figure_3.pdf", fig)
+    save("figure_3.svg", fig)
     save("figure_3.png", fig, px_per_unit = 2)
 end
