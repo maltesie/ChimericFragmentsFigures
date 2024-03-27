@@ -61,7 +61,7 @@ function plot_figure_4(assets_folder::String)
         end
     end
     counter ./= 2
-    ax1 = Axis(fig[1,1], ylabel="count", title="annotation types", xticks = (1:4, ["previous", "improved\nmapping", "no FDR,\nreads >= 20", "FDR < 0.25,\nreads >= 3"]))
+    ax1 = Axis(fig[1,1], ylabel="count", title="annotation types", xticks = (1:4, ["previous", "improved\nmapping", "no FDR,\nreads >= 20", "FDR <= 0.25,\nreads >= 3"]))
     colors = Makie.wong_colors()
     colors_spot42 = [RGBAf(0.0, 0.4, 0.0, 1.0), RGBAf(0.7, 0.1, 0.0, 1.0)]
     groups = [1,2,3,1,2,3,1,2,3,1,2,3]
@@ -106,7 +106,7 @@ function plot_figure_4(assets_folder::String)
 
     axb4 = Axis(fig[1:2,2], title="Spot 42 reporter assay", xlabel="relative fluorescence [AU]", yticks = (1:nrow(df_plate), xlabels_latex))
 
-    vlines!(axb4, [0.75, 1.25], color=:lightgrey, linestyle=:dot, linewidth=1.0)
+    vlines!(axb4, [0.75, 1.25], color=:darkblue, linestyle=:dot, linewidth=1.0)
     #groups = vcat(fill(1,nrow(df_plate)), fill(2,nrow(df_plate)))
 
     groups = [2,2,1,1,1,1,1,1,1,1,1,1]
@@ -129,9 +129,10 @@ function plot_figure_4(assets_folder::String)
     scatter!(axb4, vec(spot[:, 2]), collect(1:nrow(df_plate)), color="black", markersize=5)
     scatter!(axb4, vec(spot[:, 3]), collect(1:nrow(df_plate)) .+ 0.2, color="black", markersize=5)
     errorbars!(mean_spot, collect(1:nrow(df_plate)), sd_spot, whiskerwidth=5, direction=:x)
-    #labels = ["control", "Spot 42"]
-    #elements = [PolyElement(polycolor = colors[i]) for i in 1:length(labels)]
-    #axislegend(axb4, elements, labels, position=:rt)
+    labels = ["FDR <= 0.25", "FDR > 0.25", "25% fold-change"]
+    elements = [[PolyElement(polycolor = colors_spot42[i]) for i in 1:2]...,
+        LineElement(color = :darkblue, linestyle = :dot, points = Point2f[(0.5, 0), (0.5, 1)])]
+    axislegend(axb4, elements, labels, position=:rb)
 
     ps = pvalue.(EqualVarianceTTest.([ctrl[i, :] for i in 1:size(ctrl)[1]], [spot[i, :] for i in 1:size(ctrl)[1]]))
     for (i, p) in enumerate(ps)

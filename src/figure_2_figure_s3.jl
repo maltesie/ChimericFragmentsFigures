@@ -305,7 +305,7 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
     #Label(gc[1,3, TopLeft()], "h", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
     #Label(gc[1,4, TopLeft()], "i", fontsize = 26,font = :bold,padding = (0, 10, 10, 0), halign = :right)
 
-    for (j,nerr) in enumerate(0:nerrmax), (i,l) in enumerate(lens)
+    for (j,nerr) in enumerate(1:nerrmax), (i,l) in enumerate(lens)
         s, truep = make_chimeric_testseqs(g, us; nseqs=nseqs, len1=l, len2=l, nerr=nerr)
         name = "length=$l, errors=$nerr"
         label = "$l | $nerr"
@@ -355,12 +355,12 @@ function plot_figure_2(assets_path::String, lens::Vector{Int}, lmin::Int, lmax::
 
     colors = ("Brown", "Coral", "BlueViolet", "DarkGreen")
     pcuts = [0.05, 0.1, 0.25, 0.5, 1.0]
-    ax_cor = Axis(gb[2,1], ylabel="Pearson correlation", xlabel="top fraction of interactions",
+    ax_cor = Axis(gb[1,3], ylabel="Pearson correlation", xlabel="top fraction of interactions",
         title="RIL-seq replicate correlation", xticks=(1:length(pcuts), ["$(round(pc, digits=2))" for pc in pcuts]))
-    ax_corsp = Axis(gb[2,2], ylabel="Rank correlation", xlabel="complementarity FDR cutoff", title="RIL-seq replicate correlation",
+    ax_corsp = Axis(gb[2,2], ylabel="rank correlation", xlabel="complementarity FDR cutoff", title="RIL-seq replicate correlation",
         xticks=(1:length(pcuts)+1, [["$(round(pc, digits=2))" for pc in pcuts]..., "all"]))
     #ax_count = Axis(gc[1,2], ylabel="median of read counts", xlabel="complementarity FDR cutoff", title="LCD reads per interaction", xticks=(1:length(pcuts)+1, [["$(round(pc, digits=2))" for pc in pcuts]..., "all"]), yscale=log10)
-    ax_top = Axis(gb[1,3], ylabel="rank correlation", xlabel="top fraction of dataset",
+    ax_top = Axis(gb[2,1], ylabel="rank correlation", xlabel="top fraction of dataset",
         title="RIL-seq replicate correlation", xticks=(1:length(pcuts), ["$(round(pc, digits=2))" for pc in pcuts]))
     #ax_ints_count = Axis(gc[1,1], ylabel="median of read counts", xlabel="top fraction of dataset", title="LCD reads per interaction", xticks=(1:length(pcuts), ["$(round(pc, digits=2))" for pc in pcuts]), yscale=log10)
     max_count = 0

@@ -18,7 +18,8 @@ function plot_figure_3(assets_folder::String, interact::InteractionsNew, nseqs::
     model = AffineGapScoreModel(SubstitutionMatrix(scores; default_match=-1*bp_parameters[4], default_mismatch=-1*bp_parameters[4]);
         gap_open=-1*bp_parameters[5], gap_extend=-1*bp_parameters[6])
 
-    left1, left2, right1, right2, rands = zeros(Int, nseqs), zeros(Int, nseqs), zeros(Int, nseqs), zeros(Int, nseqs), zeros(Float64, nseqs)
+    left1, left2, right1, right2, lens1, lens2, rands =
+        zeros(Int, nseqs), zeros(Int, nseqs), zeros(Int, nseqs), zeros(Int, nseqs), zeros(Int, nseqs), zeros(Int, nseqs), zeros(Float64, nseqs)
 
     bins= 1:(check_interaction_distances[1] - check_interaction_distances[2])+1
 
@@ -49,23 +50,33 @@ function plot_figure_3(assets_folder::String, interact::InteractionsNew, nseqs::
         right1[i] = paln.aln.a.aln.anchors[end].seqpos
         left2[i] = paln.aln.a.aln.anchors[1].refpos + 1
         right2[i] = paln.aln.a.aln.anchors[end].refpos
+        lens1[i] = right1[i] - left1[i] + 1
+        lens2[i] = right2[i] - left2[i] + 1
     end
 
+    println("random >= 9: $(mean(lens1 .>= 9)), $(mean(lens2 .>= 9))")
+    println("random mean: $(mean(lens1)), $(mean(lens2))")
     resfactor = 1.
-    fig = Figure(resolution=(1200*resfactor, 850*resfactor))
+    fig = Figure(resolution=(1200*resfactor, 800*resfactor))
+    fig2 = Figure(resolution=(900*resfactor, 800*resfactor))
 
-    ax1 = Axis(fig[2,1], title="random, left", xlabel="postion in segment", ylabel="frequency")
+    gb = fig[2:4, 1:5]= GridLayout()
+
+    ax1 = Axis(gb[1,1], title="random model, left", xlabel="position in segment", ylabel="frequency")
     h12 = hist!(ax1, left2, label="RNA2, left", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
     h11 = hist!(ax1, left1, label="RNA1, left", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
-    ax2 = Axis(fig[2,2], title="random, right", xlabel="postion in segment", ylabel="frequency")
+    ax2 = Axis(gb[1,2], title="random model, right", xlabel="position in segment", ylabel="frequency")
     h22 = hist!(ax2, right2, label="RNA2, right", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
     h21 = hist!(ax2, right1, label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
+    ax3 = Axis(fig2[1,1], title="random model", xlabel="length", ylabel="frequency")
+    h32 = hist!(ax3, lens2, label="RNA2, right", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
+    h31 = hist!(ax3, lens1, label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
     #linkyaxes!(ax1, ax2)
 
 
-    resize!.((left1, left2, right1, right2), length(interact.bpstats))
+    resize!.((left1, left2, right1, right2, lens1, lens2), length(interact.bpstats))
     fdrv = adjust(PValues(first.(values(interact.bpstats))), BenjaminiHochberg())
     interacts = zeros(Float64, length(fdrv))
     fcut = 0.25
@@ -75,44 +86,64 @@ function plot_figure_3(assets_folder::String, interact::InteractionsNew, nseqs::
         left2[i] = l2
         right1[i] = r1
         right2[i] = r2
+        lens1[i] = r1 - l1 + 1
+        lens2[i] = r2 - l2 + 1
         interacts[i] = s
     end
 
-    ax9 = Axis(fig[2,3], xlabel="postion in segment", ylabel="frequency", title="total, left")
-    h92 = hist!(ax9, left2, label="RNA2, left", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
-    h91 = hist!(ax9, left1, label="RNA1, left", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
+    ax4 = Axis(gb[1,3], xlabel="position in segment", ylabel="frequency", title="experiment, left")
+    h42 = hist!(ax4, left2, label="RNA2, left", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
+    h41 = hist!(ax4, left1, label="RNA1, left", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
-    ax10 = Axis(fig[2,4], xlabel="postion in segment", ylabel="frequency", title="total, right")
-    h102 = hist!(ax10, right2, label="RNA2, right", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
-    h101 = hist!(ax10, right1, label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
+    ax5 = Axis(gb[1,4], xlabel="position in segment", ylabel="frequency", title="experiment, right")
+    h52 = hist!(ax5, right2, label="RNA2, right", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
+    h51 = hist!(ax5, right1, label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
+
+    ax6 = Axis(fig2[1,2], xlabel="length", ylabel="frequency", title="experiment")
+    h62 = hist!(ax6, lens2, label="RNA2, right", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
+    h61 = hist!(ax6, lens1, label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
     #linkyaxes!(ax9, ax10)
 
+    ax7 = Axis(gb[2,1], xlabel="position in segment", ylabel="frequency", title="unsignificant, left")
+    h72 = hist!(ax7, left2[fdrv .> fcut], label="RNA2, left", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
+    h71 = hist!(ax7, left1[fdrv .> fcut], label="RNA1, left", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
-    ax3 = Axis(fig[3,3], xlabel="postion in segment", ylabel="frequency", title="significant, left")
-    h32 = hist!(ax3, left2[fdrv .<= fcut], label="RNA2, left", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
-    h31 = hist!(ax3, left1[fdrv .<= fcut], label="RNA1, left", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
+    ax8 = Axis(gb[2,2], xlabel="position in segment", ylabel="frequency", title="unsignificant, right")
+    h82 = hist!(ax8, right2[fdrv .> fcut], label="RNA2, right", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
+    h81 = hist!(ax8, right1[fdrv .> fcut], label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
-    ax4 = Axis(fig[3,4], xlabel="postion in segment", ylabel="frequency", title="significant, right")
-    h42 = hist!(ax4, right2[fdrv .<= fcut], label="RNA2, right", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
-    h41 = hist!(ax4, right1[fdrv .<= fcut], label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
-
-    #linkyaxes!(ax3, ax4)
-
-
-    ax5 = Axis(fig[3,1], xlabel="postion in segment", ylabel="frequency", title="unsignificant, left")
-    h52 = hist!(ax5, left2[fdrv .> fcut], label="RNA2, left", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
-    h51 = hist!(ax5, left1[fdrv .> fcut], label="RNA1, left", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
-
-    ax6 = Axis(fig[3,2], xlabel="postion in segment", ylabel="frequency", title="unsignificant, right")
-    h62 = hist!(ax6, right2[fdrv .> fcut], label="RNA2, right", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
-    h61 = hist!(ax6, right1[fdrv .> fcut], label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
+    ax9 = Axis(fig2[2,1], xlabel="length", ylabel="frequency", title="unsignificant")
+    h92 = hist!(ax9, lens2[fdrv .> fcut], label="RNA2, right", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
+    h91 = hist!(ax9, lens1[fdrv .> fcut], label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
     #linkyaxes!(ax5, ax6)
 
-    linkyaxes!(ax1, ax2, ax3, ax4, ax5, ax6, ax9, ax10)
+    ax10 = Axis(gb[2,3], xlabel="position in segment", ylabel="frequency", title="significant, left")
+    h102 = hist!(ax10, left2[fdrv .<= fcut], label="RNA2, left", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
+    h101 = hist!(ax10, left1[fdrv .<= fcut], label="RNA1, left", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
 
-    Legend(fig[2:3,5], [h31, h32], ["RNA1", "RNA2"])
+    ax11 = Axis(gb[2,4], xlabel="position in segment", ylabel="frequency", title="significant, right")
+    h112 = hist!(ax11, right2[fdrv .<= fcut], label="RNA2, right", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
+    h111 = hist!(ax11, right1[fdrv .<= fcut], label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
+
+    ax12 = Axis(fig2[2,2], xlabel="length", ylabel="frequency", title="significant")
+    h122 = hist!(ax12, lens2[fdrv .<= fcut], label="RNA2, right", bins=bins, normalization=:probability, color=RGBAf(0.937, 0.333, 0.231, 0.6))
+    h121 = hist!(ax12, lens1[fdrv .<= fcut], label="RNA1, right", bins=bins, normalization=:probability, color=RGBAf(0.388, 0.431, 0.98, 0.6))
+
+    println("significant >= 9: $(mean(lens1[fdrv .<= fcut] .>= 9)), $(mean(lens2[fdrv .<= fcut] .>= 9))")
+    println("significant mean: $(mean(lens1[fdrv .<= fcut])), $(mean(lens2[fdrv .<= fcut]))")
+    #linkyaxes!(ax3, ax4)
+
+    #ax13 = Axis(fig2[3,1:2], xticks=[0,0.25,0.5,0.75,1.0], xlabel="FDR", ylabel="frequency", title="distribution of complementarity FDR")
+    #h132 = hist!(ax13, fdrv, label="FDR", bins=0.0:0.04:1.0, normalization=:probability)
+
+    linkyaxes!(ax1, ax2, ax4, ax5, ax7, ax8, ax10, ax11)
+    linkyaxes!(ax3, ax6, ax9, ax12)
+
+    Legend(gb[1:2,5], [h31, h32], ["RNA1", "RNA2"])
+
+    Legend(fig2[1:2,3], [h122, h121], ["RNA1", "RNA2"])
 
     ga = fig[1, 1:5]= GridLayout()
 
@@ -172,14 +203,21 @@ function plot_figure_3(assets_folder::String, interact::InteractionsNew, nseqs::
     Label(ga[1,3, TopLeft()], "b", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
     #Label(ga[1,3, TopLeft()], "c", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
-    Label(fig[2,1, TopLeft()], "c", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
-    Label(fig[2,3, TopLeft()], "d", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
-    Label(fig[3,1, TopLeft()], "e", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
-    Label(fig[3,3, TopLeft()], "f", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(gb[1,1, TopLeft()], "c", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(gb[1,3, TopLeft()], "d", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(gb[2,1, TopLeft()], "e", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(gb[2,3, TopLeft()], "f", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
 
+    Label(fig2[1,1, TopLeft()], "a", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(fig2[1,2, TopLeft()], "b", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(fig2[2,1, TopLeft()], "c", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    Label(fig2[2,2, TopLeft()], "d", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
+    #Label(fig2[3,1, TopLeft()], "e", fontsize = 26,font = :bold,padding = (0, 5, 5, 0), halign = :right)
     #titlelayout = GridLayout(fig[0, 1], halign = :left, tellwidth = false)
     #Label(titlelayout[1, 1], "Fig. 3", halign = :left, fontsize=30)
 
-    save("figure_3.svg", fig)
-    save("figure_3.png", fig, px_per_unit = 2)
+    save("figure_2.svg", fig)
+    save("figure_2.png", fig, px_per_unit = 2)
+    save("figure_S6.svg", fig2)
+    save("figure_S6.png", fig2, px_per_unit = 2)
 end
